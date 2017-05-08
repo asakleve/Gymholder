@@ -13,6 +13,10 @@ import { InloggPage } from '../pages/inlogg/inlogg';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 
+import { GymprofilePage } from '../pages/gymprofile/gymprofile';
+import { EventLeaderboardPage } from '../pages/eventLeaderboard/eventLeaderboard';
+import { MapPage } from '../pages/map/map';
+
 @NgModule({
   declarations: [
     MyApp,
@@ -21,7 +25,10 @@ import { SplashScreen } from '@ionic-native/splash-screen';
     FriendsPage,
     GroupsPage,
     SettingsPage,
-    InloggPage
+    InloggPage,
+    GymprofilePage,
+    EventLeaderboardPage,
+    MapPage
   ],
   imports: [
     BrowserModule,
@@ -35,7 +42,10 @@ import { SplashScreen } from '@ionic-native/splash-screen';
     FriendsPage,
     GroupsPage,
     SettingsPage,
-    InloggPage
+    InloggPage,
+    GymprofilePage,
+    EventLeaderboardPage,
+    MapPage
   ],
   providers: [
     StatusBar,

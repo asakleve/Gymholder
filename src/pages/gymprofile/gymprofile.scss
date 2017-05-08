@@ -1,0 +1,32 @@
+page-gymprofile {
+
+.navigationbar {
+	text-align :center;
+ 	
+    }
+.cardLayout{
+   ion-card{
+   position: relative;
+   margin-top: 40px;
+  }
+	  
+}
+
+.bCard{
+    position: absolute;
+    top: 70%;
+    width: 100%;
+    text-align: left;
+	
+  }
+
+.card-title {
+  position: absolute;
+  top: 50%;
+  font-size: 1.5em;
+  width: 100%;
+  font-weight: normal;
+  color: #fff;
+  text-align :center;
+  }
+}

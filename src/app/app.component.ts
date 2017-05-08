@@ -10,6 +10,10 @@ import { GroupsPage } from '../pages/groups/groups';
 import { SettingsPage } from '../pages/settings/settings';
 import { InloggPage } from '../pages/inlogg/inlogg';
 
+import { GymprofilePage } from '../pages/gymprofile/gymprofile';
+import { EventLeaderboardPage } from '../pages/eventLeaderboard/eventLeaderboard';
+import { MapPage } from '../pages/map/map';
+
 
 @Component({
   templateUrl: 'app.html'
@@ -30,7 +34,10 @@ export class MyApp {
       { title: 'Profile', component: ProfilePage },
       { title: 'Friends', component: FriendsPage },
       { title: 'Groups', component: GroupsPage },
-      { title: 'Settings', component: SettingsPage }
+      { title: 'Settings', component: SettingsPage },
+      { title: 'Testlänk- Gymprofile', component: GymprofilePage },
+      { title: 'Testlänk-EventLeaderboard', component: EventLeaderboardPage },
+      { title: 'Testlänk- Map', component: MapPage }
     ];
 
   }
