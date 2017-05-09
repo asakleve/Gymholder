@@ -1,9 +1,5 @@
 page-gymprofile {
 
-.navigationbar {
-	text-align :center;
- 	
-    }
 .cardLayout{
    ion-card{
    position: relative;
@@ -29,4 +25,46 @@ page-gymprofile {
   color: #fff;
   text-align :center;
   }
+
+ .userPic{
+ 	width: 100%;
+ 	text-align: center;
+	 	img {
+	    padding: 5px;
+	    width: 50px;
+	    height: 70px;
+	    text-color: black;
+	}
+	ion-icon{
+		font-size: 50px;
+	}
+
+	.titel{
+	text-align: center;
+	}
+
+	.bLead{
+	
+	position: absolute;
+	text-align: center;
+	font-size: 1px;
+	}
+	
+
+	 }
+	.bResult{
+		
+	}
+
+	.bBadass{
+		
+
+	}
+
+	.bFind{
+		
+
+	}
+
+
 }
