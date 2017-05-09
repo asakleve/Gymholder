@@ -14,13 +14,21 @@ $font-path: "../assets/fonts";
 
 .navigationbar {
 	text-align :center;
-    }  
 
-.navButton{
-text{
-	font-size: 2.0em;
-	font-family: roboto;
-}
+  button.navButton {
+    color: white;
+    font-size: 2.0em;
+    font-family: roboto;
+    height: auto;
+    text-transform: none;
+  }
+
+  button.navButton .another-color {
+      color: #00CC66;
+  }
+
+
+
 }    
 
 // Named Color Variables
