@@ -1,5 +1,5 @@
 <ion-header>
-  <ion-navbar class = "navigationbar" color='navbarColor'> 
+  <ion-navbar class = "navigationbar" color='navbarColor'>
     <button ion-button menuToggle>
       <ion-icon name="menu"></ion-icon>
     </button>
@@ -12,8 +12,24 @@
   </ion-navbar>
 </ion-header>
 
-<ion-content padding>
+  <ion-content class="card-background-page">
 
+  <ion-card on-click="openMapPage()">
+      <img src="../../assets/img/findgym-homepage.jpg" />
+      <div class="card-title">Find Gym</div>
+      <div class="card-subtitle"></div>
+    </ion-card>
 
+    <ion-card on-click="openEventLeaderboardPage()">
+        <img src="../../assets/img/leaderboard-homepage.jpg" />
+        <div class="card-title">Event Leaderboard</div>
+        <div class="card-subtitle"></div>
+      </ion-card>
+
+      <ion-card>
+          <img src="../../assets/img/challenge-homepage.jpg" />
+          <div class="card-title">Challenges</div>
+          <div class="card-subtitle"></div>
+        </ion-card>
 
 </ion-content>
