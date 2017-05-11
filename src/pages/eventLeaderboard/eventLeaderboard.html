@@ -4,7 +4,7 @@
       <ion-icon name="menu"></ion-icon>
     </button>
 
-     <button ion-button clear color ='navbarTextColor' class ="navButton">Gym<span class="another-color">holder</span></button>
+     <button ion-button clear color ='navbarTextColor'>Gymholder</button>
      <button ion-button clear icon-search>
      <ion-icon name="search" color='white'></ion-icon>
 </button>
@@ -12,6 +12,13 @@
   </ion-navbar>
 </ion-header>
 
-<ion-content padding>
 
+<ion-content padding>
+  <button ion-button block color="secondary" (click)="showRadio()">Select sport</button>
+  <h5>Displaying results for {{selectedSport}}</h5>
+  <ion-list>
+    <button ion-item *ngFor="let item of displayResults">
+      {{item.reps}} {{item.user}} {{item.sport}}
+    </button>
+  </ion-list>
 </ion-content>
