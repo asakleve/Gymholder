@@ -1,3 +1,68 @@
 page-profile {
 
+.navigationbar {
+  text-align: center;
+  }
+
+  .card-background-page {
+
+ ion-card {
+    position: relative;
+    text-align: center;
+		height:10%;
+  }
+
+  .card-title {
+    position: absolute;
+    top: 36%;
+    font-size: 2.0em;
+    width: 100%;
+    font-weight: bold;
+    color: #ffffff;
+  }
+
+    .card-subtitle {
+    font-size: 1.0em;
+    position: absolute;
+    top: 52%;
+    width: 100%;
+    color: #ffffff;
+  }
+
+.button-layout {
+	font-size: 12px;
+	width: 100% 
 }
+
+.userPic {
+	 	width: 100%;
+	 	text-align: center;
+		 
+		img {
+		    padding: 10px;
+		    width: 100px;
+		    height: 100px;
+		    text-color: black;
+		}
+
+}
+.name{
+	text-align: center;
+	font-size: 28px;
+}
+trophy{
+	align:center; 
+}
+.info{
+	text-align:center;
+	font-size: 16px;
+}
+.lower {
+	margin-top: 20%; 
+	position: float bottom; 
+}
+
+
+}
+}
+
