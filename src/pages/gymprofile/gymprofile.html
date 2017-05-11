@@ -1,10 +1,10 @@
 <ion-header>
-  <ion-navbar class = "navigationbar" color='navbarColor'> 
+  <ion-navbar class = "navigationbar" color='navbarColor'>
     <button ion-button menuToggle>
       <ion-icon name="menu"></ion-icon>
     </button>
 
-     <button ion-button clear color ='navbarTextColor'>Gymholder</button>
+     <button ion-button clear color ='navbarTextColor' class ="navButton">Gym<span class="another-color">holder</span></button>
      <button ion-button clear icon-search>
      <ion-icon name="search" color='white'></ion-icon>
 </button>
@@ -12,18 +12,48 @@
   </ion-navbar>
 </ion-header>
 
-<ion-content class="cardLayout">
-
+<ion-content>
+<div class="cardLayout">
   <ion-card>
-    <img src="../../assets/img/eriksdals.jpg" />
+    <img src="assets/img/eriksdals.jpg" />
     <div class="card-title">Erikdals utegym</div>
-    <div class="bCard">
-    <button ion-button icon-only>
-  <ion-icon name="locate"></ion-icon>
-	</button>
+  	  <div class="bCard">
+  		  <button ion-button icon-only>
+   			 <ion-icon name="pin"></ion-icon>
+		</button>
 	</div>
-
-    
   </ion-card>
+</div>
+
+<p class="titel">Gymholder:</p>
+<div class="userPic">
+<img src="assets/img/user.png"/>
+<ion-icon name="trophy"></ion-icon>
+
+<p> Jackie Tan, 25 </p>
+</div>
+
+<div >
+<button ion-button medium class="left-box box">Gym-Leaderboard</button>
+</div>
+<div>
+<button ion-button medium class="box">Register Result</button>
+</div>
+<div>
+<button ion-button medium class="left-box box">BADASSmultiplier</button>
+</div>
+<div>
+<button ion-button medium class="box">Find gym on map</button>
+</div>
+
+
+
+
+
+
+
+
+
+
 
 </ion-content>

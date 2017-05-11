@@ -12,8 +12,24 @@ $font-path: "../assets/fonts";
 // To view all the possible Ionic variables, see:
 // http://ionicframework.com/docs/v2/theming/overriding-ionic-variables/
 
+.navigationbar {
+	text-align :center;
+
+  button.navButton {
+    color: white;
+    font-size: 2.0em;
+    font-family: roboto;
+    height: auto;
+    text-transform: none;
+  }
+
+  button.navButton .another-color {
+      color: #00CC66;
+  }
 
 
+
+}    
 
 // Named Color Variables
 // --------------------------------------------------
