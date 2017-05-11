@@ -1,32 +1,59 @@
 page-gymprofile {
 
-.navigationbar {
-	text-align :center;
- 	
-    }
-.cardLayout{
-   ion-card{
-   position: relative;
-   margin-top: 40px;
-  }
-	  
-}
+	.cardLayout {
+		ion-card {
+	   		position: relative;
+	   		margin-top: 40px;
+	    }	  
+	}
 
-.bCard{
-    position: absolute;
-    top: 70%;
-    width: 100%;
-    text-align: left;
-	
-  }
+	.bCard{
+	    position: absolute;
+	    top: 70%;
+	    width: 100%;
+	    text-align: left;
+		
+	 }
 
-.card-title {
-  position: absolute;
-  top: 50%;
-  font-size: 1.5em;
-  width: 100%;
-  font-weight: normal;
-  color: #fff;
-  text-align :center;
-  }
+	.card-title {
+	  position: absolute;
+	  top: 50%;
+	  font-size: 1.5em;
+	  width: 100%;
+	  font-weight: normal;
+	  color: #fff;
+	  text-align :center;
+	 }
+
+	 .titel {
+		text-align: center;
+	}
+
+	 .userPic {
+	 	width: 100%;
+	 	text-align: center;
+		 
+		img {
+		    padding: 5px;
+		    width: 50px;
+		    height: 70px;
+		    text-color: black;
+		}
+
+		ion-icon{
+			font-size: 50px;
+		}
+
+		.box {
+	    	width: 40%;
+	    	height: 70px;
+	   	 	float: left;
+	    	margin-bottom: 2%;
+		}
+
+		.left-box {
+	    	margin-left: 9%;
+	   	 	margin-right: 2%;
+		}
+	}
 }
