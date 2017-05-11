@@ -22,6 +22,7 @@ export class HomePage {
       this.navCtrl.setRoot('LoginPage')
     });
   }
+  
   openMapPage(){
     this.navCtrl.setRoot(MapPage);
   }
