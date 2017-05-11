@@ -1,3 +1,4 @@
+
 <ion-header>
   <ion-navbar class = "navigationbar" color='navbarColor'>
     <button ion-button menuToggle>
@@ -13,5 +14,12 @@
 </ion-header>
 
 <ion-content padding>
-
+  <button ion-button block color="secondary" (click)="showRadio()">Select sport</button>
+  <h5>Displaying results for {{selectedSport}}</h5>
+  <ion-list>
+    <button ion-item *ngFor="let item of displayResults">
+      {{item.reps}} {{item.user}} {{item.sport}}
+    </button>
+  </ion-list>
 </ion-content>
+
