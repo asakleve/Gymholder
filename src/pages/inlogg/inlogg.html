@@ -1,9 +1,35 @@
+<form (ngSubmit)="login()" #registerForm="ngForm" class="loginForm">
+  <ion-list>
+
+    <ion-item>
+      <ion-input type="text" placeholder="E-post" name="email" [(ngModel)]="registerCredentials.email" required></ion-input>
+    </ion-item>
+
+    <!--
+      content: (ngSubmit)="login()" #registerForm="ngForm"
+      epost: [(ngModel)]="registerCredentials.email"
+      user: (onclick)="getUserData(username.value)"
+      password: [(ngModel)]="registerCredentials.password"
+      submit: [disabled]="!registerForm.form.valid"
+    //-->
+
+    <ion-item>
+      <ion-input type="password" placeholder="Lösenord" name="password" [(ngModel)]="registerCredentials.password" required></ion-input>
+    </ion-item>
+
+  </ion-list>
+</form>
+
 <ion-content class="card-background-page">
 
   <ion-card >
     <img src="assets/img/1a-sidan.jpg" />
-    <div class="bClass"> <button ion-button>Register now</button>
-    <button ion-button (click)="dummyLogin()">Log in</button></div>
+    <div class="bClass">
+
+      <button ion-button (click)="createAccount()">Register now</button>
+      <button ion-button (click)="dummyLogin()" type="submit" [disabled]="!registerForm.form.valid">Log in</button>
+
+    </div>
   </ion-card>
 
 </ion-content>

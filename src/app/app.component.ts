@@ -9,6 +9,7 @@ import { FriendsPage } from '../pages/friends/friends';
 import { GroupsPage } from '../pages/groups/groups';
 import { SettingsPage } from '../pages/settings/settings';
 import { InloggPage } from '../pages/inlogg/inlogg';
+import { RegisterPage } from '../pages/register/register';
 
 import { GymprofilePage } from '../pages/gymprofile/gymprofile';
 import { EventLeaderboardPage } from '../pages/eventLeaderboard/eventLeaderboard';
