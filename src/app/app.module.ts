@@ -10,7 +10,8 @@ import { FriendsPage } from '../pages/friends/friends';
 import { GroupsPage } from '../pages/groups/groups';
 import { SettingsPage } from '../pages/settings/settings';
 import { InloggPage } from '../pages/inlogg/inlogg';
-
+import { MessagesPage } from '../pages/messages/messages';
+import { MessagesPopOverPage } from '../pages/messages-pop-over/messages-pop-over';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 
@@ -24,6 +25,8 @@ import { MyChallengesPage } from '../pages/my-challenges/my-challenges'
     MyApp,
     HomePage,
     ProfilePage,
+    MessagesPage,
+    MessagesPopOverPage,
     FriendsPage,
     GroupsPage,
     SettingsPage,
@@ -42,6 +45,8 @@ import { MyChallengesPage } from '../pages/my-challenges/my-challenges'
     MyApp,
     HomePage,
     ProfilePage,
+    MessagesPage,
+    MessagesPopOverPage,
     FriendsPage,
     GroupsPage,
     SettingsPage,
