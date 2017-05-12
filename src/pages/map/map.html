@@ -12,6 +12,16 @@
 </ion-header>
 
 
-<ion-content padding>
 
+<ion-content padding>
+  <div #map id="map"></div>
+
+  <div  class = "searchbar">
+    <ion-searchbar
+    [(ngModel)]="myInput"
+    [showCancelButton]="shouldShowCancel"
+    (ionInput)="onInput($event)"
+    (ionCancel)="onCancel($event)">
+  </ion-searchbar> </div>
+  
 </ion-content>
