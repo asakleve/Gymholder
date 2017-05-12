@@ -1,6 +1,16 @@
 {
-  "name": "gymholder",
+  "name": "GymHolder",
   "app_id": "24d1beb1",
   "v2": true,
-  "typescript": true
+  "typescript": true,
+  "proxies": [
+    {
+      "path": "/user",
+      "proxyUrl": "http://gymholder.herokuapp.com/user"
+    },
+    {
+      "path": "/openStockholm",
+      "proxyUrl": "http://api.stockholm.se"
+    }
+  ]
 }

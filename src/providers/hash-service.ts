@@ -11,6 +11,9 @@ import 'rxjs/add/operator/map';
 @Injectable()
 export class HashService {
 
+  password: any;
+  hashed_password: any;
+
   constructor(public http: Http) {
     console.log('Hello HashService Provider');
   }

@@ -21,18 +21,27 @@ export class User {
 
 @Injectable()
 export class AuthService {
+
   public currentUser: User;
+  private http: Http;
 
   public login(credentials) {
     if (credentials.email === null || credentials.password === null) {
       return Observable.throw("Please insert credentials");
     } else {
+
       return Observable.create(observer => {
         // At this point make a request to your backend to make a real check!
 
+        let headers = new Headers();
+        headers.append('Content-Type', 'application/json');
 
+        let body = {
+          email: credentials.email,
+          password: credentials.password
+        };
 
-        var reponse = this.http.get('http://gymholder.herokuapp.com/user/', JSON.stringify(body), { headers: headers })
+        this.http.get('http://gymholder.herokuapp.com/user')
           .map(res => res.json())
           .subscribe(data => {
             console.log(data);
@@ -56,6 +65,7 @@ export class AuthService {
       return Observable.throw("Please insert credentials");
     } else {
       // At this point store the credentials to your backend!
+
       let headers = new Headers();
       headers.append('Content-Type', 'application/json');
 
@@ -71,6 +81,7 @@ export class AuthService {
         .subscribe(data => {
           console.log(data);
         });
+
       // Chris kommentar: do http post to /user with parameters
 
       return Observable.create(observer => {

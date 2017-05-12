@@ -5,6 +5,7 @@ page-gymprofile {
 	   		position: relative;
 	   		margin-top: 40px;
 	    }	  
+
 	}
 
 	.bCard{
@@ -27,6 +28,7 @@ page-gymprofile {
 
 	 .titel {
 		text-align: center;
+		font-size: 2em;
 	}
 
 	 .userPic {
@@ -39,21 +41,25 @@ page-gymprofile {
 		    height: 70px;
 		    text-color: black;
 		}
-
+		
 		ion-icon{
-			font-size: 50px;
+		font-size: 50px;
 		}
 
-		.box {
-	    	width: 40%;
-	    	height: 70px;
-	   	 	float: left;
-	    	margin-bottom: 2%;
-		}
 
-		.left-box {
-	    	margin-left: 9%;
-	   	 	margin-right: 2%;
-		}
 	}
+
+
+	.box {
+		width: 40%;
+		height: 70px;
+		float: left;
+		 margin-bottom: 2%;
+	}
+
+	.left-box {
+		 margin-left: 9%;
+		 margin-right: 2%;
+	}
+		
 }

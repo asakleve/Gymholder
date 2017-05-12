@@ -1,20 +1,13 @@
 <ion-header>
-  <ion-navbar class = "navigationbar" color='navbarColor'>
+  <ion-navbar class="navigationbar" color='navbarColor'>
     <button ion-button menuToggle>
       <ion-icon name="menu"></ion-icon>
     </button>
 
-<<<<<<< HEAD
-    <button ion-button clear color ='navbarTextColor'>Gymholder</button>
+    <button ion-button clear color ='navbarTextColor' class ="navButton">Gym<span class="another-color">holder</span></button>
     <button ion-button clear icon-search>
-      <ion-icon name="search"color='white' color='white'></ion-icon>
+      <ion-icon name="search" color='white'></ion-icon>
     </button>
-=======
-     <button ion-button clear color ='navbarTextColor' class ="navButton">Gym<span class="another-color">holder</span></button>
-     <button ion-button clear icon-search>
-     <ion-icon name="search" color='white'></ion-icon>
-</button>
->>>>>>> ec751ce808d29c3112abaa952cd2a8bc46e177ee
 
   </ion-navbar>
 </ion-header>
@@ -33,10 +26,20 @@
     <div class="card-subtitle"></div>
   </ion-card>
 
-  <ion-card>
+  <ion-card on-click="openMyChallengesPage()">
     <img src="assets/img/challenge-homepage.jpg" />
     <div class="card-title">Challenges</div>
     <div class="card-subtitle"></div>
   </ion-card>
+
+  <ion-list>
+    <ion-item *ngFor="let gd of gymData">
+      <ion-avatar item-left>
+        <ion-icon name="menu"></ion-icon>
+      </ion-avatar>
+      <h2>{{gd.Name}}</h2>
+      <p>X = {{ gd.GeographicalPosition.X }}, Y = {{ gd.GeographicalPosition.Y }}</p>
+    </ion-item>
+  </ion-list>
 
 </ion-content>

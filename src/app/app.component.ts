@@ -14,6 +14,7 @@ import { RegisterPage } from '../pages/register/register';
 import { GymprofilePage } from '../pages/gymprofile/gymprofile';
 import { EventLeaderboardPage } from '../pages/eventLeaderboard/eventLeaderboard';
 import { MapPage } from '../pages/map/map';
+import { MyChallengesPage } from '../pages/my-challenges/my-challenges'
 
 
 @Component({
