@@ -1,8 +1,6 @@
 import { Component } from '@angular/core';
-import { NavController } from 'ionic-angular';
+import { NavController, MenuController } from 'ionic-angular';
 import { AuthService } from '../../providers/auth-service';
-import { OpenGymDataService } from '../../providers/open-gym-data-service';
-import { CoordService } from '../../providers/coord-service';
 // import * as CoordinateHandler from '../../CoordinateHandler.js';
 
 import { MapPage } from '../map/map';
@@ -15,12 +13,11 @@ import { MyChallengesPage } from '../my-challenges/my-challenges';
 })
 export class HomePage {
   email = '';
-  gymData: any;
 
-  constructor(public navCtrl: NavController, private auth: AuthService, private openGymData: OpenGymDataService, private coordService: CoordService) {
+  constructor(public navCtrl: NavController, private auth: AuthService, private menu: MenuController) {
     // let info = this.auth.getUserInfo();
     // this.email = info['email'];
-    this.loadGyms();
+    this.menu.enable(true);
     console.log('Homes konstruktor.');
   }
 
@@ -31,7 +28,7 @@ export class HomePage {
   }
 
   openMapPage(){
-    this.navCtrl.setRoot(MapPage);
+    this.navCtrl.push(MapPage);
   }
 
   openEventLeaderboardPage(){
@@ -40,14 +37,6 @@ export class HomePage {
 
   openMyChallengesPage(){
     this.navCtrl.setRoot(MyChallengesPage);
-  }
-
-  loadGyms(){
-    this.openGymData.loadGymData()
-    .subscribe(data => {
-      this.gymData = data;
-    });
-    console.log('Gymdata har kört klart.');
   }
 
   ionViewDidLoad() {
