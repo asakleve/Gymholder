@@ -1,10 +1,10 @@
 <ion-header>
-  <ion-navbar class = "navigationbar" color='navbarColor'> 
+  <ion-navbar class = "navigationbar" color='navbarColor'>
     <button ion-button menuToggle>
       <ion-icon name="menu"></ion-icon>
     </button>
 
-     <button ion-button clear color ='navbarTextColor'>Gymholder</button>
+     <button ion-button clear color ='navbarTextColor' class ="navButton">Gym<span class="another-color">holder</span></button>
      <button ion-button clear icon-search>
      <ion-icon name="search" color='white'></ion-icon>
 </button>
@@ -13,6 +13,44 @@
 </ion-header>
 
 
-<ion-content padding>
+<ion-content class="card-background-page">
 
-</ion-content>
+	<ion-grid> 
+
+
+<p class="name">Jackie Tan</p>
+<div class="userPic">
+<img src="assets/img/user.png"/>
+
+<p class="info"> 25, Farsta Utegym </p>
+<ion-icon name="trophy"></ion-icon>
+
+</div>		
+
+
+	<div class="lower">
+		<ion-row> 
+			<ion-col> 
+				<button class="button-layout" ion-button color="dark" icon-left (click)="showPrompt();"> 
+				<ion-icon name="chatboxes"></ion-icon>
+				<p>  Send Message </p>
+				</button>
+			</ion-col>
+			
+			<ion-col> 
+				<button class="button-layout" ion-button color="dark" icon-left (click)="presentToast();"> 
+				<ion-icon name="contacts"></ion-icon>
+				 <p>  Add Friend </p>
+				</button>
+			</ion-col>
+		</ion-row>
+
+		<ion-row> 
+			<ion-card (click)="showRadio();">
+			  	<img src="assets/img/Challenge-userprofile.jpg" />
+			  	<div class="card-title">Challenge Jackie</div>
+        		<div class="card-subtitle"></div>
+  
+			</ion-card>
+		</ion-row>		
+</div>

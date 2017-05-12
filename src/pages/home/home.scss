@@ -1,8 +1,34 @@
 page-home {
+
 .navigationbar {
-	
-	text-align :center;
-	
+  text-align: center;
+  }
+
+  .card-background-page {
+
+  ion-card {
+    position: relative;
+    text-align: center;
+		height:30%;
+  }
+
+  .card-title {
+    position: absolute;
+    top: 36%;
+    font-size: 2.0em;
+    width: 100%;
+    font-weight: bold;
+    background-color: rgba(0, 0, 0, 0.5);
+    color: #ffffff;
+  }
+
+  .card-subtitle {
+    font-size: 1.0em;
+    position: absolute;
+    top: 52%;
+    width: 100%;
+    color: #ffffff;
+  }
 }
 
 }

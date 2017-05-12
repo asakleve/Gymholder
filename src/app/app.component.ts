@@ -9,10 +9,12 @@ import { FriendsPage } from '../pages/friends/friends';
 import { GroupsPage } from '../pages/groups/groups';
 import { SettingsPage } from '../pages/settings/settings';
 import { InloggPage } from '../pages/inlogg/inlogg';
+import { RegisterPage } from '../pages/register/register';
 
 import { GymprofilePage } from '../pages/gymprofile/gymprofile';
 import { EventLeaderboardPage } from '../pages/eventLeaderboard/eventLeaderboard';
 import { MapPage } from '../pages/map/map';
+import { MyChallengesPage } from '../pages/my-challenges/my-challenges'
 
 
 @Component({
@@ -56,4 +58,5 @@ export class MyApp {
     // we wouldn't want the back button to show in this scenario
     this.nav.setRoot(page.component);
   }
+
 }
