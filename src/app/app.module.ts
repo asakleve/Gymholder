@@ -17,7 +17,10 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 import { GymprofilePage } from '../pages/gymprofile/gymprofile';
 import { EventLeaderboardPage } from '../pages/eventLeaderboard/eventLeaderboard';
 import { MapPage } from '../pages/map/map';
-import { MyChallengesPage } from '../pages/my-challenges/my-challenges'
+import { MyChallengesPage } from '../pages/my-challenges/my-challenges';
+
+import { Results } from '../pages/results/results';
+
 
 @NgModule({
   declarations: [
@@ -31,7 +34,8 @@ import { MyChallengesPage } from '../pages/my-challenges/my-challenges'
     GymprofilePage,
     EventLeaderboardPage,
     MapPage,
-    MyChallengesPage
+    MyChallengesPage,
+    Results
   ],
   imports: [
     BrowserModule,
@@ -49,7 +53,8 @@ import { MyChallengesPage } from '../pages/my-challenges/my-challenges'
     GymprofilePage,
     EventLeaderboardPage,
     MapPage,
-    MyChallengesPage
+    MyChallengesPage,
+    Results
   ],
   providers: [
     StatusBar,

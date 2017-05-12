@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { ToastController } from 'ionic-angular';
 import { AlertController } from 'ionic-angular';
-
+import { Results } from '../results/results';
 /**
  * Generated class for the Profile page.
  *
@@ -45,7 +45,6 @@ alert.addInput({type: 'radio', label: 'Chins', value: 'chins'})
 alert.addInput({type: 'radio', label: 'Chins', value: 'chins'})
 
 alert.addInput({type: 'radio', label: 'Chins', value: 'chins'})
-
 
 alert.addInput({type: 'radio', label: 'Chins', value: 'chins'})
 
@@ -128,6 +127,11 @@ presentToast() {
     });
     prompt.present();
   }
+
+toResults(){
+  this.navCtrl.push(Results);
+}
+
 }
 
 
