@@ -15,12 +15,12 @@
 <ion-content padding>
 
   <ion-list>
-    <ion-item *ngFor="let gd of gymData">
+    <ion-item *ngFor="let gd of processedGymData">
       <ion-avatar item-left>
         <ion-icon name="globe"></ion-icon>
       </ion-avatar>
-      <h2>{{gd.Name}}</h2>
-      <p>X = {{ gd.GeographicalPosition.X }}, Y = {{ gd.GeographicalPosition.Y }}</p>
+      <h2>{{gd.name}}</h2>
+      <p>X = {{ gd.lat }}, Y = {{ gd.lon }}</p>
     </ion-item>
   </ion-list>
 

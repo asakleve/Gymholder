@@ -51,13 +51,15 @@ export class CoordService {
   }
 
   gridToGeodetic(x, y) {
+    this.grs80Params();
+    this.rt90Projection();
     var lat_lon = new Array(2);
     if (this.centralMeridian == null) {
       return lat_lon;
     }
     // Prepare ellipsoid-based stuff.
-    var e2 = this.flattening * (2.0 - this.flattening);
-    var n = this.flattening / (2.0 - this.flattening);
+    var e2 = (this.flattening * (2.0 - this.flattening));
+    var n = (this.flattening / (2.0 - this.flattening));
     var a_roof = this.axis / (1.0 + n) * (1.0 + n * n / 4.0 + n * n * n * n / 64.0);
     var delta1 = n / 2.0 - 2.0 * n * n / 3.0 + 37.0 * n * n * n / 96.0 - n * n * n * n / 360.0;
     var delta2 = n * n / 48.0 + n * n * n / 15.0 - 437.0 * n * n * n * n / 1440.0;
@@ -95,6 +97,6 @@ export class CoordService {
     lat_lon[0] = lat_radian * 180.0 / Math.PI;
     lat_lon[1] = lon_radian * 180.0 / Math.PI;
     //return lat_lon;
-    return {lat:lat_lon[0],lon:lat_lon[1]};
+    return {lat: lat_lon[0], lon: lat_lon[1]};
   }
 }
