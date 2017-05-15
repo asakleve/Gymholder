@@ -10,11 +10,13 @@ import { GroupsPage } from '../pages/groups/groups';
 import { SettingsPage } from '../pages/settings/settings';
 import { InloggPage } from '../pages/inlogg/inlogg';
 import { RegisterPage } from '../pages/register/register';
+import { MessagesPage } from '../pages/messages/messages';
 
 import { GymprofilePage } from '../pages/gymprofile/gymprofile';
 import { EventLeaderboardPage } from '../pages/eventLeaderboard/eventLeaderboard';
 import { MapPage } from '../pages/map/map';
 import { MyChallengesPage } from '../pages/my-challenges/my-challenges'
+
 
 
 @Component({
@@ -34,6 +36,7 @@ export class MyApp {
     this.pages = [
       { title: 'Home', component: HomePage },
       { title: 'Profile', component: ProfilePage },
+      { title: 'Messages', component: MessagesPage },
       { title: 'Friends', component: FriendsPage },
       { title: 'Groups', component: GroupsPage },
       { title: 'Settings', component: SettingsPage },
