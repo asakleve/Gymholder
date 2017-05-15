@@ -32,6 +32,7 @@ declare var google;
 })
 export class MapPage {
 
+  lastMarker: any;
   pos: any;
 
   @ViewChild('map') mapElement: ElementRef;
@@ -53,6 +54,7 @@ export class MapPage {
       for(let data of this.gymData) {
         this.pos = this.coordService.gridToGeodetic(data.GeographicalPosition.X, data.GeographicalPosition.Y);
         this.processedGymData.push(new Gym(data.Name, this.pos.lat, this.pos.lon));
+        this.addMarker(data.Name, this.pos.lat, this.pos.lon);
       }
     });
       /* processedGymData.push({ value.name, pos.lat, pos.lon }); */
@@ -63,13 +65,13 @@ export class MapPage {
     this.loadMap();
   }
 
-    loadMap(){
+  loadMap(){
 
-    let latLng = new google.maps.LatLng(59.40316, 17.94479);
+    let latLng = new google.maps.LatLng(59.307890, 18.012877);
 
     let mapOptions = {
       center: latLng,
-      zoom: 9,
+      zoom: 10,
       mapTypeId: google.maps.MapTypeId.ROADMAP
     }
 
@@ -78,29 +80,31 @@ export class MapPage {
   }
 
 
-  addMarker(){
+  addMarker(name: string, x: number, y: number) {
+    let marker = new google.maps.Marker({
+      map: this.map,
+      animation: google.maps.Animation.DROP,
+      position: new google.maps.LatLng(x, y)
+    });
+    marker.infoWindow = new google.maps.InfoWindow({
+      content: '<p class="infoWinHeader">' + name + '</p></br>'
+      + '<p class="infoWinBody">Here be text and shit. Arrr.</p>'
+    });
+    google.maps.event.addListener(marker, 'click', () => {
+      if(this.lastMarker != null) {
+        this.lastMarker.infoWindow.close();
+      }
+      marker.infoWindow.open(this.map, marker);
+      this.lastMarker = marker;
+    });
+  }
 
-  let marker = new google.maps.Marker({
-    map: this.map,
-    animation: google.maps.Animation.DROP,
-    position: this.map.getCenter()
-  });
+  addInfoWindow(marker, content){
+    let infoWindow = new google.maps.InfoWindow({
+      content: content
+    });
 
-  let content = "<h4>Info om platsen!</h4>";
 
-  this.addInfoWindow(marker, content);
-
-}
-addInfoWindow(marker, content){
-
-  let infoWindow = new google.maps.InfoWindow({
-    content: content
-  });
-
-  google.maps.event.addListener(marker, 'click', () => {
-    infoWindow.open(this.map, marker);
-  });
-
-}
+  }
 
 }
