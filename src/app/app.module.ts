@@ -1,7 +1,11 @@
 import { AuthService } from '../providers/auth-service';
+import { CoordService } from '../providers/coord-service';
+import { HashService } from '../providers/hash-service';
+import { OpenGymDataService } from '../providers/open-gym-data-service';
 import { BrowserModule } from '@angular/platform-browser';
 import { ErrorHandler, NgModule } from '@angular/core';
 import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
+import { HttpModule } from '@angular/http';
 
 import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
@@ -57,8 +61,11 @@ import { MyChallengesPage } from '../pages/my-challenges/my-challenges'
     StatusBar,
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
-    AuthService
-    
+    AuthService,
+    CoordService,
+    HashService,
+    OpenGymDataService
+
   ]
 })
 export class AppModule {}

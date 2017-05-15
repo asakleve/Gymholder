@@ -1,5 +1,5 @@
 {
-    "name": "ionic-hello-world",
+    "name": "GymHolder",
     "version": "0.0.0",
     "author": "Ionic Framework",
     "homepage": "http://ionicframework.com/",
@@ -57,7 +57,7 @@
             "locator": "ios"
         }
     ],
-    "description": "gymholder: An Ionic project",
+    "description": "GymHolder: An Ionic project",
     "cordova": {
         "plugins": {
             "cordova-plugin-console": {},

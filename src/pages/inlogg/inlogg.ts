@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { NavController, AlertController, LoadingController, Loading, IonicPage } from 'ionic-angular';
+import { NavController, MenuController, AlertController, LoadingController, Loading, IonicPage } from 'ionic-angular';
 import { HomePage } from '../home/home';
 import { AuthService } from '../../providers/auth-service';
 import { RegisterPage } from '../register/register';
@@ -12,8 +12,8 @@ export class InloggPage {
   loading: Loading;
   registerCredentials = { email: '', password: '' };
 
-  constructor(public nav: NavController, private auth: AuthService, private alertCtrl: AlertController, private loadingCtrl: LoadingController) {
-
+  constructor(public nav: NavController, public menu: MenuController, private auth: AuthService, private alertCtrl: AlertController, private loadingCtrl: LoadingController) {
+    this.menu.enable(false);
   }
 
   public createAccount() {
