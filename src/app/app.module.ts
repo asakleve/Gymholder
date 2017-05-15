@@ -17,6 +17,7 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 import { GymprofilePage } from '../pages/gymprofile/gymprofile';
 import { EventLeaderboardPage } from '../pages/eventLeaderboard/eventLeaderboard';
 import { MapPage } from '../pages/map/map';
+import { HttpModule } from '@angular/http';
 import { MyChallengesPage } from '../pages/my-challenges/my-challenges'
 
 @NgModule({
@@ -35,6 +36,7 @@ import { MyChallengesPage } from '../pages/my-challenges/my-challenges'
   ],
   imports: [
     BrowserModule,
+    HttpModule,
     IonicModule.forRoot(MyApp),
   ],
   bootstrap: [IonicApp],
@@ -56,6 +58,7 @@ import { MyChallengesPage } from '../pages/my-challenges/my-challenges'
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     AuthService
+    
   ]
 })
 export class AppModule {}
