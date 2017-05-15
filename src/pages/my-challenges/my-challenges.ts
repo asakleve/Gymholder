@@ -10,7 +10,8 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 @IonicPage()
 @Component({
   selector: 'page-my-challenges',
-  templateUrl: 'my-challenges.html',
+  templateUrl: 'my-challenges.html'
+
 })
 export class MyChallengesPage {
 
@@ -20,5 +21,6 @@ export class MyChallengesPage {
   ionViewDidLoad() {
     console.log('ionViewDidLoad MyChallenges');
   }
+
 
 }
