@@ -26,6 +26,9 @@ import { MyChallengesPage } from '../pages/my-challenges/my-challenges';
 import { GymLeaderboardPage } from '../pages/gym-leaderboard/gym-leaderboard';
 import { ProfileSettingsPage } from '../pages/profile-settings/profile-settings';
 
+
+
+
 @NgModule({
   declarations: [
     MyApp,
