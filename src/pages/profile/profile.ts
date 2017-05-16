@@ -18,6 +18,8 @@ export class ProfilePage {
 testRadioOpen;
 testRadioResult;
 messageA;
+eventVar;
+nameVar;
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public alertCtrl: AlertController, public toastCtrl: ToastController) {
   }
@@ -59,6 +61,8 @@ type:'radio',
     alert.addButton({
       text: 'OK',
       handler: data => {
+      	this.eventVar = data; 
+
         this.testRadioOpen = false;
         this.testRadioResult = data;
         this.showAlert();
@@ -95,8 +99,8 @@ presentToast() {
    showAlert() {
     let alert = this.alertCtrl.create({
       title: 'Challenge sent!',
-      subTitle: 'You have challenged Jackie in chins, she has seven days to accept the challenge',
-      buttons: ['Cancel' , 'OK']
+      subTitle: 'You have challenged Jackie in ' + this.eventVar + ' she has seven days to accept the challenge',
+      buttons: ['OK']
     });
     alert.present();
   }
