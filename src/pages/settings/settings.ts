@@ -1,10 +1,10 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
+
 import { SettingPopOverPage } from '../setting-pop-over/setting-pop-over';
 import { Platform, ActionSheetController } from 'ionic-angular';
 import { KontoSettingsPage } from '../konto-settings/konto-settings';
-
-
+import { ProfileSettingsPage } from '../profile-settings/profile-settings';
 
 /**
  * Generated class for the Settings page.
@@ -67,4 +67,9 @@ export class SettingsPage {
       });
       actionSheet.present();
     }
+
+  openProfileSettings(){
+  this.navCtrl.push(ProfileSettingsPage);
+  }
+
 }

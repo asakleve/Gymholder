@@ -1,29 +1,26 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
-import { GymLeaderboardPage } from '../gym-leaderboard/gym-leaderboard';
 
 /**
- * Generated class for the Gymprofile page.
+ * Generated class for the MyChallenges page.
  *
  * See http://ionicframework.com/docs/components/#navigation for more info
  * on Ionic pages and navigation.
  */
 @IonicPage()
 @Component({
-  selector: 'page-gymprofile',
-  templateUrl: 'gymprofile.html',
+  selector: 'page-my-challenges',
+  templateUrl: 'my-challenges.html'
+
 })
-export class GymprofilePage {
+export class MyChallengesPage {
 
   constructor(public navCtrl: NavController, public navParams: NavParams) {
   }
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad Gymprofile');
+    console.log('ionViewDidLoad MyChallenges');
   }
 
-  openLeaderBoard(){
-  	this.navCtrl.push(GymLeaderboardPage);
-  }
 
 }

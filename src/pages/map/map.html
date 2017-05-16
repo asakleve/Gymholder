@@ -3,15 +3,36 @@
     <button ion-button menuToggle>
       <ion-icon name="menu"></ion-icon>
     </button>
-     <button ion-button clear color ='navbarTextColor' class ="navButton">Gym<span class="another-color">holder</span></button>
-     <button ion-button clear icon-search>
-     <ion-icon name="search" color='white'></ion-icon>
-</button>
+    <button ion-button clear color ='navbarTextColor' class ="navButton">Gym<span class="another-color">holder</span></button>
+    <button ion-button clear icon-search>
+      <ion-icon name="search" color='white'></ion-icon>
+    </button>
 
   </ion-navbar>
 </ion-header>
 
 
 <ion-content padding>
+<div #map id="map"></div>
+
+  <div  class = "searchbar">
+    <ion-searchbar
+    [(ngModel)]="myInput"
+    [showCancelButton]="shouldShowCancel"
+    (ionInput)="onInput($event)"
+    (ionCancel)="onCancel($event)">
+</ion-searchbar> </div>
+
+<!--
+  <ion-list>
+    <ion-item *ngFor="let gd of processedGymData">
+      <ion-avatar item-left>
+        <ion-icon name="globe"></ion-icon>
+      </ion-avatar>
+      <h2>{{gd.name}}</h2>
+      <p>Lat = {{ gd.lat }}, Lon = {{ gd.lon }}</p>
+    </ion-item>
+  </ion-list>
+//-->
 
 </ion-content>

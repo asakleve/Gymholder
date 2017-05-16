@@ -1,29 +1,28 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
-import { GymLeaderboardPage } from '../gym-leaderboard/gym-leaderboard';
+import { MessagesPopOverPage} from '../messages-pop-over/messages-pop-over';
 
 /**
- * Generated class for the Gymprofile page.
+ * Generated class for the Messages page.
  *
  * See http://ionicframework.com/docs/components/#navigation for more info
  * on Ionic pages and navigation.
  */
 @IonicPage()
 @Component({
-  selector: 'page-gymprofile',
-  templateUrl: 'gymprofile.html',
+  selector: 'page-messages',
+  templateUrl: 'messages.html',
 })
-export class GymprofilePage {
+export class MessagesPage {
 
   constructor(public navCtrl: NavController, public navParams: NavParams) {
   }
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad Gymprofile');
+    console.log('ionViewDidLoad MessagesPage');
   }
-
-  openLeaderBoard(){
-  	this.navCtrl.push(GymLeaderboardPage);
+  openConversation(){
+  this.navCtrl.push(MessagesPopOverPage);
   }
 
 }
