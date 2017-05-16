@@ -17,6 +17,9 @@ import { GymprofilePage } from '../pages/gymprofile/gymprofile';
 import { EventLeaderboardPage } from '../pages/eventLeaderboard/eventLeaderboard';
 import { MapPage } from '../pages/map/map';
 
+
+
+
 @NgModule({
   declarations: [
     MyApp,
@@ -29,6 +32,8 @@ import { MapPage } from '../pages/map/map';
     GymprofilePage,
     EventLeaderboardPage,
     MapPage
+
+
   ],
   imports: [
     BrowserModule,

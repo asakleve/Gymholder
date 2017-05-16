@@ -13,6 +13,9 @@ import { InloggPage } from '../pages/inlogg/inlogg';
 import { GymprofilePage } from '../pages/gymprofile/gymprofile';
 import { EventLeaderboardPage } from '../pages/eventLeaderboard/eventLeaderboard';
 import { MapPage } from '../pages/map/map';
+import { SettingPopOverPage } from '../pages/setting-pop-over/setting-pop-over';
+import { KontoSettingsPage } from '../pages/konto-settings/konto-settings';
+
 
 
 @Component({

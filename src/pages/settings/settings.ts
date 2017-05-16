@@ -1,5 +1,10 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { SettingPopOverPage } from '../setting-pop-over/setting-pop-over';
+import { Platform, ActionSheetController } from 'ionic-angular';
+import { KontoSettingsPage } from '../konto-settings/konto-settings';
+
+
 
 /**
  * Generated class for the Settings page.
@@ -7,18 +12,59 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
  * See http://ionicframework.com/docs/components/#navigation for more info
  * on Ionic pages and navigation.
  */
+
+
 @IonicPage()
 @Component({
   selector: 'page-settings',
   templateUrl: 'settings.html',
 })
 export class SettingsPage {
+  item;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  constructor(
+  public navCtrl: NavController,
+  public navParams: NavParams,
+  public platform: Platform,
+  public actionsheetCtrl: ActionSheetController
+  ) {
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad Settings');
   }
 
+  klickaklick(){
+  this.navCtrl.push('SettingPopOverPage');
+  }
+
+  popOverToKontoPage(){
+  this.navCtrl.push('KontoSettingsPage');
+  }
+
+  openMenu() {
+      let actionSheet = this.actionsheetCtrl.create({
+        title: 'Are you sure you want to log out?',
+        cssClass: 'action-sheets-basic-page',
+        buttons: [
+          {
+            text: 'Log out',
+            role: 'destructive',
+            icon: !this.platform.is('ios') ? 'trash' : null,
+            handler: () => {
+              console.log('Log out clicked');
+            }
+          },
+          {
+            text: 'Cancel',
+            role: 'cancel', // will always sort to be on the bottom
+            icon: !this.platform.is('ios') ? 'close' : null,
+            handler: () => {
+              console.log('Cancel clicked');
+            }
+          }
+        ]
+      });
+      actionSheet.present();
+    }
 }
