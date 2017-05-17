@@ -18,9 +18,12 @@
 	<ion-grid>
 
 
-<p class="name">Jackie Tan, 25</p>
+
+<p class="name">{{ activeUser?.username }}</p>
 <div class="userPic">
 <img src="assets/img/user.png"/>
+
+
 <ion-icon name="trophy"></ion-icon>
 <p class="info">Gymholder at: Farsta Utegym </p>
 
@@ -47,7 +50,7 @@
 		<ion-row>
 			<ion-card (click)="showRadio();">
 			  	<img src="assets/img/Challenge-userprofile.jpg" />
-			  	<div class="card-title">Challenge Jackie</div>
+			  	<div class="card-title">Challenge {{ activeUser?.username }}</div>
         		<div class="card-subtitle"></div>
 
 			</ion-card>

@@ -15,18 +15,12 @@ export class OpenGymDataService {
   public openData: any;
 
   constructor(public http: Http) {
-    
+
   }
 
   public loadGymData() {
+    // http://api.stockholm.se/ServiceGuideService/ServiceUnitTypes/96a67da3-938b-487e-ac34-49b155cb277b/ServiceUnits/json?apikey=ffd5810dd624442ca44452e55964fd67
     return this.http.get('/openStockholm/ServiceGuideService/ServiceUnitTypes/96a67da3-938b-487e-ac34-49b155cb277b/ServiceUnits/json?apikey=ffd5810dd624442ca44452e55964fd67')
-      .map(res => res.json())/*
-      .subscribe(data => {
-        this.openData = data;
-        console.log("This is the data: " + this.openData)
-      }
-    )*/;
+      .map(res => res.json());
   }
-
-  // http://api.stockholm.se/ServiceGuideService/ServiceUnitTypes/96a67da3-938b-487e-ac34-49b155cb277b/ServiceUnits/json?apikey=ffd5810dd624442ca44452e55964fd67
 }

@@ -2,6 +2,8 @@ import { AuthService } from '../providers/auth-service';
 import { CoordService } from '../providers/coord-service';
 import { HashService } from '../providers/hash-service';
 import { OpenGymDataService } from '../providers/open-gym-data-service';
+import { BackendService } from '../providers/backend-service';
+
 import { BrowserModule } from '@angular/platform-browser';
 import { ErrorHandler, NgModule } from '@angular/core';
 import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
@@ -77,8 +79,8 @@ import { ProfileSettingsPage } from '../pages/profile-settings/profile-settings'
     AuthService,
     CoordService,
     HashService,
-    OpenGymDataService
-
+    OpenGymDataService,
+    BackendService
   ]
 })
 export class AppModule {}
