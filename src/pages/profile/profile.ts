@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, ToastController, AlertController } from 'ionic-angular';
 
+// Här sker import av våra providers
 import { BackendService } from '../../providers/backend-service';
 import { AuthService } from '../../providers/auth-service';
 
@@ -17,19 +18,43 @@ import { AuthService } from '../../providers/auth-service';
 })
 export class ProfilePage {
 
+  // Tas bort när inloggning är färdigimplementerad.
   devUserId = 18;
+
+  // Denna variabel håller aktiv användare
   activeUser: any;
   testRadioOpen;
   testRadioResult;
   messageA;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, public alertCtrl: AlertController, public toastCtrl: ToastController, private AuthService: AuthService, private backendService: BackendService) {
-    this.activeUser = this.AuthService.getUser();
+  // public authService: AuthService & public backendService: BackendService
+  // laddar in AuthService ur importen och gör dessa tillgängliga för åtkomst
+  // i resten av filen. public är åtkomstnivån, backendService är namnet som
+  // sedan används i koden, och BackendService är namnet på klassen (se
+  // importer högst upp på sidan).
+  constructor(public navCtrl: NavController, public navParams: NavParams, public alertCtrl: AlertController, public toastCtrl: ToastController, private authService: AuthService, private backendService: BackendService) {
+    // Hämtar User-objektinstansen från authService, innehållande
+    // data för den aktiva användaren.
+    this.activeUser = this.authService.getUser();
+
+    // Hämtar en användare från databasen baserat på @devUserId
+    // @param devUserId : variabel för att hålla användarid för
+    // en aktiv användare medan utveckling pågår och inloggning
+    // ännu ej är färdig.
     this.loadUserData(this.devUserId);
   }
 
+  // Metod som laddar användardata från backendService. Som argument
+  // tas "number" (https://www.w3schools.com/js/js_numbers.asp) och
+  // skickas sedan med vid anrop av metoden "getUser(userid:number)"
+  // i provider/backend-service.ts
+  //
+  // .subscribe(data => { ... }) skapar en prenumeration på datan som
+  // levereras från backendService.getUser() och gör den tillgänglig
+  // när hämtningen från api är klar; detta krävs eftersom hämtningen
+  // från api tar tid att färdigställas, och koden annars inte väntar
+  // på att läsningen ska köras klart.
   loadUserData(userid: number) {
-    console.log('loading user in profile');
     this.activeUser = this.backendService.getUser(userid)
     .subscribe(data => {
       this.activeUser = data;
