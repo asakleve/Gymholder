@@ -63,10 +63,29 @@ trophy{
 	text-align:center;
 	font-size: 16px;
 }
-.lower {
-	margin-top: 20%; 
-	position: float bottom; 
-}
+.box {
+    width: 40%;
+    height: 70px;
+    float: left;
+    margin-bottom: 2%;
+
+     ion-icon{
+      display: block;
+      text-align: center;
+      color: #678567;
+     }
+
+     .button-inner{
+      margin-top: 10px;
+      display: block;
+     }
+  }
+
+  .left-box {
+     margin-left: 9%;
+     margin-right: 2%;
+    
+  } 
 
 
 }

@@ -20,7 +20,7 @@ import { KontoSettingsPage } from '../pages/konto-settings/konto-settings';
 import { MyChallengesPage } from '../pages/my-challenges/my-challenges';
 import { GymLeaderboardPage } from '../pages/gym-leaderboard/gym-leaderboard';
 import { ProfileSettingsPage } from '../pages/profile-settings/profile-settings';
-
+import { UserLeaderboardPage } from '../pages/user-leaderboard/user-leaderboard';
 
 
 @Component({
@@ -44,9 +44,6 @@ export class MyApp {
       { title: 'Friends', component: FriendsPage },
       { title: 'Groups', component: GroupsPage },
       { title: 'Settings', component: SettingsPage },
-      { title: 'Testlänk- Gymprofile', component: GymprofilePage },
-      { title: 'Testlänk-EventLeaderboard', component: EventLeaderboardPage },
-      { title: 'Testlänk- Map', component: MapPage }
     ];
 
   }
