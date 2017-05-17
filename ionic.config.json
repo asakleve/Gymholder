@@ -6,6 +6,10 @@
   "typescript": true,
   "proxies": [
     {
+      "path": "/backend",
+      "proxyUrl": "http://gymholder.herokuapp.com"
+    },
+    {
       "path": "/user",
       "proxyUrl": "http://gymholder.herokuapp.com/user"
     },

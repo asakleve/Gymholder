@@ -18,11 +18,11 @@
 	<ion-grid>
 
 
-<p class="name">Jackie Tan</p>
+<p class="name">{{ activeUser?.username }}</p>
 <div class="userPic">
 <img src="assets/img/user.png"/>
 
-<p class="info"> 25, Farsta Utegym </p>
+<p class="info">{{ activeUser?.age }}, Farsta Utegym </p>
 <ion-icon name="trophy"></ion-icon>
 
 </div>
@@ -48,7 +48,7 @@
 		<ion-row>
 			<ion-card (click)="showRadio();">
 			  	<img src="assets/img/Challenge-userprofile.jpg" />
-			  	<div class="card-title">Challenge Jackie</div>
+			  	<div class="card-title">Challenge {{ activeUser?.username }}</div>
         		<div class="card-subtitle"></div>
 
 			</ion-card>

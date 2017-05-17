@@ -1,7 +1,8 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
-import { ToastController } from 'ionic-angular';
-import { AlertController } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, ToastController, AlertController } from 'ionic-angular';
+
+import { BackendService } from '../../providers/backend-service';
+import { AuthService } from '../../providers/auth-service';
 
 /**
  * Generated class for the Profile page.
@@ -15,60 +16,59 @@ import { AlertController } from 'ionic-angular';
   templateUrl: 'profile.html',
 })
 export class ProfilePage {
-testRadioOpen;
-testRadioResult;
-messageA;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, public alertCtrl: AlertController, public toastCtrl: ToastController) {
+  devUserId = 18;
+  activeUser: any;
+  testRadioOpen;
+  testRadioResult;
+  messageA;
+
+  constructor(public navCtrl: NavController, public navParams: NavParams, public alertCtrl: AlertController, public toastCtrl: ToastController, private AuthService: AuthService, private backendService: BackendService) {
+    this.activeUser = this.AuthService.getUser();
+    this.loadUserData(this.devUserId);
+  }
+
+  loadUserData(userid: number) {
+    console.log('loading user in profile');
+    this.activeUser = this.backendService.getUser(userid)
+    .subscribe(data => {
+      this.activeUser = data;
+    });
   }
 
   ionViewDidLoad() {
+    // this.activeUser = this.AuthService.getUser();
     console.log('ionViewDidLoad Profile');
   }
 
-showRadio() {
+  showRadio() {
     let alert = this.alertCtrl.create();
+
     alert.setTitle('Event');
- 
- alert.addInput({type: 'radio', label: 'Chins', value: 'chins'});
-
- alert.addInput({type: 'radio', label: 'Dips', value: 'dips'})
- 
-alert.addInput({type: 'radio', label: 'Box Jump', value: 'boxJump'})
-
-alert.addInput({type: 'radio', label: 'Sit Ups', value: 'sitUps'})
-
-alert.addInput({type: 'radio', label: 'Chins', value: 'chins'})
-
-alert.addInput({type: 'radio', label: 'Chins', value: 'chins'})
-
-alert.addInput({type: 'radio', label: 'Chins', value: 'chins'})
-
-alert.addInput({type: 'radio', label: 'Chins', value: 'chins'})
-
-
-alert.addInput({type: 'radio', label: 'Chins', value: 'chins'})
-
-  alert.addInput({
-type:'radio',
-      label: 'Blue',
-      value: 'blue',
-      checked: false
-    });
- alert.addButton('Cancel');
+    alert.addInput({type: 'radio', label: 'Chins', value: 'chins'});
+    alert.addInput({type: 'radio', label: 'Dips', value: 'dips'})
+    alert.addInput({type: 'radio', label: 'Box Jump', value: 'boxJump'})
+    alert.addInput({type: 'radio', label: 'Sit Ups', value: 'sitUps'})
+    alert.addInput({type: 'radio', label: 'Chins', value: 'chins'})
+    alert.addInput({type: 'radio', label: 'Chins', value: 'chins'})
+    alert.addInput({type: 'radio', label: 'Chins', value: 'chins'})
+    alert.addInput({type: 'radio', label: 'Chins', value: 'chins'})
+    alert.addInput({type: 'radio', label: 'Chins', value: 'chins'})
+    alert.addInput({type: 'radio', label: 'Blue', value: 'blue', checked: false});
+    alert.addButton('Cancel');
     alert.addButton({
       text: 'OK',
       handler: data => {
         this.testRadioOpen = false;
         this.testRadioResult = data;
         this.showAlert();
-      }
-    });
+        }
+      });
     alert.present();
   }
 
 
-presentToast() {
+  presentToast() {
     let toast = this.toastCtrl.create({
       message: 'Friend request sent',
       duration: 3000
@@ -103,7 +103,7 @@ presentToast() {
   showPrompt() {
     let prompt = this.alertCtrl.create({
       title: 'Send Message',
-      
+
       inputs: [
         {
           name: 'Message',
@@ -129,8 +129,3 @@ presentToast() {
     prompt.present();
   }
 }
-
-
-  
-
-
