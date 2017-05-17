@@ -15,7 +15,11 @@ import { MessagesPage } from '../pages/messages/messages';
 import { GymprofilePage } from '../pages/gymprofile/gymprofile';
 import { EventLeaderboardPage } from '../pages/eventLeaderboard/eventLeaderboard';
 import { MapPage } from '../pages/map/map';
-import { MyChallengesPage } from '../pages/my-challenges/my-challenges'
+import { SettingPopOverPage } from '../pages/setting-pop-over/setting-pop-over';
+import { KontoSettingsPage } from '../pages/konto-settings/konto-settings';
+import { MyChallengesPage } from '../pages/my-challenges/my-challenges';
+import { GymLeaderboardPage } from '../pages/gym-leaderboard/gym-leaderboard';
+import { ProfileSettingsPage } from '../pages/profile-settings/profile-settings';
 
 
 

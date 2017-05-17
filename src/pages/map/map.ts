@@ -87,8 +87,10 @@ export class MapPage {
       position: new google.maps.LatLng(x, y)
     });
     marker.infoWindow = new google.maps.InfoWindow({
+
       content: '<p class="infoWinHeader">' + name + '</p>'
       + '<p class="infoWinBody">Here be text and shit. Arrr.</p>'
+
     });
     google.maps.event.addListener(marker, 'click', () => {
       if(this.lastMarker != null) {
@@ -105,6 +107,10 @@ export class MapPage {
     });
 
 
+  }
+
+  openMy(){
+  console.log('Hej');
   }
 
 }
