@@ -26,7 +26,8 @@ export class AuthService {
   public currentUser: User;
 
   constructor(private http: Http, public backendService: BackendService) {
-    this.currentUser = new User(6, 'DummyTwo', 'dummytwo@dummy.com', 32);
+
+    this.currentUser = new User(18, 'JacquelineTan', 'jacqueline.tan@hotmail.com', 27);
 
   }
 

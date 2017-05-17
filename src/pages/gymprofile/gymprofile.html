@@ -15,8 +15,8 @@
 <ion-content>
 <div class="cardLayout">
   <ion-card>
-    <img src="assets/img/eriksdals.jpg" />
-    <div class="card-title">Erikdals utegym</div>
+    <img src="{{ gymData?.gymImage }}" />
+    <div class="card-title" style="background: rgba(0,0,0,0.5);">{{ gymData?.Name }}</div>
   	  <div class="bCard">
   		  <button ion-button icon-only>
    			 <ion-icon name="pin"></ion-icon>
@@ -34,7 +34,7 @@
 </div>
 
 <div >
-<button ion-button medium class="left-box box" on-click="openLeaderBoard();"> <ion-icon name="trophy"></ion-icon> 
+<button ion-button medium class="left-box box" on-click="openLeaderBoard();"> <ion-icon name="trophy"></ion-icon>
 Gym-Leaderboard</button>
 </div>
 <div>

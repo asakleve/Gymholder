@@ -1,5 +1,6 @@
 import { Component, ViewChild, ElementRef } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { GymprofilePage } from '../gymprofile/gymprofile';
 
 import { OpenGymDataService } from '../../providers/open-gym-data-service';
 import { CoordService } from '../../providers/coord-service';
@@ -39,6 +40,7 @@ export class MapPage {
   map: any;
 
   gymData: any;
+  activeGym: any;
   processedGymData: Array<Gym> = [];
 
   constructor(public navCtrl: NavController, public navParams: NavParams, private openGymData: OpenGymDataService, private coordService: CoordService) {
@@ -52,13 +54,27 @@ export class MapPage {
     .subscribe(data => {
       this.gymData = data;
       for(let data of this.gymData) {
-        this.pos = this.coordService.gridToGeodetic(data.GeographicalPosition.X, data.GeographicalPosition.Y);
-        this.processedGymData.push(new Gym(data.Name, this.pos.lat, this.pos.lon));
-        this.addMarker(data.Name, this.pos.lat, this.pos.lon);
+        this.loadGymDetails(data);
       }
     });
       /* processedGymData.push({ value.name, pos.lat, pos.lon }); */
       /* this.push(key + ': ' + value); */
+  }
+
+  loadGymDetails(data) {
+    this.openGymData.loadGymDetails(data.Id)
+      .subscribe(res => {
+        var attrib = "Beskrivning saknas för detta gym.";
+        this.activeGym = res;
+        this.pos = this.coordService.gridToGeodetic(data.GeographicalPosition.X, data.GeographicalPosition.Y);
+        this.processedGymData.push(new Gym(data.Name, this.pos.lat, this.pos.lon));
+        for(let a of res.Attributes) {
+          if(a.Id == "ShortDescription") {
+            attrib = a.Value;
+          }
+        }
+        this.addMarker(data.Name, attrib, this.pos.lat, this.pos.lon, data.Id);
+      });
   }
 
   ionViewDidLoad() {
@@ -80,7 +96,7 @@ export class MapPage {
   }
 
 
-  addMarker(name: string, x: number, y: number) {
+  addMarker(name: string, text:string, x: number, y: number, id: string) {
     let marker = new google.maps.Marker({
       map: this.map,
       animation: google.maps.Animation.DROP,
@@ -88,8 +104,10 @@ export class MapPage {
     });
     marker.infoWindow = new google.maps.InfoWindow({
 
-      content: '<p class="infoWinHeader">' + name + '</p>'
-      + '<p class="infoWinBody">Here be text and shit. Arrr.</p>'
+      content: '<div id="content">'
+      + '<p class="infoWinHeader">' + name + '</p>'
+      + '<p class="infoWinBody">' + text + '</p>'
+      + '</div>'
 
     });
     google.maps.event.addListener(marker, 'click', () => {
@@ -97,20 +115,14 @@ export class MapPage {
         this.lastMarker.infoWindow.close();
       }
       marker.infoWindow.open(this.map, marker);
+      console.log(id);
       this.lastMarker = marker;
     });
-  }
-
-  addInfoWindow(marker, content){
-    let infoWindow = new google.maps.InfoWindow({
-      content: content
+    google.maps.event.addListener(marker.infoWindow, 'domready', () => {
+      document.getElementById('content').addEventListener('click', () => {
+        this.navCtrl.push(GymprofilePage, {id: id});
+      }, false);
     });
-
-
-  }
-
-  openMy(){
-  console.log('Hej');
   }
 
 }

@@ -26,7 +26,12 @@ export class OpenGymDataService {
   }
 
   public loadGymDetails(gymid: string) {
-    return this.http.get('/openStockholm/ServiceGuideService/ServiceUnits/' + gymid + '/json?apikey=' + this.ourApiKey)
+    return this.http.get('/openStockholm/ServiceGuideService/DetailedServiceUnits/' + gymid + '/json?apikey=' + this.ourApiKey)
       .map(res => res.json());
   }
+
+  public loadGymImage(imageid: string) {
+    return this.http.get('/openStockholm/ServiceGuideService/ImageFiles/' + imageid + '/Data?apikey=' + this.ourApiKey);
+  }
+
 }

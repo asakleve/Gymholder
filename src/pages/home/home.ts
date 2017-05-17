@@ -32,11 +32,11 @@ export class HomePage {
   }
 
   openEventLeaderboardPage(){
-    this.navCtrl.setRoot(EventLeaderboardPage);
+    this.navCtrl.push(EventLeaderboardPage);
   }
 
   openMyChallengesPage(){
-    this.navCtrl.setRoot(MyChallengesPage);
+    this.navCtrl.push(MyChallengesPage);
   }
 
   ionViewDidLoad() {
