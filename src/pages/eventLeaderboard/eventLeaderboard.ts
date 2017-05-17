@@ -62,7 +62,7 @@ export class EventLeaderboardPage {
       this.displayResults=[];
       if(sport==="Show all results"){
         this.displayResults = this.results;
-        this.selectedSport = "all sports";
+        this.selectedSport = "all exercises";
       }
       else{
         this.selectedSport = sport.toLowerCase();
