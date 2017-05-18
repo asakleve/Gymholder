@@ -28,12 +28,12 @@ messageA;
 
 showRadio() {
     let alert = this.alertCtrl.create();
-    alert.setTitle('Event');
- 
+    alert.setTitle('Exercise');
+
  alert.addInput({type: 'radio', label: 'Chins', value: 'chins'});
 
  alert.addInput({type: 'radio', label: 'Dips', value: 'dips'})
- 
+
 alert.addInput({type: 'radio', label: 'Box Jump', value: 'boxJump'})
 
 alert.addInput({type: 'radio', label: 'Sit Ups', value: 'sitUps'})
@@ -103,7 +103,7 @@ presentToast() {
   showPrompt() {
     let prompt = this.alertCtrl.create({
       title: 'Send Message',
-      
+
       inputs: [
         {
           name: 'Message',
@@ -129,8 +129,3 @@ presentToast() {
     prompt.present();
   }
 }
-
-
-  
-
-

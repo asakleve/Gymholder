@@ -33,7 +33,7 @@ export class EventLeaderboardPage {
 
   showRadio() {
       let alert = this.alertCtrl.create();
-      alert.setTitle('Select sport');
+      alert.setTitle('Select exercise');
 
       for(let i=0; i<this.sports.length;i++){
         alert.addInput({
@@ -62,7 +62,7 @@ export class EventLeaderboardPage {
       this.displayResults=[];
       if(sport==="Show all results"){
         this.displayResults = this.results;
-        this.selectedSport = "all sports";
+        this.selectedSport = "all exercises";
       }
       else{
         this.selectedSport = sport.toLowerCase();
@@ -84,12 +84,12 @@ export class EventLeaderboardPage {
 
       this.sports.push("Chins");
       this.sports.push("Dips");
-      this.sports.push("Boxjump");
-      this.sports.push("Knäböj");
-      this.sports.push("Axelpress");
-      this.sports.push("Marklyft");
+      this.sports.push("Boxjumps");
+      this.sports.push("Squats");
+      this.sports.push("Shoulder press");
+      this.sports.push("Deadlifts");
       this.sports.push("Situps");
-      this.sports.push("Bänkpress");
+      this.sports.push("Bench press");
 
       this.results=[];
       this.results.push({
