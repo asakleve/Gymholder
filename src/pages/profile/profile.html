@@ -38,3 +38,42 @@
 	</div>	
 </ion-content>
 
+
+
+
+<p class="name">Jackie Tan, 27</p>
+<div class="userPic">
+<img src="assets/img/user.png"/>
+<ion-icon name="trophy"></ion-icon>
+<p class="info">Gymholder at: Farsta Utegym </p>
+
+</div>
+
+
+	<div class="lower">
+		<ion-row>
+			<ion-col>
+				<button class="button-layout" ion-button color="dark" icon-left (click)="showPrompt();">
+				<ion-icon name="chatboxes"></ion-icon>
+				<p>  Send Message </p>
+				</button>
+			</ion-col>
+
+			<ion-col>
+				<button class="button-layout" ion-button color="dark" icon-left (click)="presentToast();">
+				<ion-icon name="contacts"></ion-icon>
+				 <p>  Add Friend </p>
+				</button>
+			</ion-col>
+		</ion-row>
+
+		<ion-row>
+			<ion-card (click)="showRadio();">
+			  	<img src="assets/img/Challenge-userprofile.jpg" />
+			  	<div class="card-title">Challenge Jackie</div>
+        		<div class="card-subtitle"></div>
+
+			</ion-card>
+		</ion-row>
+</div>
+

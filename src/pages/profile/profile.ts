@@ -67,10 +67,6 @@ export class ProfilePage {
     console.log('ionViewDidLoad Profile');
   }
 
-  openUserLeaderboard(){
-    this.navCtrl.push(UserLeaderboardPage);
-  }
-
   showRadio() {
     let alert = this.alertCtrl.create();
 

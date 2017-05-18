@@ -82,12 +82,12 @@ export class EventLeaderboardPage {
 
       this.sports.push("Chins");
       this.sports.push("Dips");
-      this.sports.push("Boxjump");
-      this.sports.push("Knäböj");
-      this.sports.push("Axelpress");
-      this.sports.push("Marklyft");
+      this.sports.push("Boxjumps");
+      this.sports.push("Squats");
+      this.sports.push("Shoulder press");
+      this.sports.push("Deadlifts");
       this.sports.push("Situps");
-      this.sports.push("Bänkpress");
+      this.sports.push("Bench press");
 
       this.results=[];
       this.backendService.getResult(this.activeUser.userid)
