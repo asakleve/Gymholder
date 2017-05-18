@@ -13,35 +13,21 @@
 </ion-header>
 
 <ion-content padding>
+<h1> Settings </h1>
 
-
-<ion-list-header>
-Settings
-</ion-list-header>
-
-
+  <ion-row>
+<ion-col>
+  <button ion-button full on-click="klickaklick()">Notifications</button>
+</ion-col>
+</ion-row>
 
 <div ion-content padding class="action-sheets-basic-page">
-
-
-    <button class ="butts" ion-button full icon-left on-click="klickaklick()">
-      <ion-icon name="notifications"></ion-icon>
-    <p>  Notifications </p>
-    </button>
-
-    <button ion-button full icon-left on-click="openProfileSettings();">
-      <ion-icon name="contact"></ion-icon>
-      <p> Profile </p>
-     </button>
-
-  <button ion-button full icon-left on-click="openMenu()">
-    <ion-icon name="nuclear"></ion-icon>
-    <p> Log out </p>
+  <button ion-button full (click)="openMenu()">
+    Log out
   </button>
-
 </div>
 
 
-
+<button ion button (click)="openProfileSettings();">Hej </button>
 
 </ion-content>

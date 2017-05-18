@@ -42,8 +42,6 @@ export class SettingsPage {
   this.navCtrl.push('KontoSettingsPage');
   }
 
-
-
   openMenu() {
       let actionSheet = this.actionsheetCtrl.create({
         title: 'Are you sure you want to log out?',
