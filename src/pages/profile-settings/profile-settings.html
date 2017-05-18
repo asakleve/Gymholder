@@ -15,34 +15,37 @@
 
 <ion-content padding>
 
-  <ion-list-header>
-  Profile Settings
-  </ion-list-header>
-
-<div>
+<h3> Profile Settings </h3>
 <p class="name">Jackie Tan</p>
-</div>
- 
+
+
+<ion-row>
+
+
+
+<ion-col> 
 <div class="userPic">
 <img src="assets/img/user.png"/><br>
-<p class="info"> 27, Farsta Utegym </p>
+<p class="info"> 25, Farsta Utegym </p>
 </div>
+</ion-col>
 
 
 
+</ion-row>
 
 <div class ="lower">;
 <ion-row>
 
-            <ion-col>
-                <button class="button-layout" ion-button color="dark" icon-left (click)="showAlert();">
+            <ion-col> 
+                <button class="button-layout" ion-button color="dark" icon-left (click)="showAlert();"> 
                 <ion-icon name="ios-close-circle-outline"></ion-icon>
                 <p>  Remove Picture </p>
                 </button>
             </ion-col>
-
-            <ion-col>
-                <button class="button-layout" ion-button color="dark" icon-left (click)="presentToast();">
+            
+            <ion-col> 
+                <button class="button-layout" ion-button color="dark" icon-left (click)="presentToast();"> 
                 <ion-icon name="ios-cut-outline"></ion-icon>
                  <p>  Change Picture </p>
                 </button>
@@ -73,7 +76,7 @@
 
 </ion-list>
 
-    <button ion-button full  (click)="passwordToast();"> Save Changes</button>
+    <button ion-button full  (click)="passwordSavedToast();"> Save Changes</button>
 
 
 </ion-content>

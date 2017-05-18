@@ -7,15 +7,12 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
  * See http://ionicframework.com/docs/components/#navigation for more info
  * on Ionic pages and navigation.
  */
-
-
 @IonicPage()
 @Component({
   selector: 'page-friends',
   templateUrl: 'friends.html',
 })
 export class FriendsPage {
-    items;
 
   constructor(public navCtrl: NavController, public navParams: NavParams) {
   }
@@ -23,6 +20,7 @@ export class FriendsPage {
   ionViewDidLoad() {
     console.log('ionViewDidLoad Friends');
   }
+
 
   getItems(ev) {
     // Reset items back to all of the items

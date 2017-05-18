@@ -1,8 +1,9 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, NavParams,LoadingController } from 'ionic-angular';
 import { AlertController } from 'ionic-angular';
 import { BackendService } from '../../providers/backend-service';
-import { AuthService } from '../../providers/auth-service';
+
+
 
 @IonicPage()
 @Component({
@@ -16,37 +17,41 @@ export class EventLeaderboardPage {
   sports: any[];
   results: any[];
   displayResults: any[];
-  activeUser: any;
   testResult: any;
+  user: any;
 
-//OBS, SIDAN HAR KOD SOM INTE STÄMMER. DENNA KOD TILLHÖR USER-LEADERBOARD, MEN KAN I VISS MÅN ÅTERANVÄNDAS, ÅSA //
-
-  constructor(public navCtrl: NavController, public navParams: NavParams, public alertCtrl: AlertController, private backendService: BackendService,  private authService: AuthService) {
-    this.activeUser = this.authService.getUser();
+  constructor(public navCtrl: NavController, public navParams: NavParams, public alertCtrl: AlertController, private backendService: BackendService, public loadingCtrl: LoadingController) {
     this.sports = [];
     this.sports.push("Show all results");
     this.engage();
     this.showResults("Show all results");
+    this.presentLoading();
+  }
+
+  presentLoading() {
+    let loader = this.loadingCtrl.create({
+      content: "Please wait...",
+      duration: 2000
+    });
+    loader.present();
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad EventLeaderboard');
   }
 
-
   showRadio() {
-      let alert = this.alertCtrl.create();
-      alert.setTitle('Select exercise');
+    let alert = this.alertCtrl.create();
+    alert.setTitle('Select exercise');
 
-      for(let i=0; i<this.sports.length;i++){
-        alert.addInput({
-          type: 'radio',
-          label: this.sports[i],
-          value: this.sports[i],
-          checked: false
-        });
-
-      }
+    for(let i=0; i<this.sports.length;i++){
+      alert.addInput({
+        type: 'radio',
+        label: this.sports[i],
+        value: this.sports[i],
+        checked: false
+      });
+    }
 
       alert.addButton('Cancel');
       alert.addButton({
@@ -57,6 +62,7 @@ export class EventLeaderboardPage {
       });
       alert.present();
     }
+
 
     showResults(sport){
       this.displayResults=[];
@@ -76,26 +82,25 @@ export class EventLeaderboardPage {
         return parseFloat(a.reps) - parseFloat(b.reps);
       });
     }
-
+      //Ovan funkar inte eftersom namnen på grenarna inte skrivs i API, kollen blir alltså mot siffror istället = knasigt//
    
     engage(){
-
+      
       this.sports.push("Chins");
       this.sports.push("Dips");
-      this.sports.push("Boxjumps");
-      this.sports.push("Squats");
-      this.sports.push("Shoulder press");
-      this.sports.push("Deadlifts");
+      this.sports.push("Boxjump");
+      this.sports.push("Knäböj");
+      this.sports.push("Axelpress");
+      this.sports.push("Marklyft");
       this.sports.push("Situps");
-      this.sports.push("Bench press");
+      this.sports.push("Bänkpress");
 
       this.results=[];
-      this.backendService.getResult(this.activeUser.userid)
-      .subscribe(data => {
-        this.results.push(data);
-        //behöver fixa en loop som lägger allt i arrayen. För detta behövs mer och bättre testdata. 
-
-
-    });
-}
+      //this.sports=[];
+      this.backendService.getAllResults()
+      .subscribe(data=>{
+        this.results=data;
+       // this.sports=data.sport;
+      });
+    }
 }
