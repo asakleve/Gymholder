@@ -18,4 +18,8 @@ export class HashService {
     console.log('Hello HashService Provider');
   }
 
+  public hashSalt(password) {
+
+  }
+
 }

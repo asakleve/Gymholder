@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { AlertController } from 'ionic-angular';
+import { BackendService } from '../../providers/backend-service';
+import { AuthService } from '../../providers/auth-service';
 
 @IonicPage()
 @Component({
@@ -8,27 +10,28 @@ import { AlertController } from 'ionic-angular';
   templateUrl: 'eventLeaderboard.html',
 })
 export class EventLeaderboardPage {
-  testRadioOpen;
-  testRadioResult;
+
   sport;
   selectedSport;
   sports: any[];
   results: any[];
   displayResults: any[];
+  activeUser: any;
+  testResult: any;
 
+//OBS, SIDAN HAR KOD SOM INTE STÄMMER. DENNA KOD TILLHÖR USER-LEADERBOARD, MEN KAN I VISS MÅN ÅTERANVÄNDAS, ÅSA //
 
-
-  constructor(public navCtrl: NavController, public navParams: NavParams, public alertCtrl: AlertController) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, public alertCtrl: AlertController, private backendService: BackendService,  private authService: AuthService) {
+    this.activeUser = this.authService.getUser();
     this.sports = [];
     this.sports.push("Show all results");
     this.engage();
     this.showResults("Show all results");
-    }
+  }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad EventLeaderboard');
   }
-
 
 
   showRadio() {
@@ -42,17 +45,14 @@ export class EventLeaderboardPage {
           value: this.sports[i],
           checked: false
         });
+
       }
 
       alert.addButton('Cancel');
       alert.addButton({
         text: 'OK',
         handler: data => {
-          this.testRadioOpen = false;
-          this.testRadioResult = data;
-          console.log(data);
           this.showResults(data);
-          console.log('ok pressed');
         }
       });
       alert.present();
@@ -77,9 +77,7 @@ export class EventLeaderboardPage {
       });
     }
 
-
-
-
+   
     engage(){
 
       this.sports.push("Chins");
@@ -92,68 +90,12 @@ export class EventLeaderboardPage {
       this.sports.push("Bench press");
 
       this.results=[];
-      this.results.push({
-        user: 'Anton',
-        gym: 'Solviks utegym',
-        sport: 'Situps',
-        reps: 57
-      });
+      this.backendService.getResult(this.activeUser.userid)
+      .subscribe(data => {
+        this.results.push(data);
+        //behöver fixa en loop som lägger allt i arrayen. För detta behövs mer och bättre testdata. 
 
 
-      this.results.push({
-        user: 'Anton',
-        gym: 'Solviks utegym',
-        sport: 'Chins',
-        reps: 1
-      });
-
-      this.results.push({
-        user: 'Maria',
-        gym: 'Solviks utegym',
-        sport: 'Situps',
-        reps: 13
-      });
-
-      this.results.push({
-        user: 'Lucas',
-        gym: 'Solviks utegym',
-        sport: 'Situps',
-        reps: 85
-      });
-
-      this.results.push({
-        user: 'Åsa',
-        gym: 'Solviks utegym',
-        sport: 'Situps',
-        reps: 9
-     });
-
-     this.results.push({
-      user: 'Chris',
-      gym: 'Solviks utegym',
-      sport: 'Situps',
-      reps: 14
-     });
-
-     this.results.push({
-      user: 'Eyasu',
-      gym: 'Solviks utegym',
-      sport: 'Situps',
-      reps: 57
-     });
-
-     this.results.push({
-      user: 'Sebastian',
-      gym: 'Solviks utegym',
-      sport: 'Situps',
-      reps: 23
-     });
-
-     this.results.push({
-      user: 'Jackie',
-      gym: 'Solviks utegym',
-      sport: 'Situps',
-      reps: 46
-      });
-    }
+    });
+}
 }

@@ -1,7 +1,10 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
-import { ToastController } from 'ionic-angular';
-import { AlertController } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, ToastController, AlertController } from 'ionic-angular';
+import { UserLeaderboardPage } from '../user-leaderboard/user-leaderboard';
+
+// Här sker import av våra providers
+import { BackendService } from '../../providers/backend-service';
+import { AuthService } from '../../providers/auth-service';
 
 /**
  * Generated class for the Profile page.
@@ -15,60 +18,83 @@ import { AlertController } from 'ionic-angular';
   templateUrl: 'profile.html',
 })
 export class ProfilePage {
-testRadioOpen;
-testRadioResult;
-messageA;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, public alertCtrl: AlertController, public toastCtrl: ToastController) {
+  // Tas bort när inloggning är färdigimplementerad.
+  devUserId = 18;
+
+  // Denna variabel håller aktiv användare
+  activeUser: any;
+  testRadioOpen;
+  testRadioResult;
+  messageA;
+
+  // public authService: AuthService & public backendService: BackendService
+  // laddar in AuthService ur importen och gör dessa tillgängliga för åtkomst
+  // i resten av filen. public är åtkomstnivån, backendService är namnet som
+  // sedan används i koden, och BackendService är namnet på klassen (se
+  // importer högst upp på sidan).
+  constructor(public navCtrl: NavController, public navParams: NavParams, public alertCtrl: AlertController, public toastCtrl: ToastController, private authService: AuthService, private backendService: BackendService) {
+    // Hämtar User-objektinstansen från authService, innehållande
+    // data för den aktiva användaren.
+    this.activeUser = this.authService.getUser();
+
+    // Hämtar en användare från databasen baserat på @devUserId
+    // @param devUserId : variabel för att hålla användarid för
+    // en aktiv användare medan utveckling pågår och inloggning
+    // ännu ej är färdig.
+    this.loadUserData(this.devUserId);
+  }
+
+  // Metod som laddar användardata från backendService. Som argument
+  // tas "number" (https://www.w3schools.com/js/js_numbers.asp) och
+  // skickas sedan med vid anrop av metoden "getUser(userid:number)"
+  // i provider/backend-service.ts
+  //
+  // .subscribe(data => { ... }) skapar en prenumeration på datan som
+  // levereras från backendService.getUser() och gör den tillgänglig
+  // när hämtningen från api är klar; detta krävs eftersom hämtningen
+  // från api tar tid att färdigställas, och koden annars inte väntar
+  // på att läsningen ska köras klart.
+  loadUserData(userid: number) {
+    this.activeUser = this.backendService.getUser(userid)
+    .subscribe(data => {
+      this.activeUser = data;
+    });
   }
 
   ionViewDidLoad() {
+    // this.activeUser = this.AuthService.getUser();
     console.log('ionViewDidLoad Profile');
   }
 
-showRadio() {
+  showRadio() {
     let alert = this.alertCtrl.create();
-    alert.setTitle('Exercise');
 
- alert.addInput({type: 'radio', label: 'Chins', value: 'chins'});
-
- alert.addInput({type: 'radio', label: 'Dips', value: 'dips'})
-
-alert.addInput({type: 'radio', label: 'Box Jump', value: 'boxJump'})
-
-alert.addInput({type: 'radio', label: 'Sit Ups', value: 'sitUps'})
-
-alert.addInput({type: 'radio', label: 'Chins', value: 'chins'})
-
-alert.addInput({type: 'radio', label: 'Chins', value: 'chins'})
-
-alert.addInput({type: 'radio', label: 'Chins', value: 'chins'})
-
-alert.addInput({type: 'radio', label: 'Chins', value: 'chins'})
-
-
-alert.addInput({type: 'radio', label: 'Chins', value: 'chins'})
-
-  alert.addInput({
-type:'radio',
-      label: 'Blue',
-      value: 'blue',
-      checked: false
-    });
- alert.addButton('Cancel');
+    alert.setTitle('Event');
+    alert.addInput({type: 'radio', label: 'Chins', value: 'chins'});
+    alert.addInput({type: 'radio', label: 'Dips', value: 'dips'})
+    alert.addInput({type: 'radio', label: 'Box Jump', value: 'boxJump'})
+    alert.addInput({type: 'radio', label: 'Sit Ups', value: 'sitUps'})
+    alert.addInput({type: 'radio', label: 'Chins', value: 'chins'})
+    alert.addInput({type: 'radio', label: 'Chins', value: 'chins'})
+    alert.addInput({type: 'radio', label: 'Chins', value: 'chins'})
+    alert.addInput({type: 'radio', label: 'Chins', value: 'chins'})
+    alert.addInput({type: 'radio', label: 'Chins', value: 'chins'})
+    alert.addInput({type: 'radio', label: 'Blue', value: 'blue', checked: false});
+    alert.addButton('Cancel');
     alert.addButton({
       text: 'OK',
       handler: data => {
         this.testRadioOpen = false;
         this.testRadioResult = data;
         this.showAlert();
-      }
-    });
+        }
+      });
     alert.present();
   }
 
 
-presentToast() {
+  presentToast() {
     let toast = this.toastCtrl.create({
       message: 'Friend request sent',
       duration: 3000

@@ -2,6 +2,8 @@ import { AuthService } from '../providers/auth-service';
 import { CoordService } from '../providers/coord-service';
 import { HashService } from '../providers/hash-service';
 import { OpenGymDataService } from '../providers/open-gym-data-service';
+import { BackendService } from '../providers/backend-service';
+
 import { BrowserModule } from '@angular/platform-browser';
 import { ErrorHandler, NgModule } from '@angular/core';
 import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
@@ -25,6 +27,7 @@ import { MapPage } from '../pages/map/map';
 import { MyChallengesPage } from '../pages/my-challenges/my-challenges';
 import { GymLeaderboardPage } from '../pages/gym-leaderboard/gym-leaderboard';
 import { ProfileSettingsPage } from '../pages/profile-settings/profile-settings';
+import { UserLeaderboardPage } from '../pages/user-leaderboard/user-leaderboard';
 
 
 
@@ -45,7 +48,8 @@ import { ProfileSettingsPage } from '../pages/profile-settings/profile-settings'
     MapPage,
     MyChallengesPage,
     GymLeaderboardPage,
-    ProfileSettingsPage
+    ProfileSettingsPage,
+    UserLeaderboardPage
   ],
   imports: [
     BrowserModule,
@@ -68,7 +72,8 @@ import { ProfileSettingsPage } from '../pages/profile-settings/profile-settings'
     MapPage,
     MyChallengesPage,
     GymLeaderboardPage,
-    ProfileSettingsPage
+    ProfileSettingsPage,
+    UserLeaderboardPage
   ],
   providers: [
     StatusBar,
@@ -77,8 +82,8 @@ import { ProfileSettingsPage } from '../pages/profile-settings/profile-settings'
     AuthService,
     CoordService,
     HashService,
-    OpenGymDataService
-
+    OpenGymDataService,
+    BackendService
   ]
 })
 export class AppModule {}
