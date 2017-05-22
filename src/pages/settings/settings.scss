@@ -1,8 +1,8 @@
 page-settings {
 
-h1{
-  text-align: center;
-}
+  ion-list-header{
+    text-align: left;
+  }
 
 .action-sheets-basic-page {
   .ion-md-share {
@@ -18,6 +18,14 @@ h1{
   .action-sheet-destructive ion-icon {
     color: #757575;
   }
+  .list-avatar-page {
+    ion-note {
+      font-size: 12px;
+      align-self: flex-start;
+      margin-top: 14px;
+    }
+  }
+
 }
 
 }
