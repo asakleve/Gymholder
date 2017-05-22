@@ -42,23 +42,19 @@ export class AuthService {
           .subscribe(data => {
             this.loginData = data;
             console.log(data);
-            /*
-            if(data.id > 0) {
+            if(data.id > -1) {
               this.loginData = this.backendService.getUser(data.id);
-              this.currentUser = new User(this.loginData.)
+              this.currentUser = new User(
+                this.loginData.age,
+                this.loginData.username,
+                this.loginData.email,
+                this.loginData.age)
             }
-            */
           });
         // Chris kommentar: do http get to /user/<email>/<hashed_password> to
         // see if we can get a success response.
 
         let access = (credentials.password === "pass" && credentials.email === "email");
-        this.currentUser = new User(
-          this.loginData.id,
-          this.loginData.username,
-          this.loginData.email,
-          this.loginData.age
-        );
         observer.next(access);
         observer.complete();
       });

@@ -16,6 +16,10 @@
     {
       "path": "/openStockholm",
       "proxyUrl": "http://api.stockholm.se"
+    },
+    {
+      "path": "/smhi",
+      "proxyUrl": "http://opendata-download-metfcst.smhi.se"
     }
   ]
 }

@@ -44,8 +44,8 @@ export class BackendService {
   }
 
   // För inloggning
-  public validateUser(email: string, password: string) {
-    return this.http.get('/backend/user/' + email + '/' + password, { headers: this.headers })
+  public validateUser(usernameOrEmail: string, password: string) {
+    return this.http.get('/backend/auth/' + usernameOrEmail + '/' + password, { headers: this.headers })
       .map(res => res.json());
   }
 
