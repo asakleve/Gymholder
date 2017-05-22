@@ -75,16 +75,27 @@ export class ProfilePage {
     let alert = this.alertCtrl.create();
 
     alert.setTitle('Event');
-    alert.addInput({type: 'radio', label: 'Chins', value: 'chins'});
-    alert.addInput({type: 'radio', label: 'Dips', value: 'dips'})
-    alert.addInput({type: 'radio', label: 'Box Jump', value: 'boxJump'})
-    alert.addInput({type: 'radio', label: 'Sit Ups', value: 'sitUps'})
-    alert.addInput({type: 'radio', label: 'Chins', value: 'chins'})
-    alert.addInput({type: 'radio', label: 'Chins', value: 'chins'})
-    alert.addInput({type: 'radio', label: 'Chins', value: 'chins'})
-    alert.addInput({type: 'radio', label: 'Chins', value: 'chins'})
-    alert.addInput({type: 'radio', label: 'Chins', value: 'chins'})
-    alert.addInput({type: 'radio', label: 'Blue', value: 'blue', checked: false});
+    alert.addInput({type: 'radio', label: 'Classic Push Ups', value: 'Classic Push Ups'});
+    alert.addInput({type: 'radio', label: 'Wide Grip Push Ups', value: 'Wide Grip Push Ups'})
+    alert.addInput({type: 'radio', label: 'Close Grip Push Ups', value: 'Close Grip Push Upss'})
+    alert.addInput({type: 'radio', label: 'Sit Ups', value: 'Sit Ups'})
+    alert.addInput({type: 'radio', label: 'Chin Ups', value: 'Chin Ups'})
+    alert.addInput({type: 'radio', label: 'Pull Ups', value: 'Pull Ups'})
+    alert.addInput({type: 'radio', label: 'One Arm Pull Ups', value: 'One Arm Pull Ups'})
+    alert.addInput({type: 'radio', label: 'Toe To Bar', value: 'Toe To Bar'})
+    alert.addInput({type: 'radio', label: 'Toe Touch', value: 'Toe Touch'})
+     alert.addInput({type: 'radio', label: 'Squats', value: 'Squats'})
+
+    alert.addInput({type: 'radio', label: 'Jumping Squats', value: 'Jumping Squats'})
+
+    alert.addInput({type: 'radio', label: 'Wall Squats', value: 'Wall Squats'})
+
+    alert.addInput({type: 'radio', label: 'Hanging Dips', value: 'Hanging Dips'})
+
+    alert.addInput({type: 'radio', label: 'Box Jumps', value: 'Box Jumps'})
+
+
+    alert.addInput({type: 'radio', label: 'Pistol Squats', value: 'Pistol Squats', checked: false});
     alert.addButton('Cancel');
     alert.addButton({
       text: 'OK',
@@ -125,7 +136,7 @@ export class ProfilePage {
    showAlert() {
     let alert = this.alertCtrl.create({
       title: 'Challenge sent!',
-      subTitle: 'You have challenged Jackie in chins, she has seven days to accept the challenge',
+      subTitle: 'You have challenged Jackie in '+ this.testRadioResult +'. She has seven days to accept the challenge',
       buttons: ['Cancel' , 'OK']
     });
     alert.present();
