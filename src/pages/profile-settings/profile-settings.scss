@@ -1,8 +1,8 @@
 page-profile-settings {
 
-h3{
-	text-align: center;
-}
+ion-list-header{
+    text-align: left;
+  }
 
 .name{
 	font-size: 1,6em;
@@ -12,7 +12,7 @@ h3{
 }
 
 .lower{
-	
+
 }
 
 .button-layout {
@@ -24,14 +24,14 @@ h3{
 	 .userPic {
 	 	width: 100%;
 	 	text-align: center;
-		 
+
 		img {
 		    padding: 5px;
 		    width: 50px;
 		    height: 70px;
 		    text-color: black;
 		}
-		
+
 		ion-icon{
 		font-size: 50px;
 		color: #678567;

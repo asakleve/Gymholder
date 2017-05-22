@@ -44,7 +44,11 @@ export class MapPage {
   processedGymData: Array<Gym> = [];
 
   constructor(public navCtrl: NavController, public navParams: NavParams, private openGymData: OpenGymDataService, private coordService: CoordService) {
-    this.loadGyms();
+    /*if(this.navParams.get("gymId")) {
+      this.loadGym(this.navParams.get("gymId"));
+    } else {*/
+      this.loadGyms();
+    //}
   }
 
   loadGyms() {
@@ -99,7 +103,7 @@ export class MapPage {
   addMarker(name: string, text:string, x: number, y: number, id: string) {
     let marker = new google.maps.Marker({
       map: this.map,
-      animation: google.maps.Animation.DROP,
+      /*animation: google.maps.Animation.DROP,*/
       position: new google.maps.LatLng(x, y)
     });
     marker.infoWindow = new google.maps.InfoWindow({
@@ -120,7 +124,7 @@ export class MapPage {
     });
     google.maps.event.addListener(marker.infoWindow, 'domready', () => {
       document.getElementById('content').addEventListener('click', () => {
-        this.navCtrl.push(GymprofilePage, {id: id});
+        this.navCtrl.push(GymprofilePage, {id: id, coordinates: this.pos });
       }, false);
     });
   }
