@@ -13,12 +13,19 @@ import 'rxjs/add/operator/map';
 export class OpenGymDataService {
 
   public openData: any;
-  public ourApiKey = 'ffd5810dd624442ca44452e55964fd67';
+  private ourApiKey = 'ffd5810dd624442ca44452e55964fd67';
 
   constructor(public http: Http) {
 
   }
 
+  public getForecast(lon: number, lat: number) {
+    console.log(lon + ", " + lat);
+    return this.http.get('/smhi/api/category/pmp2g/version/2/geotype/point/lon/' + lon + '/lat/' + lat + '/data.json')
+      .map(res => res.json());
+  }
+
+  // Hämtar generell data om alla utegym.
   public loadGymData() {
     // http://api.stockholm.se/ServiceGuideService/ServiceUnitTypes/96a67da3-938b-487e-ac34-49b155cb277b/ServiceUnits/json?apikey=ffd5810dd624442ca44452e55964fd67
     return this.http.get('/openStockholm/ServiceGuideService/ServiceUnitTypes/96a67da3-938b-487e-ac34-49b155cb277b/ServiceUnits/json?apikey=' + this.ourApiKey)
