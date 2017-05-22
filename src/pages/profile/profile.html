@@ -12,33 +12,7 @@
 
 
 <ion-content class="card-background-page">
-	<p class="name">{{ activeUser?.username }}</p>
-	<div class="userPic">
-		<img src="assets/img/user.png"/>
-		<ion-icon name="trophy"></ion-icon>
-		<p class="info">Gymholder at: Farsta Utegym </p>
-	</div>
 
-	<div >
-		<button ion-button medium class="left-box box" on-click="openUserLeaderboard();"> <ion-icon name="trophy"></ion-icon>
-		View User Results</button>
-	</div>
-	<div>
-		<button ion-button medium class="box" on-click="showPrompt();"> <ion-icon name="chatboxes"></ion-icon> Send Message</button>
-	</div>
-	<div>
-		<button ion-button medium class="left-box box" on-click="presentToast();"> <ion-icon name="contacts"></ion-icon> Add Friend</button>
-	</div>
-	<div>
-		<ion-card (click)="showRadio();">
-			<img src="assets/img/Challenge-userprofile.jpg" />
-				<div class="card-title">Challenge {{ activeUser?.username }}</div>
-				<div class="card-subtitle"></div>
-		</ion-card>
-	</div>
-</ion-content>
-
-	<ion-grid>
 
 
 
@@ -63,7 +37,7 @@
 			</ion-col>
 
 			<ion-col>
-				<button class="button-layout" ion-button color="dark" icon-left (click)="presentToast();">
+				<button class="button-layout" ion-button color="dark" icon-left (click)="addFriend();" (click)="presentToast();">
 				<ion-icon name="contacts"></ion-icon>
 				 <p>  Add Friend </p>
 				</button>

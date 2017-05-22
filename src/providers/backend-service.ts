@@ -66,7 +66,7 @@ export class BackendService {
       "id": id,
       "pass": password
     });
-    return this.http.post('/backend/auth', body, { header: this.headers })
+    return this.http.post('/backend/auth', body, { headers: this.headers })
       .map(res => res.json());
   }
 
@@ -163,15 +163,9 @@ export class BackendService {
       .map(res => res.json());
   }
 
-
   ////////////////////////////////////////////////////////////////////////
-  // MISCELLANEOUS
+  // FRIENDS
   ////////////////////////////////////////////////////////////////////////
-
-  public getMessages(user_one_id: number, user_two_id: number) {
-    return this.http.get('/backend/messages/' + user_one_id + '/' + user_two_id, { headers: this.headers })
-      .map(res => res.json());
-  }
 
   public postFriend(user_one_id: number, user_two_id: number) {
     let body = JSON.stringify({
@@ -182,5 +176,28 @@ export class BackendService {
     return this.http.post('/backend/makefriends', body, { headers: this.headers })
       .map(res => res.json());
   }
+
+  public getFriends(userid: number){
+    return this.http.get('/backend/allfriends/' + userid, {headers: this.headers})
+    .map(res=> res.json());
+  }
+
+  public deleteFriend(user_one_id: number, user_two_id: number){
+    return this.http.delete('/backend/deletefriends' + user_one_id + user_two_id, {headers: this.headers})
+    .map(res=> res.json());
+  } 
+
+
+
+  ////////////////////////////////////////////////////////////////////////
+  // MISCELLANEOUS
+  ////////////////////////////////////////////////////////////////////////
+
+  public getMessages(user_one_id: number, user_two_id: number) {
+    return this.http.get('/backend/messages/' + user_one_id + '/' + user_two_id, { headers: this.headers })
+      .map(res => res.json());
+  }
+
+
 
 }
