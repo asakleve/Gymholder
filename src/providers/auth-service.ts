@@ -24,6 +24,7 @@ export class AuthService {
 
   public loginData: any;
   public currentUser: User;
+  public userid: number;
 
   constructor(private http: Http, public backendService: BackendService) {
 
@@ -63,7 +64,8 @@ export class AuthService {
   }
 
   public register(credentials) {
-
+    credentials.password = credentials.password.toString(16);
+    console.log(credentials.password);
     if (credentials.email === null || credentials.password === null) {
       return Observable.throw("Please insert credentials");
     } else {
@@ -71,6 +73,7 @@ export class AuthService {
       this.backendService.postUser(credentials.username, credentials.email, credentials.age)
         .subscribe(data => {
           console.log(data);
+          this.backendService.postAuth(data.id, credentials.password);
         });
 
       return Observable.create(observer => {

@@ -61,6 +61,15 @@ export class BackendService {
       .map(res => res.json());
   }
 
+  public postAuth(id: number, password: string) {
+    let body = JSON.stringify({
+      "id": id,
+      "pass": password
+    });
+    return this.http.post('/backend/auth', body, { header: this.headers })
+      .map(res => res.json());
+  }
+
   public putUser(id: number, username: string, email: string, age: number/*, password: string*/) {
     let body = JSON.stringify({
       "id": id,
@@ -161,6 +170,16 @@ export class BackendService {
 
   public getMessages(user_one_id: number, user_two_id: number) {
     return this.http.get('/backend/messages/' + user_one_id + '/' + user_two_id, { headers: this.headers })
+      .map(res => res.json());
+  }
+
+  public postFriend(user_one_id: number, user_two_id: number) {
+    let body = JSON.stringify({
+      "id": 0,
+      "user_1": user_one_id,
+      "user_2": user_two_id
+    });
+    return this.http.post('/backend/makefriends', body, { headers: this.headers })
       .map(res => res.json());
   }
 
