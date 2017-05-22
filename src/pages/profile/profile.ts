@@ -84,18 +84,13 @@ export class ProfilePage {
     alert.addInput({type: 'radio', label: 'One Arm Pull Ups', value: 'One Arm Pull Ups'})
     alert.addInput({type: 'radio', label: 'Toe To Bar', value: 'Toe To Bar'})
     alert.addInput({type: 'radio', label: 'Toe Touch', value: 'Toe Touch'})
-     alert.addInput({type: 'radio', label: 'Squats', value: 'Squats'})
-
+    alert.addInput({type: 'radio', label: 'Squats', value: 'Squats'})
     alert.addInput({type: 'radio', label: 'Jumping Squats', value: 'Jumping Squats'})
-
     alert.addInput({type: 'radio', label: 'Wall Squats', value: 'Wall Squats'})
-
     alert.addInput({type: 'radio', label: 'Hanging Dips', value: 'Hanging Dips'})
-
     alert.addInput({type: 'radio', label: 'Box Jumps', value: 'Box Jumps'})
-
-
     alert.addInput({type: 'radio', label: 'Pistol Squats', value: 'Pistol Squats', checked: false});
+    
     alert.addButton('Cancel');
     alert.addButton({
       text: 'OK',
