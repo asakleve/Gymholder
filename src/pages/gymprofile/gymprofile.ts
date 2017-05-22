@@ -51,7 +51,7 @@ export class GymprofilePage {
     13 : "Thunder",
     14 : "Sleet",
     15 : "Snowfall"
-  }
+  };
 
   constructor(public navCtrl: NavController, public navParams: NavParams, private openGymData: OpenGymDataService, private backendService: BackendService) {
     this.time = new Date().getHours();
@@ -66,7 +66,7 @@ export class GymprofilePage {
   }
 
   openLeaderBoard() {
-  	this.navCtrl.push(GymLeaderboardPage);
+  	this.navCtrl.push(GymLeaderboardPage,{gymid:this.gymid});
 
   }
 

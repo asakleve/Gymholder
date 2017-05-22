@@ -20,7 +20,7 @@ export class GymLeaderboardPage {
  	results: any[];
  	displayResults: any[];
  	gymData: any;
-  	gymid: string;
+  gymid: string;
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public alertCtrl: AlertController, private backendService: BackendService, public loadingCtrl: LoadingController) {
     this.gymid=this.navParams.get('gymid');
