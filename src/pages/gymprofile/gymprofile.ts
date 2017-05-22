@@ -11,7 +11,7 @@ import { AuthService } from '../../providers/auth-service';
  * See http://ionicframework.com/docs/components/#navigation for more info
  * on Ionic pages and navigation.
  */
-@IonicPage()
+@IonicPage() 
 @Component({
   selector: 'page-gymprofile',
   templateUrl: 'gymprofile.html',
@@ -67,6 +67,7 @@ export class GymprofilePage {
 
   openLeaderBoard() {
   	this.navCtrl.push(GymLeaderboardPage);
+
   }
 
   getForecast() {

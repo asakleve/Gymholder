@@ -118,6 +118,11 @@ export class BackendService {
       .map(res => res.json());
   }
 
+  public getAllResults(){
+    return this.http.get('/backend/allresults',{ headers: this.headers })
+      .map(res => res.json());
+   }
+
   public postResult(user: number, gym: number, sport: number, value: number) {
     let body = JSON.stringify({
       "id": 0,

@@ -27,7 +27,7 @@ export class UserLeaderboardPage {
     this.showResults("Show all results");
   }
 
-  
+
   ionViewDidLoad() {
     console.log('ionViewDidLoad UserLeaderboard');
   }
@@ -72,6 +72,8 @@ showRadio() {
       this.displayResults.sort(function(b, a) {
         return parseFloat(a.reps) - parseFloat(b.reps);
       });
+
+      //måste lägga till felhantering av om "sport" inte är valt
     }
 
    
@@ -90,7 +92,7 @@ showRadio() {
       this.backendService.getResult(this.activeUser.userid)
       .subscribe(data => {
         this.results.push(data);
-        //behöver fixa en loop som lägger allt i arrayen. För detta behövs mer och bättre testdata. 
+        //behöver fixa en loop som lägger allt i arrayen. För detta behövs mer och bättre testdata.Går att göra när API returnerar ett array, det gör den inte i dagsläget 
 
 
     });
