@@ -44,8 +44,8 @@ export class BackendService {
   }
 
   // För inloggning
-  public validateUser(email: string, password: string) {
-    return this.http.get('/backend/user/' + email + '/' + password, { headers: this.headers })
+  public validateUser(usernameOrEmail: string, password: string) {
+    return this.http.get('/backend/auth/' + usernameOrEmail + '/' + password, { headers: this.headers })
       .map(res => res.json());
   }
 
@@ -93,7 +93,7 @@ export class BackendService {
       .map(res => res.json());
   }
 
-  public getGymResults(id: number) {
+  public getGymResults(id: string) {
     return this.http.get('/backend/gym/' + id + '/results', { headers: this.headers })
       .map(res => res.json());
   }
@@ -108,6 +108,11 @@ export class BackendService {
     return this.http.get('/backend/result/' + id, { headers: this.headers })
       .map(res => res.json());
   }
+
+  public getAllResults(){
+    return this.http.get('/backend/allresults',{ headers: this.headers })
+      .map(res => res.json());
+   }
 
   public postResult(user: number, gym: number, sport: number, value: number) {
     let body = JSON.stringify({

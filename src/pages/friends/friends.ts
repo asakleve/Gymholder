@@ -19,6 +19,8 @@ export class FriendsPage {
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad Friends');
-  }
+
+    }
+
 
 }

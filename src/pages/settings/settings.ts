@@ -20,15 +20,23 @@ import { ProfileSettingsPage } from '../profile-settings/profile-settings';
   templateUrl: 'settings.html',
 })
 export class SettingsPage {
-  item;
 
+public event = {
+  month: '1990-03-22',
+  timeStarts: '07:43',
+  timeEnds: '1990-03-23'
+}
+  item;
   constructor(
   public navCtrl: NavController,
   public navParams: NavParams,
   public platform: Platform,
-  public actionsheetCtrl: ActionSheetController
+  public actionsheetCtrl: ActionSheetController,
   ) {
   }
+
+
+
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad Settings');
