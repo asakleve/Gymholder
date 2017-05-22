@@ -24,9 +24,10 @@ export class ProfilePage {
 
   // Denna variabel håller aktiv användare
   activeUser: any;
-  testRadioOpen;
-  testRadioResult;
+  // testRadioOpen;
+  radioResult;
   messageA;
+  challangeName;
 
   // public authService: AuthService & public backendService: BackendService
   // laddar in AuthService ur importen och gör dessa tillgängliga för åtkomst
@@ -71,13 +72,47 @@ export class ProfilePage {
     this.navCtrl.push(UserLeaderboardPage);
   }
 
+  showChallangeTitel(){
+  
+    let prompt = this.alertCtrl.create({
+      title: 'Challange',
+      message: "Give your challange a name:",
+      inputs: [
+        {
+          name: 'challangeName',
+          placeholder: 'Name'
+        },
+      ],
+      buttons: [
+        {
+          text: 'Cancel',
+          handler: data => {
+            console.log('Cancel clicked');
+          }
+        },
+        {
+          text: 'Next',
+          handler: data => {
+            this.challangeName = data.challangeName;
+            this.showRadio();
+          }
+        }
+      ]
+    });
+    prompt.present();
+  }
+
+  showAddVideo(){
+
+  }
+
   showRadio() {
     let alert = this.alertCtrl.create();
 
-    alert.setTitle('Event');
+    alert.setTitle('Exercise');
     alert.addInput({type: 'radio', label: 'Classic Push Ups', value: 'Classic Push Ups'});
-    alert.addInput({type: 'radio', label: 'Wide Grip Push Ups', value: 'Wide Grip Push Ups'})
-    alert.addInput({type: 'radio', label: 'Close Grip Push Ups', value: 'Close Grip Push Upss'})
+    alert.addInput({type: 'radio', label: 'Wide Grip Push ups', value: 'Wide Grip Push Ups'})
+    alert.addInput({type: 'radio', label: 'Close Grip Push Ups', value: 'Close Grip Push Ups'})
     alert.addInput({type: 'radio', label: 'Sit Ups', value: 'Sit Ups'})
     alert.addInput({type: 'radio', label: 'Chin Ups', value: 'Chin Ups'})
     alert.addInput({type: 'radio', label: 'Pull Ups', value: 'Pull Ups'})
@@ -93,15 +128,21 @@ export class ProfilePage {
     
     alert.addButton('Cancel');
     alert.addButton({
-      text: 'OK',
+      text: 'Next',
       handler: data => {
-        this.testRadioOpen = false;
-        this.testRadioResult = data;
+        this.showAddVideo();
+        // this.testRadioOpen = false;
+        this.radioResult = data;
         this.showAlert();
         }
       });
     alert.present();
   }
+
+//   addFriend(){
+//     this.backendService.postFriend(activeUser,userToAdd);
+// //userToAdd finns inte
+//   }
 
 
   presentToast() {
@@ -131,7 +172,7 @@ export class ProfilePage {
    showAlert() {
     let alert = this.alertCtrl.create({
       title: 'Challenge sent!',
-      subTitle: 'You have challenged Jackie in '+ this.testRadioResult +'. She has seven days to accept the challenge',
+      subTitle: 'Your challange:'+ this.challangeName+' where you challenge Jackie in '+ this.radioResult +' has been sent. She has seven days to accept the challenge',
       buttons: ['Cancel' , 'OK']
     });
     alert.present();
