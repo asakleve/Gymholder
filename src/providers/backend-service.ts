@@ -175,7 +175,7 @@ export class BackendService {
 
   public postFriend(user_one_id: number, user_two_id: number) {
     let body = JSON.stringify({
-      "id": id,
+      "id": 0,
       "user_1": user_one_id,
       "user_2": user_two_id
     });
