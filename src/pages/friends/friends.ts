@@ -22,7 +22,7 @@ export class FriendsPage {
   }
 
 
-  getItems(ev) {
+  /*getItems(ev) {
     // Reset items back to all of the items
     
 
@@ -35,7 +35,7 @@ export class FriendsPage {
         return (item.toLowerCase().indexOf(val.toLowerCase()) > -1);
       })
     }
-  }
+  }*/
 
 
 }
