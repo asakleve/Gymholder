@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, ToastController, AlertController } from 'ionic-angular';
+import { UserLeaderboardPage } from '../user-leaderboard/user-leaderboard';
 
 // Här sker import av våra providers
 import { BackendService } from '../../providers/backend-service';
@@ -64,6 +65,10 @@ export class ProfilePage {
   ionViewDidLoad() {
     // this.activeUser = this.AuthService.getUser();
     console.log('ionViewDidLoad Profile');
+  }
+
+  openUserLeaderboard(){
+    this.navCtrl.push(UserLeaderboardPage);
   }
 
   showRadio() {

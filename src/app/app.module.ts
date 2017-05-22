@@ -27,6 +27,7 @@ import { MapPage } from '../pages/map/map';
 import { MyChallengesPage } from '../pages/my-challenges/my-challenges';
 import { GymLeaderboardPage } from '../pages/gym-leaderboard/gym-leaderboard';
 import { ProfileSettingsPage } from '../pages/profile-settings/profile-settings';
+import { UserLeaderboardPage } from '../pages/user-leaderboard/user-leaderboard';
 
 
 
@@ -47,7 +48,8 @@ import { ProfileSettingsPage } from '../pages/profile-settings/profile-settings'
     MapPage,
     MyChallengesPage,
     GymLeaderboardPage,
-    ProfileSettingsPage
+    ProfileSettingsPage,
+    UserLeaderboardPage
   ],
   imports: [
     BrowserModule,
@@ -70,7 +72,8 @@ import { ProfileSettingsPage } from '../pages/profile-settings/profile-settings'
     MapPage,
     MyChallengesPage,
     GymLeaderboardPage,
-    ProfileSettingsPage
+    ProfileSettingsPage,
+    UserLeaderboardPage
   ],
   providers: [
     StatusBar,
