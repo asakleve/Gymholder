@@ -93,7 +93,7 @@ export class BackendService {
       .map(res => res.json());
   }
 
-  public getGymResults(id: number) {
+  public getGymResults(id: string) {
     return this.http.get('/backend/gym/' + id + '/results', { headers: this.headers })
       .map(res => res.json());
   }
