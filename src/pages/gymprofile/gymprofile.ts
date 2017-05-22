@@ -9,7 +9,7 @@ import { OpenGymDataService } from '../../providers/open-gym-data-service';
  * See http://ionicframework.com/docs/components/#navigation for more info
  * on Ionic pages and navigation.
  */
-@IonicPage()
+@IonicPage() 
 @Component({
   selector: 'page-gymprofile',
   templateUrl: 'gymprofile.html',
@@ -19,9 +19,13 @@ export class GymprofilePage {
   gymData: any;
   gymid: string;
   gymImageId: string;
+ 
 
   constructor(public navCtrl: NavController, public navParams: NavParams, private openGymData: OpenGymDataService) {
+    this.gymid=this.navParams.get('id');
     this.loadGymDetails(this.navParams.get('id'));
+
+
   }
 
   ionViewDidLoad() {
@@ -29,7 +33,7 @@ export class GymprofilePage {
   }
 
   openLeaderBoard(){
-  	this.navCtrl.push(GymLeaderboardPage);
+  	this.navCtrl.push(GymLeaderboardPage,{gymid:this.gymid});
   }
 
   loadGymDetails(gymid: string) {
