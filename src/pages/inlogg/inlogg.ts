@@ -20,9 +20,12 @@ export class InloggPage {
     this.nav.push('RegisterPage');
   }
 
+  
+
   public login() {
     this.showLoading()
     this.auth.login(this.registerCredentials).subscribe(allowed => {
+      console.log("This is the allowed status: " + allowed);
       if (allowed) {
         this.nav.setRoot(HomePage);
       } else {

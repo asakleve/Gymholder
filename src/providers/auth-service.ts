@@ -22,49 +22,62 @@ export class User {
 @Injectable()
 export class AuthService {
 
-  public loginData: any;
-  public currentUser: User;
-  public userid: number;
+  loginData: any;
+  currentUser: User;
+  userid: number;
+  access: boolean;
 
-  constructor(private http: Http, public backendService: BackendService) {
-
-    this.currentUser = new User(18, 'JacquelineTan', 'jacqueline.tan@hotmail.com', 27);
+  constructor(public backendService: BackendService) {
 
   }
 
+  ascii_to_hexa(str) {
+  	var arr = [];
+  	for (var n = 0, l = str.length; n < l; n ++) {
+    	var hex = Number(str.charCodeAt(n)).toString(16);
+    	arr.push(hex);
+    }
+    return arr.join('');
+  }
+
   public login(credentials) {
+    let access = false;
     if (credentials.email === null || credentials.password === null) {
       return Observable.throw("Please insert credentials");
     } else {
-
       return Observable.create(observer => {
         // At this point make a request to your backend to make a real check!
-        this.backendService.validateUser(credentials.email, credentials.password)
+        console.log(credentials.email + " " + (credentials.password.toString(16) * 31));
+        this.backendService.validateUser(credentials.email, (credentials.password.toString(16) * 31).toString())
           .subscribe(data => {
-            this.loginData = data;
-            console.log(data);
-            if(data.id > -1) {
-              this.loginData = this.backendService.getUser(data.id);
-              this.currentUser = new User(
-                this.loginData.age,
-                this.loginData.username,
-                this.loginData.email,
-                this.loginData.age)
+            console.log("This is the data in login: " + data);
+            if(data > 0) {
+              console.log("Console is not -1");
+              this.backendService.getUser(data)
+              .subscribe(res => {
+                this.loginData = res;
+                this.currentUser = new User(
+                    res.id,
+                    res.username,
+                    res.email,
+                    res.age);
+                console.log(JSON.stringify(this.currentUser));
+              });
+              observer.next(true);
+            } else {
+              observer.next(false);
             }
+            observer.complete();
           });
         // Chris kommentar: do http get to /user/<email>/<hashed_password> to
         // see if we can get a success response.
-
-        let access = (credentials.password === "pass" && credentials.email === "email");
-        observer.next(access);
-        observer.complete();
       });
     }
 
   }
 
   public register(credentials) {
-    credentials.password = credentials.password.toString(16);
+    credentials.password = credentials.password.toString(16) * 31;
     console.log(credentials.password);
     if (credentials.email === null || credentials.password === null) {
       return Observable.throw("Please insert credentials");
@@ -72,8 +85,8 @@ export class AuthService {
       // At this point store the credentials to your backend!
       this.backendService.postUser(credentials.username, credentials.email, credentials.age)
         .subscribe(data => {
-          console.log(data);
-          this.backendService.postAuth(data.id, credentials.password);
+          console.log("this is the data: " + JSON.stringify(data) + ", this is the id: " + data.id + ", and pass: " + credentials.password);
+          this.backendService.postAuth(data, credentials.password);
         });
 
       return Observable.create(observer => {
@@ -84,6 +97,7 @@ export class AuthService {
   }
 
   public getUser() : User {
+    console.log("This is the active user returned by authService: " + this.currentUser.userid);
     return this.currentUser;
   }
 

@@ -11,7 +11,7 @@ import { AuthService } from '../../providers/auth-service';
  * See http://ionicframework.com/docs/components/#navigation for more info
  * on Ionic pages and navigation.
  */
-@IonicPage() 
+@IonicPage()
 @Component({
   selector: 'page-gymprofile',
   templateUrl: 'gymprofile.html',
@@ -53,10 +53,10 @@ export class GymprofilePage {
     15 : "Snowfall"
   }
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, private openGymData: OpenGymDataService, private backendService: BackendService) {
+  constructor(private authService: AuthService, public navCtrl: NavController, public navParams: NavParams, private openGymData: OpenGymDataService, private backendService: BackendService) {
     this.time = new Date().getHours();
     this.gymid = this.navParams.get('id');
-    this.activeUser = this.navParams.get('user');
+    this.activeUser = this.authService.getUser();
     this.coordinates = this.navParams.get('coordinates');
     this.loadGymDetails();
   }
