@@ -1,5 +1,8 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, NavParams,AlertController, ToastController } from 'ionic-angular';
+import { BackendService } from '../../providers/backend-service';
+import { AuthService } from '../../providers/auth-service';
+import { ProfilePage } from '../profile/profile';
 
 /**
  * Generated class for the Friends page.
@@ -13,29 +16,67 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
   templateUrl: 'friends.html',
 })
 export class FriendsPage {
+//friends: any[];
+activeUser: any;
+friendlist: any [];
+friend: any;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+
+  constructor(public navCtrl: NavController, public navParams: NavParams,public alertCtrl: AlertController,public toastCtrl: ToastController,private backendService: BackendService, public authService: AuthService) {
+  	this.activeUser = this.authService.getUser();
+    //this.loadUserData(this.activeUser.userid);
+    this.friendlist = [];
+    this.displayFriends(this.activeUser.userid);
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad Friends');
+
   }
 
+  displayFriends(userid){
+    this.friendlist = [];
+    this.backendService.getFriends(userid)
+       .subscribe(data => {
+        this.friendlist = (data);
+       });
+  }
 
-  /*getItems(ev) {
-    // Reset items back to all of the items
-    
+ friendDeletedToast() {
+    let toast = this.toastCtrl.create({
+      message: 'Friend deleted',
+      duration: 3000
+    });
+    toast.present();
+  }
 
-    // set val to the value of the ev target
-    var val = ev.target.value;
+ deleteFriend() {
+    let confirm = this.alertCtrl.create({
+      title: 'Delete friend?',
+      message: 'Do you want to delete Sebastian?',
+      buttons: [
+        {
+          text: 'Cancel',
+          handler: () => {
+            console.log('Disagree clicked');
+            
+          }
+        },
+        {
+          text: 'Yes',
+          handler: () => {
+            console.log('Agree clicked');
+            this.friendDeletedToast();
+          }
+        }
+      ]
+    });
+    confirm.present();
+  }
 
-    // if the value is an empty string don't filter the items
-    if (val && val.trim() != '') {
-      this.items = this.items.filter((item) => {
-        return (item.toLowerCase().indexOf(val.toLowerCase()) > -1);
-      })
-    }
-  }*/
+  openProfile(friendid){
+    this.navCtrl.push(ProfilePage,{friendid});
+  }
 
 
 }

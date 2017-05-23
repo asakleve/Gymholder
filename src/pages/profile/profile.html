@@ -12,36 +12,50 @@
 
 
 <ion-content class="card-background-page">
-	<p class="name">{{ activeUser?.username }}</p>
-	<div class="userPic">
-		<img src="assets/img/user.png"/>
-		<ion-icon name="trophy"></ion-icon>
-		<p class="info">Gymholder at: Farsta Utegym </p>
-	</div>
 
-	<div>
-		<button ion-button full class="left-box box" on-click="openUserLeaderboard();">
-      <ion-icon name="trophy"></ion-icon>
-		  Results
-    </button>
-	</div>
-	<div>
-		<button ion-button full class="box" on-click="showPrompt();">
-      <ion-icon name="chatboxes"></ion-icon>
-      Message
-    </button>
-	</div>
-	<div>
-		<button ion-button full class="left-box box" on-click="presentToast();">
-      <ion-icon name="contacts"></ion-icon>
-      Add Friend
-    </button>
-	</div>
-	<div>
-		<ion-card (click)="showRadio();">
-			<img src="assets/img/Challenge-userprofile.jpg" />
-				<div class="card-title">Challenge {{ activeUser?.username }}</div>
-				<div class="card-subtitle"></div>
-		</ion-card>
-	</div>
-</ion-content>
+
+<p class="name">{{ profileOwner?.username }}</p>
+<div class="userPic">
+<img src="assets/img/user.png"/>
+
+
+<ion-icon name="trophy"></ion-icon>
+<p class="info">Gymholder at: {{ gymData?.Name }}</p>
+
+</div>
+
+
+	<div class="lower">
+		<ion-row>
+			<ion-col>
+				<button class="button-layout" ion-button color="dark" icon-left (click)="showPrompt();">
+				<ion-icon name="chatboxes"></ion-icon>
+				<p>  Send Message </p>
+				</button>
+			</ion-col>
+
+			<ion-col>
+				<button class="button-layout" ion-button color="dark" icon-left (click)="addFriend();" (click)="presentToast();">
+				<ion-icon name="contacts"></ion-icon>
+				 <p>  Add Friend </p>
+				</button>
+			</ion-col>
+
+			<ion-col>
+				<button class="button-layout" ion-button color="dark" icon-left (click)="openUserLeaderboard(profileOwner.id);">
+				<ion-icon name="trophy"></ion-icon>
+				 <p>  Results </p>
+				</button>
+			</ion-col>
+		</ion-row>
+
+		<ion-row>
+			<ion-card (click)="showChallangeTitel();">
+			  	<img src="assets/img/Challenge-userprofile.jpg" />
+			  	<div class="card-title">Challenge {{ profileOwner?.username }}</div>
+        		<div class="card-subtitle"></div>
+
+			</ion-card>
+		</ion-row>
+</div>
+

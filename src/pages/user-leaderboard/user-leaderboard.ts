@@ -18,19 +18,25 @@ export class UserLeaderboardPage {
   displayResults: any[];
   activeUser: any;
   testResult: any;
+  userid: any;
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public alertCtrl: AlertController, private backendService: BackendService,  private authService: AuthService) {
     this.activeUser = this.authService.getUser();
+    this.userid= this.navParams.get('profileOwner');
     this.sports = [];
-    this.sports.push("Show all results");
     this.engage();
+    this.sports.push("Show all results");
     this.showResults("Show all results");
   }
-
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad UserLeaderboard');
   }
+
+  print(){
+  console.log(this.userid);
+  }
+
 showRadio() {
       let alert = this.alertCtrl.create();
       alert.setTitle('Select exercise');
@@ -89,7 +95,8 @@ showRadio() {
       this.sports.push("Bänkpress");
 
       this.results=[];
-      this.backendService.getResult(this.activeUser.userid)
+      console.log(this.userid);
+      this.backendService.getResult(this.userid)
       .subscribe(data => {
         this.results.push(data);
         //behöver fixa en loop som lägger allt i arrayen. För detta behövs mer och bättre testdata.Går att göra när API returnerar ett array, det gör den inte i dagsläget 
