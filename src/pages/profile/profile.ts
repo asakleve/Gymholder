@@ -24,7 +24,8 @@ export class ProfilePage {
 
   // Denna variabel håller aktiv användare
   activeUser: any;
-  // testRadioOpen;
+  profileOwner: any;
+
   radioResult;
   messageA;
   challangeName;
@@ -38,12 +39,16 @@ export class ProfilePage {
     // Hämtar User-objektinstansen från authService, innehållande
     // data för den aktiva användaren.
     this.activeUser = this.authService.getUser();
+    this.profileOwner= navParams.get('friendid');
+    if (this.activeUser.id==this.profileOwner){
+      this.profileOwner=this.activeUser.id;
+    }
 
     // Hämtar en användare från databasen baserat på @devUserId
     // @param devUserId : variabel för att hålla användarid för
     // en aktiv användare medan utveckling pågår och inloggning
     // ännu ej är färdig.
-    this.loadUserData(this.devUserId);
+     this.loadUserData(this.profileOwner);
   }
 
   // Metod som laddar användardata från backendService. Som argument
@@ -57,9 +62,9 @@ export class ProfilePage {
   // från api tar tid att färdigställas, och koden annars inte väntar
   // på att läsningen ska köras klart.
   loadUserData(userid: number) {
-    this.activeUser = this.backendService.getUser(userid)
+    this.profileOwner = this.backendService.getUser(userid)
     .subscribe(data => {
-      this.activeUser = data;
+      this.profileOwner = data;
     });
   }
 
@@ -68,8 +73,8 @@ export class ProfilePage {
     console.log('ionViewDidLoad Profile');
   }
 
-  openUserLeaderboard(){
-    this.navCtrl.push(UserLeaderboardPage);
+  openUserLeaderboard(userid){
+    this.navCtrl.push(UserLeaderboardPage,{userid});
   }
 
   showChallangeTitel(){
@@ -131,7 +136,6 @@ export class ProfilePage {
       text: 'Next',
       handler: data => {
         this.showAddVideo();
-        // this.testRadioOpen = false;
         this.radioResult = data;
         this.showAlert();
         }
@@ -153,13 +157,13 @@ export class ProfilePage {
     toast.present();
   }
 
-  userChallengedFirstToast() {
-    let toast = this.toastCtrl.create({
-      message: 'You have challenged Jackie',
-      duration: 3000
-    });
-    toast.present();
-  }
+  // userChallengedFirstToast() {
+  //   let toast = this.toastCtrl.create({
+  //     message: 'You have challenged Jackie',
+  //     duration: 3000
+  //   });
+  //   toast.present();
+  // }
 
   messageSentToast() {
     let toast = this.toastCtrl.create({

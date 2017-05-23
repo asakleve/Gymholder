@@ -114,7 +114,7 @@ export class BackendService {
   ////////////////////////////////////////////////////////////////////////
 
   public getResult(id: number) {
-    return this.http.get('/backend/result/' + id, { headers: this.headers })
+    return this.http.get('/backend/userresult/' + id, { headers: this.headers })
       .map(res => res.json());
   }
 

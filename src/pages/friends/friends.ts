@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams,AlertController, ToastController } from 'ionic-angular';
 import { BackendService } from '../../providers/backend-service';
 import { AuthService } from '../../providers/auth-service';
+import { ProfilePage } from '../profile/profile';
 
 /**
  * Generated class for the Friends page.
@@ -18,6 +19,7 @@ export class FriendsPage {
 //friends: any[];
 activeUser: any;
 friendlist: any [];
+friend: any;
 
 
   constructor(public navCtrl: NavController, public navParams: NavParams,public alertCtrl: AlertController,public toastCtrl: ToastController,private backendService: BackendService, public authService: AuthService) {
@@ -79,6 +81,9 @@ friendlist: any [];
     confirm.present();
   }
 
+  openProfile(friendid){
+    this.navCtrl.push(ProfilePage,{friendid});
+  }
 
 
 }

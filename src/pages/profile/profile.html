@@ -16,7 +16,7 @@
 
 
 
-<p class="name">{{ activeUser?.username }}</p>
+<p class="name">{{ profileOwner?.username }}</p>
 <div class="userPic">
 <img src="assets/img/user.png"/>
 
@@ -42,12 +42,19 @@
 				 <p>  Add Friend </p>
 				</button>
 			</ion-col>
+
+			<ion-col>
+				<button class="button-layout" ion-button color="dark" icon-left (click)="openUserLeaderboard();">
+				<ion-icon name="trophy"></ion-icon>
+				 <p>  Results </p>
+				</button>
+			</ion-col>
 		</ion-row>
 
 		<ion-row>
 			<ion-card (click)="showChallangeTitel();">
 			  	<img src="assets/img/Challenge-userprofile.jpg" />
-			  	<div class="card-title">Challenge {{ activeUser?.username }}</div>
+			  	<div class="card-title">Challenge {{ profileOwner?.username }}</div>
         		<div class="card-subtitle"></div>
 
 			</ion-card>

@@ -18,6 +18,7 @@ export class UserLeaderboardPage {
   displayResults: any[];
   activeUser: any;
   testResult: any;
+  resultOwner: any;
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public alertCtrl: AlertController, private backendService: BackendService,  private authService: AuthService) {
     this.activeUser = this.authService.getUser();
@@ -25,6 +26,10 @@ export class UserLeaderboardPage {
     this.sports.push("Show all results");
     this.engage();
     this.showResults("Show all results");
+    this.resultOwner= this.navParams.get('userid');
+    if (this.resultOwner == this.activeUser.id){
+      this.resultOwner = this.activeUser.id;
+    }
   }
 
 
@@ -89,7 +94,7 @@ showRadio() {
       this.sports.push("Bänkpress");
 
       this.results=[];
-      this.backendService.getResult(this.activeUser.userid)
+      this.backendService.getResult(this.resultOwner)
       .subscribe(data => {
         this.results.push(data);
         //behöver fixa en loop som lägger allt i arrayen. För detta behövs mer och bättre testdata.Går att göra när API returnerar ett array, det gör den inte i dagsläget 

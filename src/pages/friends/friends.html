@@ -22,21 +22,22 @@
 <p class="name">{{ activeUser.username }}</p>
   <ion-item-sliding>
 
-      <ion-item *ngFor="let friend of friendlist"> {{friend.picture}} {{friend.username}}
-       </ion-item>
-    <ion-item-options side="left">
+      <ion-item *ngFor="let friend of friendlist" (click)="openProfile(friend.id);"> {{friend.picture}} {{friend.username}}
+       
+   <!--  <ion-item-options side="left">
       <button class="deleteFriend" ion-button color=red (click)="deleteFriend();">
-        <ion-icon name="close"></ion-icon>
-        Delete friend
-      </button>
+        <ion-icon name="trash"></ion-icon>
+      </button> -->
+        </ion-item>
      
-    </ion-item-options>
+ <!--    </ion-item-options>
     <ion-item-options side="right">
-      <button ion-button color="primary">
+      <button ion-button color="primary" (click)="openProfile(friend.id);">
         <ion-icon name="person"></ion-icon>
         Profile
       </button>
     </ion-item-options>
+   -->
 
   </ion-item-sliding>
 </ion-list>
