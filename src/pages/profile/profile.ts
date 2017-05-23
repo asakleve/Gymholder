@@ -20,13 +20,19 @@ import { AuthService } from '../../providers/auth-service';
 export class ProfilePage {
 
   // Tas bort när inloggning är färdigimplementerad.
-  devUserId = 18;
+  // devUserId = 18;
 
   // Denna variabel håller aktiv användare
   activeUser: any;
+
+  viewingUserid: any;
+  testRadioOpen;
+  testRadioResult;
+
   profileOwner: any;
 
   radioResult;
+
   messageA;
   challangeName;
 
@@ -39,7 +45,8 @@ export class ProfilePage {
     // Hämtar User-objektinstansen från authService, innehållande
     // data för den aktiva användaren.
     this.activeUser = this.authService.getUser();
-    this.profileOwner= navParams.get('friendid');
+
+    this.profileOwner= this.navParams.get('friendid');
     if (this.activeUser.id==this.profileOwner){
       this.profileOwner=this.activeUser.userid;
     }
@@ -66,6 +73,7 @@ export class ProfilePage {
     .subscribe(data => {
       this.profileOwner = data;
     });
+
   }
 
   ionViewDidLoad() {
@@ -110,28 +118,25 @@ export class ProfilePage {
 
   showAddVideo(){
 
+
   }
 
   showRadio() {
     let alert = this.alertCtrl.create();
 
-    alert.setTitle('Exercise');
-    alert.addInput({type: 'radio', label: 'Classic Push Ups', value: 'Classic Push Ups'});
-    alert.addInput({type: 'radio', label: 'Wide Grip Push ups', value: 'Wide Grip Push Ups'})
-    alert.addInput({type: 'radio', label: 'Close Grip Push Ups', value: 'Close Grip Push Ups'})
-    alert.addInput({type: 'radio', label: 'Sit Ups', value: 'Sit Ups'})
-    alert.addInput({type: 'radio', label: 'Chin Ups', value: 'Chin Ups'})
-    alert.addInput({type: 'radio', label: 'Pull Ups', value: 'Pull Ups'})
-    alert.addInput({type: 'radio', label: 'One Arm Pull Ups', value: 'One Arm Pull Ups'})
-    alert.addInput({type: 'radio', label: 'Toe To Bar', value: 'Toe To Bar'})
-    alert.addInput({type: 'radio', label: 'Toe Touch', value: 'Toe Touch'})
-    alert.addInput({type: 'radio', label: 'Squats', value: 'Squats'})
-    alert.addInput({type: 'radio', label: 'Jumping Squats', value: 'Jumping Squats'})
-    alert.addInput({type: 'radio', label: 'Wall Squats', value: 'Wall Squats'})
-    alert.addInput({type: 'radio', label: 'Hanging Dips', value: 'Hanging Dips'})
-    alert.addInput({type: 'radio', label: 'Box Jumps', value: 'Box Jumps'})
-    alert.addInput({type: 'radio', label: 'Pistol Squats', value: 'Pistol Squats', checked: false});
-    
+
+    alert.setTitle('Event');
+    var labels = [];
+    var allSports: any;
+    this.backendService.getAllSports()
+      .subscribe(data => {
+        console.log(JSON.stringify(data));
+        allSports = data;
+        for(let s of allSports) {
+          alert.addInput({type: 'radio', label: s.name, value: s.name});
+        }
+      });
+
     alert.addButton('Cancel');
     alert.addButton({
       text: 'Next',
