@@ -41,7 +41,7 @@ export class ProfilePage {
     this.activeUser = this.authService.getUser();
     this.profileOwner= navParams.get('friendid');
     if (this.activeUser.id==this.profileOwner){
-      this.profileOwner=this.activeUser.id;
+      this.profileOwner=this.activeUser.userid;
     }
 
     // Hämtar en användare från databasen baserat på @devUserId
@@ -73,8 +73,9 @@ export class ProfilePage {
     console.log('ionViewDidLoad Profile');
   }
 
-  openUserLeaderboard(userid){
-    this.navCtrl.push(UserLeaderboardPage,{userid});
+  openUserLeaderboard(profileOwner){
+    console.log(profileOwner);
+    this.navCtrl.push(UserLeaderboardPage,{profileOwner});
   }
 
   showChallangeTitel(){

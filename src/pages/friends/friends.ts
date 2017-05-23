@@ -34,13 +34,6 @@ friend: any;
 
   }
 
-  // loadUserData(userid: number) {
-  //   this.activeUser = this.backendService.getUser(userid)
-  //   .subscribe(data => {
-  //     this.activeUser = data;
-  //   });
-  // }
-
   displayFriends(userid){
     this.friendlist = [];
     this.backendService.getFriends(userid)
