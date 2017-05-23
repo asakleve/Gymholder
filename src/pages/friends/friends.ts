@@ -75,7 +75,7 @@ friend: any;
   }
 
   openProfile(friendid){
-    this.navCtrl.push(ProfilePage,{friendid});
+    this.navCtrl.push(ProfilePage,{userid:friendid});
   }
 
 

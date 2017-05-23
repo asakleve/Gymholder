@@ -39,10 +39,7 @@ export class ProfilePage {
     // Hämtar User-objektinstansen från authService, innehållande
     // data för den aktiva användaren.
     this.activeUser = this.authService.getUser();
-    this.profileOwner= navParams.get('friendid');
-    if (this.activeUser.id==this.profileOwner){
-      this.profileOwner=this.activeUser.userid;
-    }
+    this.profileOwner= navParams.get('userid');
 
     // Hämtar en användare från databasen baserat på @devUserId
     // @param devUserId : variabel för att hålla användarid för
@@ -75,7 +72,7 @@ export class ProfilePage {
 
   openUserLeaderboard(profileOwner){
     console.log(profileOwner);
-    this.navCtrl.push(UserLeaderboardPage,{profileOwner});
+    this.navCtrl.push(UserLeaderboardPage,{userid:profileOwner});
   }
 
   showChallangeTitel(){
