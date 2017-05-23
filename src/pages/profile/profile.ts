@@ -53,29 +53,27 @@ export class ProfilePage {
   }
 
   showRadio() {
-    let alert = this.alertCtrl.create();
-
-    alert.setTitle('Event');
     var labels = [];
     var allSports: any;
     this.backendService.getAllSports()
       .subscribe(data => {
-        console.log(JSON.stringify(data));
+        let alert = this.alertCtrl.create();
+        alert.setTitle('Event');
         allSports = data;
         for(let s of allSports) {
-          alert.addInput({type: 'radio', label: s.name, value: s.name});
+          alert.addInput({ type: 'radio', label: s.name, value: s.name })
         }
+        alert.addButton('Cancel');
+        alert.addButton({
+          text: 'OK',
+          handler: data => {
+            this.testRadioOpen = false;
+            this.testRadioResult = data;
+            this.showAlert();
+            }
+          });
+        alert.present();
       });
-    alert.addButton('Cancel');
-    alert.addButton({
-      text: 'OK',
-      handler: data => {
-        this.testRadioOpen = false;
-        this.testRadioResult = data;
-        this.showAlert();
-        }
-      });
-    alert.present();
   }
 
 

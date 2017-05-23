@@ -31,12 +31,14 @@
       Message
     </button>
 	</div>
+
 	<div>
-		<button ion-button full class="left-box box" on-click="presentToast();">
+		<button ng-if="activeUser.userid != viewingUserid" ion-button full class="left-box box" on-click="presentToast();">
       <ion-icon name="contacts"></ion-icon>
       Add Friend
     </button>
 	</div>
+
 	<div>
 		<ion-card (click)="showRadio();">
 			<img src="assets/img/Challenge-userprofile.jpg" />
