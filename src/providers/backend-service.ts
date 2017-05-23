@@ -34,12 +34,17 @@ export class BackendService {
   }
 
   public getUserFriends(id: number) {
-    return this.http.get('/backend/user/' + id + '/friends', { headers: this.headers })
+    return this.http.get('/backend/allfriends/' + id, { headers: this.headers })
       .map(res => res.json());
   }
 
   public getUserGroups(id: number) {
     return this.http.get('/backend/user/' + id + '/groups', { headers: this.headers })
+      .map(res => res.json());
+  }
+
+  public getUserResults(id: number) {
+    return this.http.get('/backend/userresults/' + id, { headers: this.headers })
       .map(res => res.json());
   }
 
@@ -66,7 +71,7 @@ export class BackendService {
       "id": id,
       "pass": password
     });
-    return this.http.post('/backend/auth', body, { header: this.headers })
+    return this.http.post('/backend/auth', body, { headers: this.headers })
       .map(res => res.json());
   }
 
@@ -118,6 +123,14 @@ export class BackendService {
       .map(res => res.json());
   }
 
+  public getResultsByUser(id: number) {
+    this.http.get('/backend/userresults/' + id, { headers: this.headers })
+      .map(res => res.json())
+      .subscribe(data => {
+        return data;
+      });
+  }
+
   public getAllResults(){
     return this.http.get('/backend/allresults',{ headers: this.headers })
       .map(res => res.json());
@@ -163,6 +176,10 @@ export class BackendService {
       .map(res => res.json());
   }
 
+  public getAllSports() {
+    return this.http.get('/backend/allsports', { headers: this.headers })
+      .map(res => res.json());
+  }
 
   ////////////////////////////////////////////////////////////////////////
   // MISCELLANEOUS

@@ -3,6 +3,7 @@ import { CoordService } from '../providers/coord-service';
 import { HashService } from '../providers/hash-service';
 import { OpenGymDataService } from '../providers/open-gym-data-service';
 import { BackendService } from '../providers/backend-service';
+import { ObjectManager } from '../providers/object-manager';
 
 import { BrowserModule } from '@angular/platform-browser';
 import { ErrorHandler, NgModule } from '@angular/core';
@@ -83,7 +84,8 @@ import { UserLeaderboardPage } from '../pages/user-leaderboard/user-leaderboard'
     CoordService,
     HashService,
     OpenGymDataService,
-    BackendService
+    BackendService,
+    ObjectManager
   ]
 })
 export class AppModule {}

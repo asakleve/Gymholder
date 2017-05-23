@@ -20,10 +20,11 @@ import { AuthService } from '../../providers/auth-service';
 export class ProfilePage {
 
   // Tas bort när inloggning är färdigimplementerad.
-  devUserId = 18;
+  // devUserId = 18;
 
   // Denna variabel håller aktiv användare
   activeUser: any;
+  viewingUserid: any;
   testRadioOpen;
   testRadioResult;
   messageA;
@@ -37,35 +38,15 @@ export class ProfilePage {
     // Hämtar User-objektinstansen från authService, innehållande
     // data för den aktiva användaren.
     this.activeUser = this.authService.getUser();
-
-    // Hämtar en användare från databasen baserat på @devUserId
-    // @param devUserId : variabel för att hålla användarid för
-    // en aktiv användare medan utveckling pågår och inloggning
-    // ännu ej är färdig.
-    this.loadUserData(this.devUserId);
-  }
-
-  // Metod som laddar användardata från backendService. Som argument
-  // tas "number" (https://www.w3schools.com/js/js_numbers.asp) och
-  // skickas sedan med vid anrop av metoden "getUser(userid:number)"
-  // i provider/backend-service.ts
-  //
-  // .subscribe(data => { ... }) skapar en prenumeration på datan som
-  // levereras från backendService.getUser() och gör den tillgänglig
-  // när hämtningen från api är klar; detta krävs eftersom hämtningen
-  // från api tar tid att färdigställas, och koden annars inte väntar
-  // på att läsningen ska köras klart.
-  loadUserData(userid: number) {
-    this.activeUser = this.backendService.getUser(userid)
-    .subscribe(data => {
-      this.activeUser = data;
-    });
+    this.viewingUserid = this.navParams.get('userid');
   }
 
   ionViewDidLoad() {
     // this.activeUser = this.AuthService.getUser();
     console.log('ionViewDidLoad Profile');
   }
+
+
 
   openUserLeaderboard(){
     this.navCtrl.push(UserLeaderboardPage);
@@ -75,16 +56,16 @@ export class ProfilePage {
     let alert = this.alertCtrl.create();
 
     alert.setTitle('Event');
-    alert.addInput({type: 'radio', label: 'Chins', value: 'chins'});
-    alert.addInput({type: 'radio', label: 'Dips', value: 'dips'})
-    alert.addInput({type: 'radio', label: 'Box Jump', value: 'boxJump'})
-    alert.addInput({type: 'radio', label: 'Sit Ups', value: 'sitUps'})
-    alert.addInput({type: 'radio', label: 'Chins', value: 'chins'})
-    alert.addInput({type: 'radio', label: 'Chins', value: 'chins'})
-    alert.addInput({type: 'radio', label: 'Chins', value: 'chins'})
-    alert.addInput({type: 'radio', label: 'Chins', value: 'chins'})
-    alert.addInput({type: 'radio', label: 'Chins', value: 'chins'})
-    alert.addInput({type: 'radio', label: 'Blue', value: 'blue', checked: false});
+    var labels = [];
+    var allSports: any;
+    this.backendService.getAllSports()
+      .subscribe(data => {
+        console.log(JSON.stringify(data));
+        allSports = data;
+        for(let s of allSports) {
+          alert.addInput({type: 'radio', label: s.name, value: s.name});
+        }
+      });
     alert.addButton('Cancel');
     alert.addButton({
       text: 'OK',
