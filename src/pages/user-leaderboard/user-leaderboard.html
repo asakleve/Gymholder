@@ -14,12 +14,17 @@
   <button ion-button block color="green" (click)="showRadio()">Select exercise</button>
   <h5>Displaying results for {{selectedSport}}</h5>
   <ion-list>
+
     <ion-item *ngFor="let d of displayResults">{{d[2]}} {{d[0]}}
+
       <ion-card>
       <ion-card-content>
-        <iframe width = 100% height=100% [src]="video |youtube " frameborder="0" allowfullscreen (click)="playVideo()"></iframe>
+<!--         <iframe width = 100% height=100% [src]="video |youtubePipe" frameborder="0" allowfullscreen (click)="playVideo()"></iframe>
+ -->        <iframe width="100%" height="100%" src="https://www.youtube.com/embed/ux8MOFLlOXM" frameborder="0" allowfullscreen></iframe>
       </ion-card-content>
       </ion-card>
     </ion-item>
   </ion-list>
 </ion-content>
+
+
