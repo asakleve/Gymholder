@@ -4,6 +4,7 @@ import { GymLeaderboardPage } from '../gym-leaderboard/gym-leaderboard';
 import { OpenGymDataService } from '../../providers/open-gym-data-service';
 import { BackendService } from '../../providers/backend-service';
 import { AuthService } from '../../providers/auth-service';
+import { BadassPage } from '../badass/badass';
 
 /**
  * Generated class for the Gymprofile page.
@@ -98,6 +99,9 @@ export class GymprofilePage {
   openLeaderBoard() {
   	this.navCtrl.push(GymLeaderboardPage);
 
+  }
+  openBadass() {
+    this.navCtrl.push(BadassPage, { "gymData": this.gymData });
   }
 
   getForecast() {
