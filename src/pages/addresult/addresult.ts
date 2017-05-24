@@ -18,13 +18,23 @@ import { BackendService } from '../../providers/backend-service';
 export class AddresultPage {
   createSuccess = false;
   sports: any;
+  opengymid: any;
   gymid: any;
   registerResult = { user: '', gym: '', sport: '', value: '' };
 
   constructor(public auth: AuthService, public backendService: BackendService, private alertCtrl: AlertController, public viewCtrl: ViewController, public navCtrl: NavController, public navParams: NavParams) {
     this.sports = this.navParams.get('sports');
-    this.gymid = this.navParams.get('gymid');
-    this.registerResult.gym = this.gymid;
+    this.opengymid = this.navParams.get('gymid');
+    this.backendService.getAllGyms()
+      .subscribe(data => {
+        for(let s of data) {
+          if(s.eid == this.opengymid) {
+            this.gymid = s.id;
+          }
+        }
+        this.registerResult.gym = this.gymid;
+      });
+    console.log("Gym id: " + this.gymid);
     this.registerResult.user = this.navParams.get('userid');
   }
 
@@ -37,7 +47,7 @@ export class AddresultPage {
   }
 
   public add() {
-    console.log("add() function: " + JSON.stringify(this.registerResult));
+    console.log("add() has these registerResults: " + JSON.stringify(this.registerResult));
     this.addResult(this.registerResult).subscribe(success => {
       if (success) {
         this.createSuccess = true;
@@ -53,7 +63,7 @@ export class AddresultPage {
 
   public addResult(credentials) {
     if (credentials.sport === null || credentials.value === null) {
-      return Observable.throw("Please insert credentials");
+      return Observable.throw("Input data");
     } else {
       // At this point store the credentials to your backend!
       this.backendService.postResult(credentials.user, credentials.gym, credentials.sport, credentials.value)
@@ -68,21 +78,31 @@ export class AddresultPage {
   }
 
   showPopup(title, text) {
-    let alert = this.alertCtrl.create({
-      title: title,
-      subTitle: text,
-      buttons: [
-        {
-          text: 'OK',
-          handler: data => {
-            if (this.createSuccess) {
-              this.navCtrl.popToRoot();
-            }
-          }
+    var labels = [];
+    let alert = this.alertCtrl.create();
+    alert.setTitle(title);
+    for(let s of this.sports) {
+      alert.addInput({ type: 'radio', label: s.name, value: s.name })
+    }
+    alert.addButton('Cancel');
+    alert.addButton({
+      text: 'OK',
+      handler: data => {
+        if(this.createSuccess) {
+          this.navCtrl.popToRoot();
         }
-      ]
+        this.showAlert();
+        this.navCtrl.popToRoot();
+      }
     });
-    alert.present();
   }
+
+  showAlert() {
+   let alert = this.alertCtrl.create({
+     title: 'Result added!',
+     buttons: ['OK']
+   });
+   alert.present();
+ }
 
 }

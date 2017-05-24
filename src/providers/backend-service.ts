@@ -103,6 +103,11 @@ export class BackendService {
       .map(res => res.json());
   }
 
+  public getAllGyms() {
+    return this.http.get('/backend/allgyms', { headers: this.headers })
+      .map(res => res.json());
+  }
+
   public getGymSports(id: number) {
     return this.http.get('/backend/gym/' + id + '/sports', { headers: this.headers })
       .map(res => res.json());

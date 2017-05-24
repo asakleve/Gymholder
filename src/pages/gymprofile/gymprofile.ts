@@ -83,11 +83,11 @@ export class GymprofilePage {
 
   openAddResult() {
     console.log(JSON.stringify(this.allsports));
-    this.navCtrl.push(AddresultPage, { "gymid": this.gymData.id, "gymData": this.gymData, sports: this.allsports, userid: this.activeUser.userid });
+    this.navCtrl.push(AddresultPage, { gymid: this.gymid, gymData: this.gymData, sports: this.allsports, userid: this.activeUser.userid });
   }
 
   openBadass() {
-    this.navCtrl.push(BadassPage, { "gymData": this.gymData });
+    this.navCtrl.push(BadassPage, { gymData: this.gymData });
   }
 
   getForecast() {

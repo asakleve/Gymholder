@@ -24,19 +24,22 @@ import { AuthService } from '../../providers/auth-service';
 })
 export class SettingsPage {
 
-public event = {
-  month: '1990-03-22',
-  timeStarts: '07:43',
-  timeEnds: '1990-03-23'
-}
+  public event = {
+    month: '1990-03-22',
+    timeStarts: '07:43',
+    timeEnds: '1990-03-23'
+  }
+
   item;
+
   constructor(
-  public auth: AuthService,
-  public navCtrl: NavController,
-  public navParams: NavParams,
-  public platform: Platform,
-  public actionsheetCtrl: ActionSheetController,
-  ) {
+    public auth: AuthService,
+    public navCtrl: NavController,
+    public navParams: NavParams,
+    public platform: Platform,
+    public actionsheetCtrl: ActionSheetController,
+    ) {
+
   }
 
 
@@ -46,12 +49,12 @@ public event = {
     console.log('ionViewDidLoad Settings');
   }
 
-  klickaklick(){
-  this.navCtrl.push('SettingPopOverPage');
+  klickaklick() {
+    this.navCtrl.push('SettingPopOverPage');
   }
 
-  popOverToKontoPage(){
-  this.navCtrl.push('KontoSettingsPage');
+  popOverToKontoPage() {
+    this.navCtrl.push('KontoSettingsPage');
   }
 
   openMenu() {
@@ -66,7 +69,7 @@ public event = {
             handler: () => {
               console.log('Log out clicked');
               this.auth.logout();
-              this.navCtrl.setRoot('inloggPage');
+              this.navCtrl.setRoot('InloggPage');
             }
           },
           {
