@@ -13,7 +13,6 @@
 
 <ion-content class="card-background-page">
 
-
 <p class="name">{{ profileOwner?.username }}</p>
 <div class="userPic">
 <img src="assets/img/user.png"/>
@@ -34,7 +33,7 @@
 				</button>
 			</ion-col>
 
-			<ion-col>
+			<ion-col *ngIf="!activeUser?.isFriend(profileId)">
 				<button class="button-layout" ion-button color="dark" icon-left (click)="addFriend();" (click)="presentToast();">
 				<ion-icon name="contacts"></ion-icon>
 				 <p>  Add Friend </p>
@@ -42,7 +41,7 @@
 			</ion-col>
 
 			<ion-col>
-				<button class="button-layout" ion-button color="dark" icon-left (click)="openUserLeaderboard(profileOwner.id);">
+				<button class="button-layout" ion-button color="dark" icon-left (click)="openUserLeaderboard(profileId);">
 				<ion-icon name="trophy"></ion-icon>
 				 <p>  Results </p>
 				</button>
@@ -58,4 +57,3 @@
 			</ion-card>
 		</ion-row>
 </div>
-

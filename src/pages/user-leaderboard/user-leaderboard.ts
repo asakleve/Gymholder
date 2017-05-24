@@ -23,11 +23,10 @@ export class UserLeaderboardPage {
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public alertCtrl: AlertController, private backendService: BackendService,  private authService: AuthService) {
     this.activeUser = this.authService.getUser();
-    this.userid= this.navParams.get('userid');
+    this.userid = this.navParams.get('userid');
     this.sports = [];
     this.engage();
     this.sports.push("Show all results");
-    this.showResults("Show all results");
   }
 
   ionViewDidLoad() {
@@ -83,7 +82,7 @@ showRadio() {
       //måste lägga till felhantering av om "sport" inte är valt
     }
 
-   
+
     engage(){
 
       this.sports.push("Chins");
@@ -96,20 +95,23 @@ showRadio() {
       this.sports.push("Bänkpress");
 
       this.results=[];
-      console.log('from leaderboard, user is ' + this.userid);
+
+      console.log("In engage: " + this.userid);
       this.backendService.getResult(this.userid)
-      .subscribe(data => {
-        this.results.push(data);
-        //behöver fixa en loop som lägger allt i arrayen. För detta behövs mer och bättre testdata.Går att göra när API returnerar ett array, det gör den inte i dagsläget 
+        .subscribe(data => {
+          this.results = data;
+          this.showResults("Show all results");
+          console.log(JSON.stringify(this.displayResults));
+          for(let r of this.displayResults) {
+            console.log(JSON.stringify(r));
+          }
+          //behöver fixa en loop som lägger allt i arrayen. För detta behövs mer och bättre testdata.Går att göra när API returnerar ett array, det gör den inte i dagsläget
+        });
+  }
 
-
-      });
-    }
 
     playVideo(){
       console.log("hit");
 
-
     }
-
 }

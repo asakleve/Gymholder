@@ -11,11 +11,22 @@ export class User {
   email: string;
   age: number;
 
+  friendsList = [];
+
   constructor(userid: number, username: string, email: string, age: number) {
     this.userid = userid;
     this.username = username;
     this.email = email;
     this.age = age;
+  }
+
+  public isFriend(friend: number) {
+    for(let f of this.friendsList) {
+      if(f.id == friend) {
+        return true;
+      }
+    }
+    return false;
   }
 }
 
@@ -45,10 +56,11 @@ export class AuthService {
     if (credentials.email === null || credentials.password === null) {
       return Observable.throw("Please insert credentials");
     } else {
+      let hashedPass = (credentials.password.toString(16) * 31).toString();
       return Observable.create(observer => {
         // At this point make a request to your backend to make a real check!
-        console.log(credentials.email + " " + (credentials.password.toString(16) * 31));
-        this.backendService.validateUser(credentials.email, (credentials.password.toString(16) * 31).toString())
+        console.log(credentials.email + " " + hashedPass);
+        this.backendService.validateUser(credentials.email, hashedPass)
           .subscribe(data => {
             console.log("This is the data in login: " + data);
             if(data > 0) {
@@ -62,6 +74,11 @@ export class AuthService {
                     res.email,
                     res.age);
                 console.log(JSON.stringify(this.currentUser));
+              });
+              this.backendService.getFriends(data)
+              .subscribe(res => {
+                this.currentUser.friendsList = res;
+                console.log("The friends data: " + JSON.stringify(res));
               });
               observer.next(true);
             } else {
@@ -77,16 +94,15 @@ export class AuthService {
   }
 
   public register(credentials) {
-    credentials.password = credentials.password.toString(16) * 31;
-    console.log(credentials.password);
     if (credentials.email === null || credentials.password === null) {
       return Observable.throw("Please insert credentials");
     } else {
+      let hashedPass = (credentials.password.toString(16) * 31).toString();
       // At this point store the credentials to your backend!
       this.backendService.postUser(credentials.username, credentials.email, credentials.age)
         .subscribe(data => {
-          console.log("this is the data: " + JSON.stringify(data) + ", this is the id: " + data.id + ", and pass: " + credentials.password);
-          this.backendService.postAuth(data, credentials.password);
+          console.log("this is the data: " + JSON.stringify(data) + ", this is the id: " + data.id + ", and pass: " + hashedPass);
+          this.backendService.postAuth(data.id, hashedPass);
         });
 
       return Observable.create(observer => {

@@ -28,6 +28,7 @@ export class ProfilePage {
   testRadioOpen;
   testRadioResult;
   profileOwner: any;
+  profileId: any;
   radioResult;
   messageA;
   challangeName;
@@ -43,17 +44,19 @@ export class ProfilePage {
     // Hämtar User-objektinstansen från authService, innehållande
     // data för den aktiva användaren.
     this.activeUser = this.authService.getUser();
-
-    this.userid = this.navParams.get('userid');
-    if(this.userid == null) {
-      this.userid = this.activeUser.userid;
+    this.profileId = this.navParams.get('userid');
+    console.log("This is the navparam userid: " + this.navParams.get('userid'));
+    if (this.profileId == null) {
+      this.profileId = this.activeUser.userid;
     }
 
     // Hämtar en användare från databasen baserat på @devUserId
     // @param devUserId : variabel för att hålla användarid för
     // en aktiv användare medan utveckling pågår och inloggning
     // ännu ej är färdig.
-    this.loadUserData(this.userid);
+
+    this.loadUserData(this.profileId);
+
   }
 
   // Metod som laddar användardata från backendService. Som argument
@@ -79,13 +82,15 @@ export class ProfilePage {
     console.log('ionViewDidLoad Profile');
   }
 
-  openUserLeaderboard(userid){
-    console.log('här är profilen' + this.userid);
-    this.navCtrl.push(UserLeaderboardPage,{userid:userid});
+
+  openUserLeaderboard(profileOwner){
+    console.log(profileOwner);
+    this.navCtrl.push(UserLeaderboardPage,{userid: profileOwner});
+
   }
 
   showChallangeTitel(){
-  
+
     let prompt = this.alertCtrl.create({
       title: 'Challange',
       message: "Give your challange a name:",
@@ -128,23 +133,23 @@ export class ProfilePage {
     var allSports: any;
     this.backendService.getAllSports()
       .subscribe(data => {
-        console.log(JSON.stringify(data));
+        let alert = this.alertCtrl.create();
+        alert.setTitle('Event');
         allSports = data;
         for(let s of allSports) {
-          alert.addInput({type: 'radio', label: s.name, value: s.name});
+          alert.addInput({ type: 'radio', label: s.name, value: s.name })
         }
+        alert.addButton('Cancel');
+        alert.addButton({
+          text: 'OK',
+          handler: data => {
+            this.testRadioOpen = false;
+            this.testRadioResult = data;
+            this.showAlert();
+            }
+          });
+        alert.present();
       });
-
-    alert.addButton('Cancel');
-    alert.addButton({
-      text: 'Next',
-      handler: data => {
-        this.showAddVideo();
-        this.radioResult = data;
-        this.showAlert();
-        }
-      });
-    alert.present();
   }
 
 //   addFriend(){

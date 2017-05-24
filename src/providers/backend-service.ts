@@ -134,26 +134,25 @@ export class BackendService {
   public getAllResults(){
     return this.http.get('/backend/allresults',{ headers: this.headers })
       .map(res => res.json());
-   }
+  }
 
-  public postResult(user: number, gym: number, sport: number, value: number) {
+  public postResult(userid: number, gymid: number, sportid: number, value: number) {
     let body = JSON.stringify({
-      "id": 0,
-      "user": user,
-      "gym": gym,
-      "sport": sport,
+      "user": userid,
+      "gym": gymid,
+      "sport": sportid,
       "value": value
     });
     return this.http.post('/backend/result', body, { headers: this.headers })
       .map(res => res.json());
   }
 
-  public putResult(id: number, user: number, gym: number, sport: number, value: number) {
+  public putResult(id: number, userid: number, gymid: number, sportid: number, value: number) {
     let body = JSON.stringify({
       "id": id,
-      "user": user,
-      "gym": gym,
-      "sport": sport,
+      "user": userid,
+      "gym": gymid,
+      "sport": sportid,
       "value": value
     });
     return this.http.put('/backend/result/' + id, body, { headers: this.headers })
@@ -204,7 +203,7 @@ export class BackendService {
   public deleteFriend(user_one_id: number, user_two_id: number){
     return this.http.delete('/backend/deletefriends' + user_one_id + user_two_id, {headers: this.headers})
     .map(res=> res.json());
-  } 
+  }
 
   ////////////////////////////////////////////////////////////////////////
   // CHALLANGES
