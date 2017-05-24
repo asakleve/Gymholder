@@ -11,11 +11,22 @@ export class User {
   email: string;
   age: number;
 
+  friendsList = [];
+
   constructor(userid: number, username: string, email: string, age: number) {
     this.userid = userid;
     this.username = username;
     this.email = email;
     this.age = age;
+  }
+
+  public isFriend(friend: number) {
+    for(let f of this.friendsList) {
+      if(f.id == friend) {
+        return true;
+      }
+    }
+    return false;
   }
 }
 
@@ -63,6 +74,11 @@ export class AuthService {
                     res.email,
                     res.age);
                 console.log(JSON.stringify(this.currentUser));
+              });
+              this.backendService.getFriends(data)
+              .subscribe(res => {
+                this.currentUser.friendsList = res;
+                console.log("The friends data: " + JSON.stringify(res));
               });
               observer.next(true);
             } else {

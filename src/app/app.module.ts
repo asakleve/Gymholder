@@ -25,6 +25,7 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 import { GymprofilePage } from '../pages/gymprofile/gymprofile';
 import { EventLeaderboardPage } from '../pages/eventLeaderboard/eventLeaderboard';
 import { MapPage } from '../pages/map/map';
+import { AddresultPage } from '../pages/addresult/addresult';
 import { MyChallengesPage } from '../pages/my-challenges/my-challenges';
 import { GymLeaderboardPage } from '../pages/gym-leaderboard/gym-leaderboard';
 import { ProfileSettingsPage } from '../pages/profile-settings/profile-settings';
@@ -50,7 +51,8 @@ import { UserLeaderboardPage } from '../pages/user-leaderboard/user-leaderboard'
     MyChallengesPage,
     GymLeaderboardPage,
     ProfileSettingsPage,
-    UserLeaderboardPage
+    UserLeaderboardPage,
+    AddresultPage
   ],
   imports: [
     BrowserModule,
@@ -74,7 +76,8 @@ import { UserLeaderboardPage } from '../pages/user-leaderboard/user-leaderboard'
     MyChallengesPage,
     GymLeaderboardPage,
     ProfileSettingsPage,
-    UserLeaderboardPage
+    UserLeaderboardPage,
+    AddresultPage
   ],
   providers: [
     StatusBar,

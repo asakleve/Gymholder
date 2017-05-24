@@ -12,22 +12,87 @@
   </ion-navbar>
 </ion-header>
 
-<ion-content padding>
-<h1> Settings </h1>
-
-  <ion-row>
-<ion-col>
-  <button ion-button full on-click="klickaklick()">Notifications</button>
-</ion-col>
-</ion-row>
-
-<div ion-content padding class="action-sheets-basic-page">
-  <button ion-button full (click)="openMenu()">
-    Log out
-  </button>
-</div>
+    <ion-navbar>
+      <ion-title>Icon List</ion-title>
+    </ion-navbar>
 
 
-<button ion button (click)="openProfileSettings();">Hej </button>
+  <ion-content padding>
+    <ion-list no-border>
+
+      <ion-list-header>
+        Settings
+      </ion-list-header>
+
+      <ion-item>
+        <ion-toggle color="secondary" checked="false"></ion-toggle>
+        <ion-label>
+          Push Notifications
+        </ion-label>
+        <ion-icon name='body' item-start></ion-icon>
+      </ion-item>
+
+      <ion-item>
+        <ion-toggle color="secondary" checked="false"></ion-toggle>
+        <ion-label>
+          Notification sound
+        </ion-label>
+        <ion-icon name='body' item-start></ion-icon>
+      </ion-item>
+    </ion-list>
+
+
+    <ion-list>
+
+      <ion-list-header>
+        Profile Settings
+      </ion-list-header>
+
+      <ion-item>
+        <ion-avatar item-start>
+          <img src="assets/img/avatar-ts-woody.png">
+          <h2>Change Profile Picture</h2>
+        </ion-avatar>
+      </ion-item>
+
+      <ion-item>
+         <ion-label>Birthday</ion-label>
+         <ion-datetime displayFormat="MMM DD YYYY" [(ngModel)]="event.timeEnds"></ion-datetime>
+       </ion-item>
+    </ion-list>
+
+    <ion-list>
+
+      <ion-list-header>
+        Password Settings
+      </ion-list-header>
+
+      <ion-item>
+        <ion-icon name='lock' item-start></ion-icon>
+        Create new Password
+      </ion-item>
+
+    <ion-item>
+  <ion-input type="password" placeholder="Old Password"></ion-input>
+  </ion-item>
+
+  <ion-item>
+    <ion-input type="password" placeholder="New Password"></ion-input>
+</ion-item>
+
+  <ion-item>
+    <ion-input type="password" placeholder="Repeat Password"></ion-input>
+  </ion-item>
+
+      <div ion-content padding class="action-sheets-basic-page">
+
+        <button ion-button full on-click="openMenu()">
+          Log out
+        </button>
+      </div>
+
+    </ion-list>
+
+
 
 </ion-content>

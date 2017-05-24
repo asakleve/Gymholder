@@ -1,0 +1,44 @@
+<!--
+  Generated template for the Addresult page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>Add result</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content class="addresult-content" padding>
+  <div class="addresult-box">
+
+    <form (ngSubmit)="add()" #addForm="ngForm">
+      <ion-row>
+        <ion-col>
+          <ion-list inset>
+
+            <ion-item>
+              <ion-input type="text" placeholder="Exercise" name="sport" [(ngModel)]="registerResult.sport" required></ion-input>
+            </ion-item>
+
+            <ion-item>
+              <ion-input type="number" placeholder="Value" name="value" [(ngModel)]="registerResult.value" required></ion-input>
+            </ion-item>
+
+          </ion-list>
+        </ion-col>
+      </ion-row>
+
+      <ion-row>
+        <ion-col class="add-col">
+          <button ion-button class="submit-btn" full type="submit" [disabled]="!addForm.form.valid">Add result</button>
+        </ion-col>
+      </ion-row>
+
+    </form>
+  </div>
+</ion-content>
