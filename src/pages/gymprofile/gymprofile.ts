@@ -24,34 +24,36 @@ export class GymprofilePage {
   gymid: string;
   gymImageId: string;
   time: any;
+  pcat: any;
+  weathercat: any;
 
-  pcat = [
-  { 0 : "No precipitation" },
-  { 1 :	"Snow"},
-  { 2 :	"Snow and rain"},
-  { 3	: "Rain"},
-  { 4	: "Drizzle"},
-  { 5 :	"Freezing rain"},
-  { 6 :	"Freezing drizzle"}
-  ];
+  // pcat = [
+  // { 0 : "No precipitation"},
+  // { 1 :	"Snow"},
+  // { 2 :	"Snow and rain"},
+  // { 3	: "Rain"},
+  // { 4	: "Drizzle"},
+  // { 5 :	"Freezing rain"},
+  // { 6 :	"Freezing drizzle"}
+  // ];
 
-  weathercat = {
-    1	: "Clear sky",
-    2	: "Nearly clear sky",
-    3	: "Variable cloudiness",
-    4	: "Halfclear sky",
-    5	: "Cloudy sky",
-    6	: "Overcast",
-    7	: "Fog",
-    8	: "Rain showers",
-    9	: "Thunderstorm",
-    10 : "Light sleet",
-    11 : "Snow showers",
-    12 : "Rain",
-    13 : "Thunder",
-    14 : "Sleet",
-    15 : "Snowfall"
-  }
+  // weathercat = {
+  //   1	: "Clear sky",
+  //   2	: "Nearly clear sky",
+  //   3	: "Variable cloudiness",
+  //   4	: "Halfclear sky",
+  //   5	: "Cloudy sky",
+  //   6	: "Overcast",
+  //   7	: "Fog",
+  //   8	: "Rain showers",
+  //   9	: "Thunderstorm",
+  //   10 : "Light sleet",
+  //   11 : "Snow showers",
+  //   12 : "Rain",
+  //   13 : "Thunder",
+  //   14 : "Sleet",
+  //   15 : "Snowfall"
+  // };
 
   constructor(private authService: AuthService, public navCtrl: NavController, public navParams: NavParams, private openGymData: OpenGymDataService, private backendService: BackendService) {
     this.time = new Date().getHours();
@@ -59,6 +61,34 @@ export class GymprofilePage {
     this.activeUser = this.authService.getUser();
     this.coordinates = this.navParams.get('coordinates');
     this.loadGymDetails();
+
+      this.pcat = [
+  { 0 : "No precipitation"},
+  { 1 : "Snow"},
+  { 2 : "Snow and rain"},
+  { 3 : "Rain"},
+  { 4 : "Drizzle"},
+  { 5 : "Freezing rain"},
+  { 6 : "Freezing drizzle"}
+  ];
+
+  this.weathercat = {
+    1 : "Clear sky",
+    2 : "Nearly clear sky",
+    3 : "Variable cloudiness",
+    4 : "Halfclear sky",
+    5 : "Cloudy sky",
+    6 : "Overcast",
+    7 : "Fog",
+    8 : "Rain showers",
+    9 : "Thunderstorm",
+    10 : "Light sleet",
+    11 : "Snow showers",
+    12 : "Rain",
+    13 : "Thunder",
+    14 : "Sleet",
+    15 : "Snowfall"
+  };
   }
 
   ionViewDidLoad() {
