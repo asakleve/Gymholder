@@ -25,15 +25,15 @@ export class GymprofilePage {
   gymImageId: string;
   time: any;
 
-  pcat = {
-    0 : "No precipitation",
-    1 :	"Snow",
-    2 :	"Snow and rain",
-    3	: "Rain",
-    4	: "Drizzle",
-    5 :	"Freezing rain",
-    6 :	"Freezing drizzle"
-  };
+  pcat = [
+  { 0 : "No precipitation" },
+  { 1 :	"Snow"},
+  { 2 :	"Snow and rain"},
+  { 3	: "Rain"},
+  { 4	: "Drizzle"},
+  { 5 :	"Freezing rain"},
+  { 6 :	"Freezing drizzle"}
+  ];
 
   weathercat = {
     1	: "Clear sky",
