@@ -32,8 +32,7 @@ export class SettingsPage {
 
   item;
 
-  constructor(
-    public auth: AuthService,
+  constructor(public auth: AuthService,
     public navCtrl: NavController,
     public navParams: NavParams,
     public platform: Platform,
@@ -41,9 +40,6 @@ export class SettingsPage {
     ) {
 
   }
-
-
-
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad Settings');
@@ -84,9 +80,4 @@ export class SettingsPage {
       });
       actionSheet.present();
     }
-
-  openProfileSettings(){
-  this.navCtrl.push(ProfileSettingsPage);
-  }
-
 }

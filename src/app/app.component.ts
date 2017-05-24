@@ -24,7 +24,7 @@ import { GymLeaderboardPage } from '../pages/gym-leaderboard/gym-leaderboard';
 import { ProfileSettingsPage } from '../pages/profile-settings/profile-settings';
 import { UserLeaderboardPage } from '../pages/user-leaderboard/user-leaderboard';
 import { BadassPage } from '../pages/badass/badass';
-
+import { SendChallengePage } from '../pages/send-challenge/send-challenge';
 
 @Component({
   templateUrl: 'app.html'

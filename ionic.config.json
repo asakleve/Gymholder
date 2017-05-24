@@ -23,7 +23,7 @@
     },
     {
       "path": "/youtube",
-      "proxyUrl": "https://youtu.be"
+      "proxyUrl": "https://youtube.com/"
     }
   ]
 }

@@ -1,15 +1,8 @@
-<!--
-  Generated template for the Messages page.
-
-  See http://ionicframework.com/docs/components/#navigation for more info on
-  Ionic pages and navigation.
--->
 <ion-header>
   <ion-navbar class = "navigationbar" color='navbarColor'>
     <button ion-button menuToggle>
       <ion-icon name="menu"></ion-icon>
     </button>
-
      <button ion-button clear color ='navbarTextColor' class ="navButton">Gym<span class="another-color">holder</span></button>
      <button ion-button clear icon-search>
        <ion-icon name="search" color='white'></ion-icon>
@@ -20,69 +13,15 @@
 
 <ion-content class="list-avatar-page">
   <ion-list>
-
     <ion-list-header>Today</ion-list-header>
+      <button ion-item (click)= "openConversation()">
+        <ion-avatar item-start>
+         <img src="https://i.ytimg.com/vi/LgLgs2cmvjs/maxresdefault.jpg">
+           </ion-avatar>
+            <h2>Jackie</h2>
+            <p>This is a message..</p>
+            <ion-note item-end>3:43 pm</ion-note>
+      </button>
+    </ion-list>
+</ion-content>
 
-    <button ion-item (click)= "openConversation()">
-      <ion-avatar item-start>
-        <img src="https://i.ytimg.com/vi/LgLgs2cmvjs/maxresdefault.jpg">
-      </ion-avatar>
-      <h2>Jackie</h2>
-      <p>This is a message..</p>
-      <ion-note item-end>3:43 pm</ion-note>
-    </button>
-
-  </ion-list>
-
- </ion-content>
-
-
-    <!-- <ion-item>
-      <ion-avatar item-start>
-        <img src="assets/img/avatar-ts-buzz.png">
-      </ion-avatar>
-      <h2>Buzz Lightyear</h2>
-      <p>My eyeballs could have been sucked from their sockets!</p>
-      <ion-note item-end>1:12 pm</ion-note>
-    </ion-item>
-
-    <ion-item>
-      <ion-avatar item-start>
-        <img src="assets/img/avatar-ts-jessie.png">
-      </ion-avatar>
-      <h2>Jessie</h2>
-      <p>Well aren't you just the sweetest space toy I ever did meet!</p>
-      <ion-note item-end>10:03 am</ion-note>
-    </ion-item>
-
-    <ion-item>
-      <ion-avatar item-start>
-        <img src="assets/img/avatar-ts-potatohead.png">
-      </ion-avatar>
-      <h2>Mr. Potato Head</h2>
-      <p>You're not turning me into a Mashed Potato.</p>
-      <ion-note item-end>5:47 am</ion-note>
-    </ion-item>
-  </ion-list>
-
-  <ion-list>
-
-   <ion-list-header>Yesterday</ion-list-header>
-
-   <ion-item>
-     <ion-avatar item-start>
-       <img src="assets/img/avatar-ts-hamm.png">
-     </ion-avatar>
-     <h2>Hamm</h2>
-     <p>You heard of Kung Fu? Well get ready for pork chop.</p>
-     <ion-note item-end>11:11 pm</ion-note>
-   </ion-item>
-
-   <ion-item>
-     <ion-avatar item-start>
-       <img src="assets/img/avatar-ts-slinky.png">
-     </ion-avatar>
-     <h2>Slinky Dog</h2>
-     <p>I may not be a smart dog, but I know what roadkill is.</p>
-     <ion-note item-end>8:54 pm</ion-note>
-   </ion-item> -->

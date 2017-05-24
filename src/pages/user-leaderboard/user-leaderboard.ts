@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { AlertController } from 'ionic-angular';
 import { BackendService } from '../../providers/backend-service';
@@ -19,7 +19,7 @@ export class UserLeaderboardPage {
   activeUser: any;
   testResult: any;
   userid: any;
-  video: '/youtube/Ebb9REvbwRk';
+  //video:'/youtube/embed/ux8MOFLlOXM';
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public alertCtrl: AlertController, private backendService: BackendService,  private authService: AuthService) {
     this.activeUser = this.authService.getUser();
@@ -31,10 +31,6 @@ export class UserLeaderboardPage {
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad UserLeaderboard');
-  }
-
-  print(){
-  console.log(this.userid);
   }
 
   showRadio() {
@@ -57,6 +53,7 @@ export class UserLeaderboardPage {
       handler: data => {
         this.showResults(data);
       }
+
     });
     alert.present();
   }
@@ -69,6 +66,7 @@ export class UserLeaderboardPage {
     }
     else{
       this.selectedSport = sport.toLowerCase();
+
     }
     for(let i=0;i<this.results.length;i++){
       if (this.results[i].sport===sport){
@@ -94,6 +92,7 @@ export class UserLeaderboardPage {
     this.sports.push("Situps");
     this.sports.push("Bänkpress");
 
+
     this.results=[];
 
     console.log("In engage: " + this.userid);
@@ -107,11 +106,6 @@ export class UserLeaderboardPage {
         }
         //behöver fixa en loop som lägger allt i arrayen. För detta behövs mer och bättre testdata.Går att göra när API returnerar ett array, det gör den inte i dagsläget
       });
-  }
-
-
-  playVideo(){
-    console.log("hit");
 
   }
 }

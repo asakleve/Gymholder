@@ -12,6 +12,9 @@ import { ErrorHandler, NgModule } from '@angular/core';
 import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
 import { HttpModule } from '@angular/http';
 
+import { StatusBar } from '@ionic-native/status-bar';
+import { SplashScreen } from '@ionic-native/splash-screen';
+
 import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
 import { ProfilePage } from '../pages/profile/profile';
@@ -21,8 +24,7 @@ import { SettingsPage } from '../pages/settings/settings';
 import { InloggPage } from '../pages/inlogg/inlogg';
 import { MessagesPage } from '../pages/messages/messages';
 import { MessagesPopOverPage } from '../pages/messages-pop-over/messages-pop-over';
-import { StatusBar } from '@ionic-native/status-bar';
-import { SplashScreen } from '@ionic-native/splash-screen';
+
 
 import { GymprofilePage } from '../pages/gymprofile/gymprofile';
 import { EventLeaderboardPage } from '../pages/eventLeaderboard/eventLeaderboard';
@@ -33,6 +35,7 @@ import { GymLeaderboardPage } from '../pages/gym-leaderboard/gym-leaderboard';
 import { ProfileSettingsPage } from '../pages/profile-settings/profile-settings';
 import { UserLeaderboardPage } from '../pages/user-leaderboard/user-leaderboard';
 import { BadassPage } from '../pages/badass/badass';
+import { SendChallengePage } from '../pages/send-challenge/send-challenge';
 
 
 
@@ -58,7 +61,8 @@ import { BadassPage } from '../pages/badass/badass';
     UserLeaderboardPage,
     AddresultPage,
     BadassPage,
-    Youtube
+    Youtube,
+    SendChallengePage
 
   ],
   imports: [
@@ -85,7 +89,8 @@ import { BadassPage } from '../pages/badass/badass';
     ProfileSettingsPage,
     UserLeaderboardPage,
     AddresultPage,
-    BadassPage
+    BadassPage,
+    SendChallengePage
   ],
   providers: [
     StatusBar,
