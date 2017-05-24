@@ -74,8 +74,8 @@ friend: any;
     confirm.present();
   }
 
-  openProfile(friendid){
-    this.navCtrl.push(ProfilePage,{userid: friendid});
+  openProfile(userid: number){
+    this.navCtrl.push(ProfilePage, { userid: userid });
   }
 
 

@@ -5,6 +5,7 @@ import { OpenGymDataService } from '../../providers/open-gym-data-service';
 import { BackendService } from '../../providers/backend-service';
 import { AuthService } from '../../providers/auth-service';
 import { AddresultPage } from '../addresult/addresult';
+import { BadassPage } from '../badass/badass';
 
 /**
  * Generated class for the Gymprofile page.
@@ -25,11 +26,10 @@ export class GymprofilePage {
   gymid: string;
   gymImageId: string;
   time: any;
-
   pcat: any;
   weathercat: any;
 
-  constructor(public popoverCtrl: PopoverController, private authService: AuthService, public navCtrl: NavController, public navParams: NavParams, private openGymData: OpenGymDataService, private backendService: BackendService) {
+  constructor(private authService: AuthService, public navCtrl: NavController, public navParams: NavParams, private openGymData: OpenGymDataService, private backendService: BackendService) {
     this.time = new Date().getHours();
     this.gymid = this.navParams.get('id');
     this.activeUser = this.authService.getUser();
@@ -75,6 +75,9 @@ export class GymprofilePage {
 
   openAddResult() {
     this.navCtrl.push(AddresultPage, { "gymid": this.gymid, "gymdata": this.gymData });
+  }
+  openBadass() {
+    this.navCtrl.push(BadassPage, { "gymData": this.gymData });
   }
 
   getForecast() {

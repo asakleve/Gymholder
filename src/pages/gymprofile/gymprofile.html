@@ -51,7 +51,7 @@
     <!-- <ion-icon name="trophy"></ion-icon> //-->
   <div class="cardLayout">
     <div class="localMenu">
-      <button ion-button>
+      <button ion-button on-click="openBadass()">
         <ion-icon name="flash"></ion-icon>
         BADASS
       </button>
@@ -59,7 +59,7 @@
         <ion-icon name="add"></ion-icon>
         Add Result
       </button>
-      <button ion-button (click)="openLeaderBoard()">
+      <button ion-button on-click="openLeaderBoard()">
         <ion-icon name="globe"></ion-icon>
         Leaderboard
       </button>

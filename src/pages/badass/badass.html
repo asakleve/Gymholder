@@ -1,0 +1,89 @@
+<ion-header>
+  <ion-navbar class = "navigationbar" color='navbarColor'>
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <button ion-button clear color ='navbarTextColor' class ="navButton">Gym<span class="another-color">holder</span></button>
+    <button ion-button clear icon-search>
+     	<ion-icon name="search" color='white'></ion-icon>
+	</button>
+  </ion-navbar>
+</ion-header>
+
+
+<ion-content class="card-background-page">
+
+<h3> BADASS Multiplier </h3>
+
+        <div class="card-title">{{ gymData?.Name }}</div>
+
+<ion-row> 
+
+<ion-col> 
+</ion-col>
+<ion-col> 
+<p class="huvud"> Category: </p>
+</ion-col>
+<ion-col>
+<p class="huvud"> Value: </p>
+</ion-col>
+<ion-col>
+<p class="huvud"> Bonus: </p>
+</ion-col>
+
+
+</ion-row>
+
+<ion-row> 
+	<ion-col class="ikon"> 
+		<ion-icon name="ios-thermometer-outline"></ion-icon>
+	</ion-col>
+	<ion-col> 
+				<p> Temp: </p>
+	</ion-col>
+	<ion-col class="third"> 
+		<div class="weatherdata"> {{ gymData?.forecast?.temperature }} <p> °C </p></div>
+	</ion-col>
+	<ion-col> 
+	<p> + </p>
+	</ion-col>
+</ion-row>
+
+<ion-row> 
+	<ion-col class="ikon"> 
+		        <ion-icon name="ios-rainy-outline"></ion-icon>
+	</ion-col>		
+	<ion-col> 
+				<p> Rain:  </p>
+	</ion-col>
+	<ion-col class="third"> 
+				  <div class="weatherdata"> {{ gymData?.forecast?.precipitationcat }} <p class="liten"> m/m </p></div>
+	</ion-col>
+	<ion-col> 
+	<p> + </p>
+	</ion-col>
+</ion-row>
+
+
+<ion-row> 
+	<ion-col class="ikon"> 
+		        <ion-icon name="ios-speedometer-outline"></ion-icon>
+	</ion-col>
+	<ion-col> 
+				<p> Wind: </p>
+	</ion-col>
+	<ion-col class="third"> 
+				  <div class="weatherdata"> {{ gymData?.forecast?.windspeed }} <p> m/s</p></div>
+
+	</ion-col>
+	<ion-col> 
+		<p> + </p>
+	</ion-col>
+</ion-row>
+<div class="divider"></div>
+<p class="huvudscore"> Your Score X   </p>
+
+	<button ion-button class="knapp" on-click="showAlert();"> How does the scoring system work? </button>
+
+
+</ion-content>

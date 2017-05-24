@@ -30,6 +30,8 @@ import { MyChallengesPage } from '../pages/my-challenges/my-challenges';
 import { GymLeaderboardPage } from '../pages/gym-leaderboard/gym-leaderboard';
 import { ProfileSettingsPage } from '../pages/profile-settings/profile-settings';
 import { UserLeaderboardPage } from '../pages/user-leaderboard/user-leaderboard';
+import { BadassPage } from '../pages/badass/badass';
+
 
 
 
@@ -52,7 +54,8 @@ import { UserLeaderboardPage } from '../pages/user-leaderboard/user-leaderboard'
     GymLeaderboardPage,
     ProfileSettingsPage,
     UserLeaderboardPage,
-    AddresultPage
+    AddresultPage,
+    BadassPage
   ],
   imports: [
     BrowserModule,
@@ -77,7 +80,8 @@ import { UserLeaderboardPage } from '../pages/user-leaderboard/user-leaderboard'
     GymLeaderboardPage,
     ProfileSettingsPage,
     UserLeaderboardPage,
-    AddresultPage
+    AddresultPage,
+    BadassPage
   ],
   providers: [
     StatusBar,

@@ -1,10 +1,11 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, ToastController, AlertController } from 'ionic-angular';
 import { UserLeaderboardPage } from '../user-leaderboard/user-leaderboard';
-
-// Här sker import av våra providers
 import { BackendService } from '../../providers/backend-service';
 import { AuthService } from '../../providers/auth-service';
+
+// Här sker import av våra providers
+
 
 /**
  * Generated class for the Profile page.
@@ -14,26 +15,19 @@ import { AuthService } from '../../providers/auth-service';
  */
 @IonicPage()
 @Component({
-  selector: 'page-profile',
-  templateUrl: 'profile.html',
+  selector: 'badass',
+  templateUrl: 'badass.html',
 })
-export class ProfilePage {
+export class BadassPage {
 
   // Tas bort när inloggning är färdigimplementerad.
-  // devUserId = 18;
+  devUserId = 18;
 
   // Denna variabel håller aktiv användare
   activeUser: any;
-
-  viewingUserid: any;
-  testRadioOpen;
-  testRadioResult;
-
-  profileOwner: any;
-  profileId: any;
-
+  gymData: any;
+  // testRadioOpen;
   radioResult;
-
   messageA;
   challangeName;
 
@@ -42,21 +36,19 @@ export class ProfilePage {
   // i resten av filen. public är åtkomstnivån, backendService är namnet som
   // sedan används i koden, och BackendService är namnet på klassen (se
   // importer högst upp på sidan).
-  constructor(public navCtrl: NavController, public navParams: NavParams, public alertCtrl: AlertController, public toastCtrl: ToastController, private authService: AuthService, private backendService: BackendService) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, public alertCtrl: 
+    AlertController, public toastCtrl: ToastController, private authService: AuthService,
+     private backendService: BackendService) {
     // Hämtar User-objektinstansen från authService, innehållande
     // data för den aktiva användaren.
+    this.gymData = this.navParams.get('gymData');
     this.activeUser = this.authService.getUser();
-    this.profileId = this.navParams.get('userid');
-    console.log("This is the navparam userid: " + this.navParams.get('userid'));
-    if (this.profileId == null) {
-      this.profileId = this.activeUser.userid;
-    }
 
     // Hämtar en användare från databasen baserat på @devUserId
     // @param devUserId : variabel för att hålla användarid för
     // en aktiv användare medan utveckling pågår och inloggning
     // ännu ej är färdig.
-    this.loadUserData(this.profileId);
+    this.loadUserData(this.devUserId);
   }
 
   // Metod som laddar användardata från backendService. Som argument
@@ -70,11 +62,10 @@ export class ProfilePage {
   // från api tar tid att färdigställas, och koden annars inte väntar
   // på att läsningen ska köras klart.
   loadUserData(userid: number) {
-    this.profileOwner = this.backendService.getUser(userid)
+    this.activeUser = this.backendService.getUser(userid)
     .subscribe(data => {
-      this.profileOwner = data;
+      this.activeUser = data;
     });
-
   }
 
   ionViewDidLoad() {
@@ -82,13 +73,12 @@ export class ProfilePage {
     console.log('ionViewDidLoad Profile');
   }
 
-  openUserLeaderboard(profileOwner){
-    console.log(profileOwner);
-    this.navCtrl.push(UserLeaderboardPage,{userid: profileOwner});
+  openUserLeaderboard(){
+    this.navCtrl.push(UserLeaderboardPage);
   }
 
   showChallangeTitel(){
-
+  
     let prompt = this.alertCtrl.create({
       title: 'Challange',
       message: "Give your challange a name:",
@@ -119,35 +109,39 @@ export class ProfilePage {
 
   showAddVideo(){
 
-
   }
 
   showRadio() {
     let alert = this.alertCtrl.create();
 
-
-    alert.setTitle('Event');
-    var labels = [];
-    var allSports: any;
-    this.backendService.getAllSports()
-      .subscribe(data => {
-        let alert = this.alertCtrl.create();
-        alert.setTitle('Event');
-        allSports = data;
-        for(let s of allSports) {
-          alert.addInput({ type: 'radio', label: s.name, value: s.name })
+    alert.setTitle('Exercise');
+    alert.addInput({type: 'radio', label: 'Classic Push Ups', value: 'Classic Push Ups'});
+    alert.addInput({type: 'radio', label: 'Wide Grip Push ups', value: 'Wide Grip Push Ups'})
+    alert.addInput({type: 'radio', label: 'Close Grip Push Ups', value: 'Close Grip Push Ups'})
+    alert.addInput({type: 'radio', label: 'Sit Ups', value: 'Sit Ups'})
+    alert.addInput({type: 'radio', label: 'Chin Ups', value: 'Chin Ups'})
+    alert.addInput({type: 'radio', label: 'Pull Ups', value: 'Pull Ups'})
+    alert.addInput({type: 'radio', label: 'One Arm Pull Ups', value: 'One Arm Pull Ups'})
+    alert.addInput({type: 'radio', label: 'Toe To Bar', value: 'Toe To Bar'})
+    alert.addInput({type: 'radio', label: 'Toe Touch', value: 'Toe Touch'})
+    alert.addInput({type: 'radio', label: 'Squats', value: 'Squats'})
+    alert.addInput({type: 'radio', label: 'Jumping Squats', value: 'Jumping Squats'})
+    alert.addInput({type: 'radio', label: 'Wall Squats', value: 'Wall Squats'})
+    alert.addInput({type: 'radio', label: 'Hanging Dips', value: 'Hanging Dips'})
+    alert.addInput({type: 'radio', label: 'Box Jumps', value: 'Box Jumps'})
+    alert.addInput({type: 'radio', label: 'Pistol Squats', value: 'Pistol Squats', checked: false});
+    
+    alert.addButton('Cancel');
+    alert.addButton({
+      text: 'Next',
+      handler: data => {
+        this.showAddVideo();
+        // this.testRadioOpen = false;
+        this.radioResult = data;
+        this.showAlert();
         }
-        alert.addButton('Cancel');
-        alert.addButton({
-          text: 'OK',
-          handler: data => {
-            this.testRadioOpen = false;
-            this.testRadioResult = data;
-            this.showAlert();
-            }
-          });
-        alert.present();
       });
+    alert.present();
   }
 
 //   addFriend(){
@@ -164,13 +158,13 @@ export class ProfilePage {
     toast.present();
   }
 
-  // userChallengedFirstToast() {
-  //   let toast = this.toastCtrl.create({
-  //     message: 'You have challenged Jackie',
-  //     duration: 3000
-  //   });
-  //   toast.present();
-  // }
+  userChallengedFirstToast() {
+    let toast = this.toastCtrl.create({
+      message: 'You have challenged Jackie',
+      duration: 3000
+    });
+    toast.present();
+  }
 
   messageSentToast() {
     let toast = this.toastCtrl.create({
@@ -182,9 +176,9 @@ export class ProfilePage {
 
    showAlert() {
     let alert = this.alertCtrl.create({
-      title: 'Challenge sent!',
-      subTitle: 'Your challange:'+ this.challangeName+' where you challenge Jackie in '+ this.radioResult +' has been sent. She has seven days to accept the challenge',
-      buttons: ['Cancel' , 'OK']
+      title: 'Badass explained:',
+      subTitle: 'Badass is the scoring system of the Gymholder app. Depending on the weather condition you can get different scores of your workout. The purpose of the badass scoring system is to generate higher scores for people who dare to challenge severe weather. It’s way more badass to exercise in a thunderstorm than to workout in sunshine.',
+      buttons: ['OK']
     });
     alert.present();
   }
