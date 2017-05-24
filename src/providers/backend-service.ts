@@ -71,6 +71,7 @@ export class BackendService {
       "id": id,
       "pass": password
     });
+    console.log("postAuth body: " + body + " and id + pass: " + id + " + " + password);
     return this.http.post('/backend/auth', body, { headers: this.headers })
       .map(res => res.json());
   }

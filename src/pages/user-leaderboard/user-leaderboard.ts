@@ -37,81 +37,81 @@ export class UserLeaderboardPage {
   console.log(this.userid);
   }
 
-showRadio() {
-      let alert = this.alertCtrl.create();
-      alert.setTitle('Select exercise');
+  showRadio() {
+    let alert = this.alertCtrl.create();
+    alert.setTitle('Select exercise');
 
-      for(let i=0; i<this.sports.length;i++){
-        alert.addInput({
-          type: 'radio',
-          label: this.sports[i],
-          value: this.sports[i],
-          checked: false
-        });
-
-      }
-
-      alert.addButton('Cancel');
-      alert.addButton({
-        text: 'OK',
-        handler: data => {
-          this.showResults(data);
-        }
-      });
-      alert.present();
-    }
-
-    showResults(sport){
-      this.displayResults=[];
-      if(sport==="Show all results"){
-        this.displayResults = this.results;
-        this.selectedSport = "all exercises";
-      }
-      else{
-        this.selectedSport = sport.toLowerCase();
-      }
-      for(let i=0;i<this.results.length;i++){
-        if (this.results[i].sport===sport){
-          this.displayResults.push(this.results[i]);
-        }
-      }
-      this.displayResults.sort(function(b, a) {
-        return parseFloat(a.reps) - parseFloat(b.reps);
+    for(let i=0; i<this.sports.length;i++){
+      alert.addInput({
+        type: 'radio',
+        label: this.sports[i],
+        value: this.sports[i],
+        checked: false
       });
 
-      //måste lägga till felhantering av om "sport" inte är valt
     }
 
+    alert.addButton('Cancel');
+    alert.addButton({
+      text: 'OK',
+      handler: data => {
+        this.showResults(data);
+      }
+    });
+    alert.present();
+  }
 
-    engage(){
+  showResults(sport){
+    this.displayResults=[];
+    if(sport==="Show all results"){
+      this.displayResults = this.results;
+      this.selectedSport = "all exercises";
+    }
+    else{
+      this.selectedSport = sport.toLowerCase();
+    }
+    for(let i=0;i<this.results.length;i++){
+      if (this.results[i].sport===sport){
+        this.displayResults.push(this.results[i]);
+      }
+    }
+    this.displayResults.sort(function(b, a) {
+      return parseFloat(a.reps) - parseFloat(b.reps);
+    });
 
-      this.sports.push("Chins");
-      this.sports.push("Dips");
-      this.sports.push("Boxjump");
-      this.sports.push("Knäböj");
-      this.sports.push("Axelpress");
-      this.sports.push("Marklyft");
-      this.sports.push("Situps");
-      this.sports.push("Bänkpress");
-
-      this.results=[];
-
-      console.log("In engage: " + this.userid);
-      this.backendService.getResult(this.userid)
-        .subscribe(data => {
-          this.results = data;
-          this.showResults("Show all results");
-          console.log(JSON.stringify(this.displayResults));
-          for(let r of this.displayResults) {
-            console.log(JSON.stringify(r));
-          }
-          //behöver fixa en loop som lägger allt i arrayen. För detta behövs mer och bättre testdata.Går att göra när API returnerar ett array, det gör den inte i dagsläget
-        });
+    //måste lägga till felhantering av om "sport" inte är valt
   }
 
 
-    playVideo(){
-      console.log("hit");
+  engage(){
 
-    }
+    this.sports.push("Chins");
+    this.sports.push("Dips");
+    this.sports.push("Boxjump");
+    this.sports.push("Knäböj");
+    this.sports.push("Axelpress");
+    this.sports.push("Marklyft");
+    this.sports.push("Situps");
+    this.sports.push("Bänkpress");
+
+    this.results=[];
+
+    console.log("In engage: " + this.userid);
+    this.backendService.getResult(this.userid)
+      .subscribe(data => {
+        this.results = data;
+        this.showResults("Show all results");
+        console.log(JSON.stringify(this.displayResults));
+        for(let r of this.displayResults) {
+          console.log(JSON.stringify(r));
+        }
+        //behöver fixa en loop som lägger allt i arrayen. För detta behövs mer och bättre testdata.Går att göra när API returnerar ett array, det gör den inte i dagsläget
+      });
+  }
+
+
+  playVideo(){
+    console.log("hit");
+
+  }
 }

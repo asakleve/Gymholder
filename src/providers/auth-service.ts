@@ -42,21 +42,12 @@ export class AuthService {
 
   }
 
-  ascii_to_hexa(str) {
-  	var arr = [];
-  	for (var n = 0, l = str.length; n < l; n ++) {
-    	var hex = Number(str.charCodeAt(n)).toString(16);
-    	arr.push(hex);
-    }
-    return arr.join('');
-  }
-
   public login(credentials) {
     let access = false;
     if (credentials.email === null || credentials.password === null) {
       return Observable.throw("Please insert credentials");
     } else {
-      let hashedPass = (credentials.password.toString(16) * 31).toString();
+      let hashedPass = this.hash(credentials.password);
       return Observable.create(observer => {
         // At this point make a request to your backend to make a real check!
         console.log(credentials.email + " " + hashedPass);
@@ -93,16 +84,30 @@ export class AuthService {
 
   }
 
+  hash(code: string) {
+    var hex, i;
+    var result = "";
+    for (i = 0; i < code.length; i++) {
+        hex = code.charCodeAt(i).toString(16);
+        result += ("000"+hex).slice(-4);
+    }
+    return result;
+  }
+
   public register(credentials) {
     if (credentials.email === null || credentials.password === null) {
       return Observable.throw("Please insert credentials");
     } else {
-      let hashedPass = (credentials.password.toString(16) * 31).toString();
+      let hashedPass = this.hash(credentials.password);
+      console.log("Original: " + credentials.password + ", and hashed: " + hashedPass);
       // At this point store the credentials to your backend!
       this.backendService.postUser(credentials.username, credentials.email, credentials.age)
         .subscribe(data => {
-          console.log("this is the data: " + JSON.stringify(data) + ", this is the id: " + data.id + ", and pass: " + hashedPass);
-          this.backendService.postAuth(data.id, hashedPass);
+          console.log("authService.register: this is the data: " + JSON.stringify(data) + ", this is the id: " + data.id + ", and pass: " + hashedPass);
+          this.backendService.postAuth(data.id, hashedPass)
+            .subscribe(res => {
+              console.log("authService.register: postAuth-return: " + JSON.stringify(res));
+            });
         });
 
       return Observable.create(observer => {

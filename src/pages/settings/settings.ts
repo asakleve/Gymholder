@@ -5,6 +5,9 @@ import { SettingPopOverPage } from '../setting-pop-over/setting-pop-over';
 import { Platform, ActionSheetController } from 'ionic-angular';
 import { KontoSettingsPage } from '../konto-settings/konto-settings';
 import { ProfileSettingsPage } from '../profile-settings/profile-settings';
+import { InloggPage } from '../inlogg/inlogg';
+
+import { AuthService } from '../../providers/auth-service';
 
 /**
  * Generated class for the Settings page.
@@ -28,6 +31,7 @@ public event = {
 }
   item;
   constructor(
+  public auth: AuthService,
   public navCtrl: NavController,
   public navParams: NavParams,
   public platform: Platform,
@@ -61,6 +65,8 @@ public event = {
             icon: !this.platform.is('ios') ? 'trash' : null,
             handler: () => {
               console.log('Log out clicked');
+              this.auth.logout();
+              this.navCtrl.setRoot('inloggPage');
             }
           },
           {
