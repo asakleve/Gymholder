@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, ToastController, AlertController } from 'ionic-angular';
 import { UserLeaderboardPage } from '../user-leaderboard/user-leaderboard';
+import { SendChallengePage } from '../send-challenge/send-challenge';
 
 // Här sker import av våra providers
 import { BackendService } from '../../providers/backend-service';
@@ -90,68 +91,11 @@ export class ProfilePage {
 
   }
 
-  showChallangeTitel(){
-
-    let prompt = this.alertCtrl.create({
-      title: 'Challange',
-      message: "Give your challange a name:",
-      inputs: [
-        {
-          name: 'challangeName',
-          placeholder: 'Name'
-        },
-      ],
-      buttons: [
-        {
-          text: 'Cancel',
-          handler: data => {
-            console.log('Cancel clicked');
-          }
-        },
-        {
-          text: 'Next',
-          handler: data => {
-            this.challangeName = data.challangeName;
-            this.showRadio();
-          }
-        }
-      ]
-    });
-    prompt.present();
+  sendChallange(){
+    this.navCtrl.push(SendChallengePage);
   }
 
-  showAddVideo(){
-
-
-  }
-
-  showRadio() {
-    let alert = this.alertCtrl.create();
-
-
-    alert.setTitle('Event');
-    var labels = [];
-    var allSports: any;
-    this.backendService.getAllSports()
-      .subscribe(data => {
-        let alert = this.alertCtrl.create();
-        alert.setTitle('Event');
-        allSports = data;
-        for(let s of allSports) {
-          alert.addInput({ type: 'radio', label: s.name, value: s.name })
-        }
-        alert.addButton('Cancel');
-        alert.addButton({
-          text: 'OK',
-          handler: data => {
-            this.testRadioOpen = false;
-            this.testRadioResult = data;
-            this.showAlert();
-            }
-          });
-        alert.present();
-      });
-  }
+ 
 
 //   addFriend(){
 //     this.backendService.postFriend(activeUser,userToAdd);
@@ -183,14 +127,6 @@ export class ProfilePage {
     toast.present();
   }
 
-   showAlert() {
-    let alert = this.alertCtrl.create({
-      title: 'Challenge sent!',
-      subTitle: 'Your challange:'+ this.challangeName+' where you challenge Jackie in '+ this.radioResult +' has been sent. She has seven days to accept the challenge',
-      buttons: ['Cancel' , 'OK']
-    });
-    alert.present();
-  }
   showPrompt() {
     let prompt = this.alertCtrl.create({
       title: 'Send Message',

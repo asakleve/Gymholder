@@ -25,12 +25,13 @@ import { AuthService } from '../../providers/auth-service';
 export class SettingsPage {
 
   item;
+  event;
 
 
   constructor( public auth: AuthService, public navCtrl: NavController, public navParams: NavParams, public platform: Platform, public actionsheetCtrl: ActionSheetController ) {
    
 
-    this.public event = {
+    this.event = {
     month: '1990-03-22',
     timeStarts: '07:43',
     timeEnds: '1990-03-23'

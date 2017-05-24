@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { AlertController } from 'ionic-angular';
 import { BackendService } from '../../providers/backend-service';
@@ -19,7 +19,7 @@ export class UserLeaderboardPage {
   activeUser: any;
   testResult: any;
   userid: any;
-  video:'/youtube/embed/ux8MOFLlOXM';
+  //video:'/youtube/embed/ux8MOFLlOXM';
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public alertCtrl: AlertController, private backendService: BackendService,  private authService: AuthService) {
     this.activeUser = this.authService.getUser();
