@@ -19,7 +19,7 @@ export class UserLeaderboardPage {
   activeUser: any;
   testResult: any;
   userid: any;
-  video: '/youtube/Ebb9REvbwRk';
+  video:'/youtube/embed/ux8MOFLlOXM';
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public alertCtrl: AlertController, private backendService: BackendService,  private authService: AuthService) {
     this.activeUser = this.authService.getUser();
@@ -78,8 +78,6 @@ showRadio() {
       this.displayResults.sort(function(b, a) {
         return parseFloat(a.reps) - parseFloat(b.reps);
       });
-
-      //måste lägga till felhantering av om "sport" inte är valt
     }
 
 
@@ -95,11 +93,12 @@ showRadio() {
       this.sports.push("Bänkpress");
 
       this.results=[];
+      this.displayResults = [];
 
       console.log("In engage: " + this.userid);
       this.backendService.getResult(this.userid)
         .subscribe(data => {
-          this.results = data;
+          this.results =data;
           this.showResults("Show all results");
           console.log(JSON.stringify(this.displayResults));
           for(let r of this.displayResults) {
