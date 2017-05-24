@@ -24,18 +24,16 @@ export class ProfilePage {
 
   // Denna variabel håller aktiv användare
   activeUser: any;
-
   viewingUserid: any;
   testRadioOpen;
   testRadioResult;
-
   profileOwner: any;
   profileId: any;
-
   radioResult;
-
   messageA;
   challangeName;
+  userid: any;
+  
 
   // public authService: AuthService & public backendService: BackendService
   // laddar in AuthService ur importen och gör dessa tillgängliga för åtkomst
@@ -57,7 +55,9 @@ export class ProfilePage {
     // @param devUserId : variabel för att hålla användarid för
     // en aktiv användare medan utveckling pågår och inloggning
     // ännu ej är färdig.
+
     this.loadUserData(this.profileId);
+
   }
 
   // Metod som laddar användardata från backendService. Som argument
@@ -71,7 +71,7 @@ export class ProfilePage {
   // från api tar tid att färdigställas, och koden annars inte väntar
   // på att läsningen ska köras klart.
   loadUserData(userid: number) {
-    this.profileOwner = this.backendService.getUser(userid)
+   this.backendService.getUser(userid)
     .subscribe(data => {
       this.profileOwner = data;
     });
@@ -83,9 +83,11 @@ export class ProfilePage {
     console.log('ionViewDidLoad Profile');
   }
 
+
   openUserLeaderboard(profileOwner){
     console.log(profileOwner);
     this.navCtrl.push(UserLeaderboardPage,{userid: profileOwner});
+
   }
 
   showChallangeTitel(){
