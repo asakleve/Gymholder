@@ -28,13 +28,9 @@ export class GymprofilePage {
   time: any;
   pcat: any;
   weathercat: any;
+  allsports: any;
 
   constructor(private authService: AuthService, public navCtrl: NavController, public navParams: NavParams, private openGymData: OpenGymDataService, private backendService: BackendService) {
-    this.time = new Date().getHours();
-    this.gymid = this.navParams.get('id');
-    this.activeUser = this.authService.getUser();
-    this.coordinates = this.navParams.get('coordinates');
-    this.loadGymDetails();
 
     this.pcat = {
       0 : "No precipitation",
@@ -63,6 +59,18 @@ export class GymprofilePage {
       14 : "Sleet",
       15 : "Snowfall"
     }
+
+    this.backendService.getAllSports()
+      .subscribe(data => {
+        console.log(JSON.stringify(data));
+        this.allsports = data;
+      });
+
+    this.time = new Date().getHours();
+    this.gymid = this.navParams.get('id');
+    this.activeUser = this.authService.getUser();
+    this.coordinates = this.navParams.get('coordinates');
+    this.loadGymDetails();
   }
 
   ionViewDidLoad() {
@@ -74,8 +82,10 @@ export class GymprofilePage {
   }
 
   openAddResult() {
-    this.navCtrl.push(AddresultPage, { "gymid": this.gymid, "gymdata": this.gymData });
+    console.log(JSON.stringify(this.allsports));
+    this.navCtrl.push(AddresultPage, { "gymid": this.gymData.id, "gymData": this.gymData, sports: this.allsports, userid: this.activeUser.userid });
   }
+
   openBadass() {
     this.navCtrl.push(BadassPage, { "gymData": this.gymData });
   }
