@@ -24,19 +24,18 @@ import { AuthService } from '../../providers/auth-service';
 })
 export class SettingsPage {
 
-public event = {
-  month: '1990-03-22',
-  timeStarts: '07:43',
-  timeEnds: '1990-03-23'
-}
   item;
-  constructor(
-  public auth: AuthService,
-  public navCtrl: NavController,
-  public navParams: NavParams,
-  public platform: Platform,
-  public actionsheetCtrl: ActionSheetController,
-  ) {
+
+
+  constructor( public auth: AuthService, public navCtrl: NavController, public navParams: NavParams, public platform: Platform, public actionsheetCtrl: ActionSheetController ) {
+   
+
+    this.public event = {
+    month: '1990-03-22',
+    timeStarts: '07:43',
+    timeEnds: '1990-03-23'
+    }
+    //flyttade detta från ovanför constructor till inuti / Åsa
   }
 
 
@@ -46,13 +45,19 @@ public event = {
     console.log('ionViewDidLoad Settings');
   }
 
-  klickaklick(){
-  this.navCtrl.push('SettingPopOverPage');
-  }
+  // klickaklick(){
+  // this.navCtrl.push('SettingPopOverPage');
+  // }
 
-  popOverToKontoPage(){
-  this.navCtrl.push('KontoSettingsPage');
-  }
+  // popOverToKontoPage(){
+  // this.navCtrl.push('KontoSettingsPage');
+  // }
+
+  //  openProfileSettings(){
+  // this.navCtrl.push(ProfileSettingsPage);
+  // }
+
+  //Dessa tre funktioner ovan bör kunna raderas, samt sidorna de hänvisar till. De används inte.  /Åsa
 
   openMenu() {
       let actionSheet = this.actionsheetCtrl.create({
@@ -81,9 +86,4 @@ public event = {
       });
       actionSheet.present();
     }
-
-  openProfileSettings(){
-  this.navCtrl.push(ProfileSettingsPage);
-  }
-
 }

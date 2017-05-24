@@ -33,10 +33,6 @@ export class UserLeaderboardPage {
     console.log('ionViewDidLoad UserLeaderboard');
   }
 
-  print(){
-  console.log(this.userid);
-  }
-
   showRadio() {
     let alert = this.alertCtrl.create();
     alert.setTitle('Select exercise');
@@ -110,12 +106,6 @@ export class UserLeaderboardPage {
         }
         //behöver fixa en loop som lägger allt i arrayen. För detta behövs mer och bättre testdata.Går att göra när API returnerar ett array, det gör den inte i dagsläget
       });
-
-  }
-
-
-  playVideo(){
-    console.log("hit");
 
   }
 }
