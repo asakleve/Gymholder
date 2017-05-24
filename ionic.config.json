@@ -20,6 +20,10 @@
     {
       "path": "/smhi",
       "proxyUrl": "http://opendata-download-metfcst.smhi.se"
+    },
+    {
+      "path": "/youtube",
+      "proxyUrl": "https://youtu.be"
     }
   ]
 }
