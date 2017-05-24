@@ -19,10 +19,11 @@ export class UserLeaderboardPage {
   activeUser: any;
   testResult: any;
   userid: any;
+  video: '/youtube/Ebb9REvbwRk';
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public alertCtrl: AlertController, private backendService: BackendService,  private authService: AuthService) {
     this.activeUser = this.authService.getUser();
-    this.userid= this.navParams.get('profileOwner');
+    this.userid= this.navParams.get('userid');
     this.sports = [];
     this.engage();
     this.sports.push("Show all results");
@@ -95,13 +96,20 @@ showRadio() {
       this.sports.push("Bänkpress");
 
       this.results=[];
-      console.log(this.userid);
+      console.log('from leaderboard, user is ' + this.userid);
       this.backendService.getResult(this.userid)
       .subscribe(data => {
         this.results.push(data);
         //behöver fixa en loop som lägger allt i arrayen. För detta behövs mer och bättre testdata.Går att göra när API returnerar ett array, det gör den inte i dagsläget 
 
 
-    });
-}
+      });
+    }
+
+    playVideo(){
+      console.log("hit");
+
+
+    }
+
 }

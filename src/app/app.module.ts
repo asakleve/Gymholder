@@ -5,6 +5,8 @@ import { OpenGymDataService } from '../providers/open-gym-data-service';
 import { BackendService } from '../providers/backend-service';
 import { ObjectManager } from '../providers/object-manager';
 
+import { Youtube } from '../pipes/youtube';
+
 import { BrowserModule } from '@angular/platform-browser';
 import { ErrorHandler, NgModule } from '@angular/core';
 import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
@@ -53,7 +55,8 @@ import { BadassPage } from '../pages/badass/badass';
     GymLeaderboardPage,
     ProfileSettingsPage,
     UserLeaderboardPage,
-    BadassPage
+    BadassPage,
+    Youtube
   ],
   imports: [
     BrowserModule,
