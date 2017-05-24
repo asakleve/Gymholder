@@ -21,60 +21,9 @@
 
 
 <ion-list>
-  <ion-item>
-    <ion-thumbnail item-left>
-      <img src="assets/img/user.png">
-    </ion-thumbnail>
-    <h2>Maria Lindström</h2>
-    <p>Chins • 40st</p>
-    <button ion-button clear item-right>View</button>
+  <ion-item *ngFor="let challange of challanges">{{challange.username}} {{challange.sport_name}} {{challange.reps}}>
+    
   </ion-item>
 
-   <ion-item>
-    <ion-thumbnail item-left>
-      <img src="assets/img/user.png">
-    </ion-thumbnail>
-    <h2>Fredrik Ollas</h2>
-    <p>Push-ups • 30st</p>
-    <button ion-button clear item-right>View</button>
-  </ion-item>
-
-   <ion-item>
-    <ion-thumbnail item-left>
-      <img src="assets/img/user.png">
-    </ion-thumbnail>
-    <h2>Aaron Noobs</h2>
-    <p>Dips • 2st</p>
-    <button ion-button clear item-right>View</button>
-  </ion-item>
-
-   <ion-item>
-    <ion-thumbnail item-left>
-      <img src="assets/img/user.png">
-    </ion-thumbnail>
-    <h2>Åsa Kleve</h2>
-    <p>Chins • 20st</p>
-    <button ion-button clear item-right>View</button>
-  </ion-item>
-
-   <ion-item>
-    <ion-thumbnail item-left>
-      <img src="assets/img/user.png">
-    </ion-thumbnail>
-    <h2>Christian Rusch</h2>
-    <p>Squats • 40st</p>
-    <button ion-button clear item-right>View</button>
-  </ion-item>
-
-   <ion-item>
-    <ion-thumbnail item-left>
-      <img src="assets/img/user.png">
-    </ion-thumbnail>
-    <h2>Anton Jotoft</h2>
-    <p>Dips • 43st</p>
-    <button ion-button clear item-right>View</button>
-  </ion-item>
 </ion-list>
-
-
 </ion-content>

@@ -19,6 +19,7 @@ export class UserLeaderboardPage {
   activeUser: any;
   testResult: any;
   userid: any;
+  video: '/youtube/Ebb9REvbwRk';
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public alertCtrl: AlertController, private backendService: BackendService,  private authService: AuthService) {
     this.activeUser = this.authService.getUser();
@@ -94,6 +95,7 @@ showRadio() {
       this.sports.push("Bänkpress");
 
       this.results=[];
+
       console.log("In engage: " + this.userid);
       this.backendService.getResult(this.userid)
         .subscribe(data => {
@@ -106,4 +108,10 @@ showRadio() {
           //behöver fixa en loop som lägger allt i arrayen. För detta behövs mer och bättre testdata.Går att göra när API returnerar ett array, det gör den inte i dagsläget
         });
   }
+
+
+    playVideo(){
+      console.log("hit");
+
+    }
 }

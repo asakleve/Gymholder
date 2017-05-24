@@ -12,9 +12,16 @@ badass {
 	width: 100% ;
   height:70px;
 }
+.size{
+  font-size: 10px;
+}
+ion-row{
+  font-size: 12px;
+}
 
 .card-title{
   text-align: center; 
+  font-size: 16px; 
 }
 .third{
   width: 10%; 
@@ -22,26 +29,27 @@ badass {
 h3{
   text-align: center;
   font-size: 28px; 
-  color: GREEN;  
+  color: #678567;  
 }
 .huvud{
   text-align: left; 
   text-font: Sans-serif;
-  font-size: 16px;  
+  font-size: 14px;  
 }
 ion-icon{
   font-size: 50px; 
-  color: GREEN; 
+  color: #678567; 
   text-align: center; 
+  position: relative;  
 }
 
 .ikon{
-  text-align: center;   
+  text-align: center;  
 }
 
 .knapp{
-margin-top: 10%;
-margin-bot: 5%;
+margin-top: 5%;
+margin-bottom: 5%;
 margin-left: 5%; 
 margin-right: 5%;
 height: 15%;
@@ -51,7 +59,11 @@ width: 90%;
 
 .huvudscore{
   margin-left: 42%;
-  font-size: 24px; 
+  font-size: 20px; 
+}
+.base{
+  margin-left: 42%; 
+  font-size: 14px; 
 }
 }
 }
