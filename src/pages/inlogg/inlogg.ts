@@ -20,7 +20,7 @@ export class InloggPage {
     this.nav.push('RegisterPage');
   }
 
-  
+
 
   public login() {
     this.showLoading()

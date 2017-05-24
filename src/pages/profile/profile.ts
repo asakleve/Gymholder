@@ -44,11 +44,12 @@ export class ProfilePage {
     // Hämtar User-objektinstansen från authService, innehållande
     // data för den aktiva användaren.
     this.activeUser = this.authService.getUser();
-    this.profileId = this.navParams.get('userid');
-    console.log("This is the navparam userid: " + this.navParams.get('userid'));
-    if (this.profileId == null) {
+    if(this.navParams.get('userid') != null) {
+      this.profileId = this.navParams.get('userid');
+    } else {
       this.profileId = this.activeUser.userid;
     }
+    console.log("This is the navparam userid: " + this.navParams.get('userid'));
 
     // Hämtar en användare från databasen baserat på @devUserId
     // @param devUserId : variabel för att hålla användarid för
