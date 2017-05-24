@@ -24,10 +24,10 @@
 <ion-col> 
 <p class="huvud"> Category: </p>
 </ion-col>
-<ion-col>
+<ion-col> 
 <p class="huvud"> Value: </p>
 </ion-col>
-<ion-col>
+<ion-col> 
 <p class="huvud"> Bonus: </p>
 </ion-col>
 
@@ -39,13 +39,16 @@
 		<ion-icon name="ios-thermometer-outline"></ion-icon>
 	</ion-col>
 	<ion-col> 
-				<p> Temp: </p>
+		<br>
+				 Temp: 
 	</ion-col>
 	<ion-col class="third"> 
-		<div class="weatherdata"> {{ gymData?.forecast?.temperature }} <p> °C </p></div>
+		<br>
+				<div class="weatherdata"> {{ gymData?.forecast?.temperature }}  °C </div>
 	</ion-col>
 	<ion-col> 
-	<p> + </p>
+	 	<br>
+	 +  {{ tMult }}
 	</ion-col>
 </ion-row>
 
@@ -54,13 +57,17 @@
 		        <ion-icon name="ios-rainy-outline"></ion-icon>
 	</ion-col>		
 	<ion-col> 
-				<p> Rain:  </p>
+	<br>
+				 Rain:  
 	</ion-col>
 	<ion-col class="third"> 
-				  <div class="weatherdata"> {{ gymData?.forecast?.precipitationcat }} <p class="liten"> m/m </p></div>
+	<br>
+
+				  <div class="weatherdata"> {{ gymData?.forecast?.precipitationcat }} m/m </div>
 	</ion-col>
-	<ion-col> 
-	<p> + </p>
+	<ion-col class="third"> 
+	<br>
+	 + {{ pMult }}
 	</ion-col>
 </ion-row>
 
@@ -70,19 +77,25 @@
 		        <ion-icon name="ios-speedometer-outline"></ion-icon>
 	</ion-col>
 	<ion-col> 
-				<p> Wind: </p>
+	<br>
+	
+				 Wind: 
 	</ion-col>
-	<ion-col class="third"> 
-				  <div class="weatherdata"> {{ gymData?.forecast?.windspeed }} <p> m/s</p></div>
+	<ion-col class="third">
+	<br> 
+				  <div class="weatherdata"> {{ gymData?.forecast?.windspeed }} m/s </div>
 
 	</ion-col>
 	<ion-col> 
-		<p> + </p>
+	<br>
+		 + {{ wMult }}
 	</ion-col>
 </ion-row>
-<div class="divider"></div>
-<p class="huvudscore"> Your Score X   </p>
 
+
+<div class="base"> Base Multiplier:  &nbsp; + 75 </div>
+<div class="huvudscore"> Your Score x  {{ badassMult }}
+</div>
 	<button ion-button class="knapp" on-click="showAlert();"> How does the scoring system work? </button>
 
 
