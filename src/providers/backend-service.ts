@@ -103,17 +103,25 @@ export class BackendService {
       .map(res => res.json());
   }
 
+  public getAllGyms() {
+    return this.http.get('/backend/allgyms', { headers: this.headers })
+      .map(res => res.json());
+  }
+
   public getGymSports(id: number) {
     return this.http.get('/backend/gym/' + id + '/sports', { headers: this.headers })
       .map(res => res.json());
   }
 
-  public getGymResults(id: string) {
-    return this.http.get('/backend/gym/' + id + '/results', { headers: this.headers })
+  public getGymResults(id: number) {
+    return this.http.get('/backend/gymresults/' + id, { headers: this.headers })
       .map(res => res.json());
   }
 
-
+  public getGymByOpenId(id: string) {
+    return this.http.get('/backend/gymbyopen/' + id, { headers: this.headers })
+      .map(res => res.json());
+  }
 
   ////////////////////////////////////////////////////////////////////////
   // RESULT

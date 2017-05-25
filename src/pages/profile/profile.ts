@@ -34,7 +34,7 @@ export class ProfilePage {
   messageA;
   challangeName;
   userid: any;
-  
+
 
   // public authService: AuthService & public backendService: BackendService
   // laddar in AuthService ur importen och gör dessa tillgängliga för åtkomst
@@ -87,15 +87,14 @@ export class ProfilePage {
 
   openUserLeaderboard(profileOwner){
     console.log(profileOwner);
-    this.navCtrl.push(UserLeaderboardPage,{userid: profileOwner});
-
+    this.navCtrl.push(UserLeaderboardPage, { userid: profileOwner });
   }
 
   sendChallange(){
     this.navCtrl.push(SendChallengePage);
   }
 
- 
+
 
 //   addFriend(){
 //     this.backendService.postFriend(activeUser,userToAdd);
@@ -125,6 +124,16 @@ export class ProfilePage {
       duration: 3000
     });
     toast.present();
+  }
+
+
+   showAlert() {
+    let alert = this.alertCtrl.create({
+      title: 'Challenge sent!',
+      subTitle: 'Your challange:' + this.challangeName + ' where you challenge ' + this.profileOwner.username + ' in '+ this.radioResult + ' has been sent. She has seven days to accept the challenge',
+      buttons: ['Cancel' , 'OK']
+    });
+    alert.present();
   }
 
   showPrompt() {

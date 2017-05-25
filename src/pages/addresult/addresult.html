@@ -115,7 +115,7 @@
             <ion-list>
               <ion-item>
                 <ion-label>Exercise</ion-label>
-                <ion-select [(ngModel)]="registerResult.sport" name="sport">
+                <ion-select [(ngModel)]="registerResult.sport" name="sport" required>
                   <ion-option *ngFor="let s of sports" value="{{s.id}}">{{s.name}}</ion-option>
                 </ion-select>
               </ion-item>

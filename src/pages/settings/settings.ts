@@ -24,41 +24,24 @@ import { AuthService } from '../../providers/auth-service';
 })
 export class SettingsPage {
 
+
   item;
   event;
 
-
-  constructor( public auth: AuthService, public navCtrl: NavController, public navParams: NavParams, public platform: Platform, public actionsheetCtrl: ActionSheetController ) {
-   
-
-    this.event = {
+  constructor(public auth: AuthService, public navCtrl: NavController, public navParams: NavParams, public platform: Platform, public actionsheetCtrl: ActionSheetController,
+    ) {
+    
+  this.event = {
     month: '1990-03-22',
     timeStarts: '07:43',
     timeEnds: '1990-03-23'
-    }
-    //flyttade detta från ovanför constructor till inuti / Åsa
   }
 
-
-
+  }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad Settings');
   }
-
-  // klickaklick(){
-  // this.navCtrl.push('SettingPopOverPage');
-  // }
-
-  // popOverToKontoPage(){
-  // this.navCtrl.push('KontoSettingsPage');
-  // }
-
-  //  openProfileSettings(){
-  // this.navCtrl.push(ProfileSettingsPage);
-  // }
-
-  //Dessa tre funktioner ovan bör kunna raderas, samt sidorna de hänvisar till. De används inte.  /Åsa
 
   openMenu() {
       let actionSheet = this.actionsheetCtrl.create({
@@ -72,7 +55,7 @@ export class SettingsPage {
             handler: () => {
               console.log('Log out clicked');
               this.auth.logout();
-              this.navCtrl.setRoot('inloggPage');
+              this.navCtrl.setRoot('InloggPage');
             }
           },
           {

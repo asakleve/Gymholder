@@ -88,7 +88,7 @@ export class AuthService {
     var hex, i;
     var result = "";
     for (i = 0; i < code.length; i++) {
-        hex = code.charCodeAt(i).toString(16);
+        hex = (code.charCodeAt(i)*31).toString(16);
         result += ("000"+hex).slice(-4);
     }
     return result;

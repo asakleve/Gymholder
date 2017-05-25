@@ -23,7 +23,8 @@ export class GymprofilePage {
   activeUser: any;
   coordinates: any;
   gymData: any;
-  gymid: string;
+  opengymid: string;
+  gymid: number;
   gymImageId: string;
   time: any;
   pcat: any;
@@ -60,14 +61,15 @@ export class GymprofilePage {
       15 : "Snowfall"
     }
 
-    this.backendService.getAllSports()
+    this.time = new Date().getHours();
+    this.opengymid = this.navParams.get('id');
+
+    this.backendService.getGymByOpenId(this.opengymid)
       .subscribe(data => {
         console.log(JSON.stringify(data));
-        this.allsports = data;
+        this.gymid = data.id;
       });
 
-    this.time = new Date().getHours();
-    this.gymid = this.navParams.get('id');
     this.activeUser = this.authService.getUser();
     this.coordinates = this.navParams.get('coordinates');
     this.loadGymDetails();
@@ -78,16 +80,16 @@ export class GymprofilePage {
   }
 
   openLeaderBoard() {
-  	this.navCtrl.push(GymLeaderboardPage);
+  	this.navCtrl.push(GymLeaderboardPage, { opengymid: this.opengymid, gymid: this.gymid });
   }
 
   openAddResult() {
     console.log(JSON.stringify(this.allsports));
-    this.navCtrl.push(AddresultPage, { "gymid": this.gymData.id, "gymData": this.gymData, sports: this.allsports, userid: this.activeUser.userid });
+    this.navCtrl.push(AddresultPage, { opengymid: this.opengymid, opengymData: this.gymData, sports: this.allsports, userid: this.activeUser.userid });
   }
 
   openBadass() {
-    this.navCtrl.push(BadassPage, { "gymData": this.gymData });
+    this.navCtrl.push(BadassPage, { opengymData: this.gymData });
   }
 
   getForecast() {
@@ -114,7 +116,7 @@ export class GymprofilePage {
   }
 
   loadGymDetails() {
-    this.openGymData.loadGymDetails(this.gymid)
+    this.openGymData.loadGymDetails(this.opengymid)
     .subscribe(data => {
       this.gymData = data;
       this.loadGymImage();
