@@ -45,14 +45,6 @@ export class SettingsPage {
     console.log('ionViewDidLoad Settings');
   }
 
-  klickaklick() {
-    this.navCtrl.push('SettingPopOverPage');
-  }
-
-  popOverToKontoPage() {
-    this.navCtrl.push('KontoSettingsPage');
-  }
-
   openMenu() {
       let actionSheet = this.actionsheetCtrl.create({
         title: 'Are you sure you want to log out?',
