@@ -32,7 +32,6 @@ import { MapPage } from '../pages/map/map';
 import { AddresultPage } from '../pages/addresult/addresult';
 import { MyChallengesPage } from '../pages/my-challenges/my-challenges';
 import { GymLeaderboardPage } from '../pages/gym-leaderboard/gym-leaderboard';
-import { ProfileSettingsPage } from '../pages/profile-settings/profile-settings';
 import { UserLeaderboardPage } from '../pages/user-leaderboard/user-leaderboard';
 import { BadassPage } from '../pages/badass/badass';
 import { SendChallengePage } from '../pages/send-challenge/send-challenge';
@@ -57,7 +56,6 @@ import { SendChallengePage } from '../pages/send-challenge/send-challenge';
     MapPage,
     MyChallengesPage,
     GymLeaderboardPage,
-    ProfileSettingsPage,
     UserLeaderboardPage,
     AddresultPage,
     BadassPage,
@@ -86,7 +84,6 @@ import { SendChallengePage } from '../pages/send-challenge/send-challenge';
     MapPage,
     MyChallengesPage,
     GymLeaderboardPage,
-    ProfileSettingsPage,
     UserLeaderboardPage,
     AddresultPage,
     BadassPage,
