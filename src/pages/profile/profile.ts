@@ -88,7 +88,6 @@ export class ProfilePage {
   openUserLeaderboard(profileOwner){
     console.log(profileOwner);
     this.navCtrl.push(UserLeaderboardPage, { userid: profileOwner });
-
   }
 
   sendChallange(){

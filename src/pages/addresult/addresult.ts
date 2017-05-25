@@ -24,7 +24,7 @@ export class AddresultPage {
 
   constructor(public auth: AuthService, public backendService: BackendService, private alertCtrl: AlertController, public viewCtrl: ViewController, public navCtrl: NavController, public navParams: NavParams) {
     this.sports = this.navParams.get('sports');
-    this.opengymid = this.navParams.get('gymid');
+    this.opengymid = this.navParams.get('opengymid');
     console.log("addresult.constructor: " + this.opengymid);
     this.backendService.getAllGyms()
       .subscribe(data => {

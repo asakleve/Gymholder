@@ -19,16 +19,22 @@ export class GymLeaderboardPage {
  	sports: any[];
  	results: any[];
  	displayResults: any[];
- 	gymData: any;
-  	gymid: string;
+ 	gymData: any
+  gymid: number;
+  opengymid: string;
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public alertCtrl: AlertController, private backendService: BackendService, public loadingCtrl: LoadingController) {
-    this.gymid=this.navParams.get('gymid');
-    this.sports = [];
-    this.sports.push("Show all results");
-    this.engage();
-    this.showResults("Show all results");
-    this.presentLoading();
+    this.opengymid = this.navParams.get('opengymid');
+    this.backendService.getGymByOpenId(this.opengymid)
+      .subscribe(data => {
+        console.log(" gym-leaderboard constructor: " + JSON.stringify(data.id));
+        this.gymid = data.id;
+        this.sports = [];
+        this.sports.push("Show all results");
+        this.engage();
+        this.showResults("Show all results");
+        this.presentLoading();
+      });
   }
 
   ionViewDidLoad() {
@@ -56,15 +62,15 @@ export class GymLeaderboardPage {
       });
     }
 
-      alert.addButton('Cancel');
-      alert.addButton({
-        text: 'OK',
-        handler: data => {
-          this.showResults(data);
-        }
-      });
-      alert.present();
-    }
+    alert.addButton('Cancel');
+    alert.addButton({
+      text: 'OK',
+      handler: data => {
+        this.showResults(data);
+      }
+    });
+    alert.present();
+  }
 
 
     showResults(sport){
@@ -86,9 +92,9 @@ export class GymLeaderboardPage {
       });
     }
       //Ovan funkar inte eftersom namnen på grenarna inte skrivs i API, kollen blir alltså mot siffror istället = knasigt//
-   
+
     engage(){
-      
+
       this.sports.push("Chins");
       this.sports.push("Dips");
       this.sports.push("Boxjump");
