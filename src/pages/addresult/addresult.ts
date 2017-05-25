@@ -26,22 +26,15 @@ export class AddresultPage {
     this.sports = this.navParams.get('sports');
     this.opengymid = this.navParams.get('opengymid');
     console.log("addresult.constructor: " + this.opengymid);
-    this.backendService.getAllGyms()
+    this.backendService.getGymByOpenId(this.opengymid)
       .subscribe(data => {
-        for(let s of data) {
-          if(s.eid == this.opengymid) {
-            console.log("         addresult.data.s.id: " + s.id);
-            this.gymid = s.id;
-          }
-        }
-        this.registerResult.gym = this.gymid;
-        console.log("addresult: Gym id: " + this.gymid);
+        this.registerResult.gym = data;
       });
-    this.registerResult.user = this.navParams.get('userid');
   }
 
   close() {
     this.viewCtrl.dismiss();
+    this.navCtrl.popToRoot();
   }
 
   ionViewDidLoad() {
@@ -54,6 +47,7 @@ export class AddresultPage {
       if (success) {
         this.createSuccess = true;
         this.showPopup("Success", "Result added.");
+        this.navCtrl.popToRoot();
       } else {
         this.showPopup("Error", "Problem adding result.");
       }
