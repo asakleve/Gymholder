@@ -147,6 +147,7 @@ export class BackendService {
 
   public postResult(userid: number, gymid: number, sportid: number, value: number) {
     let body = JSON.stringify({
+      "id": 0,
       "user": userid,
       "gym": gymid,
       "sport": sportid,

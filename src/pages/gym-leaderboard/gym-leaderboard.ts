@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, AlertController, LoadingController } from 'ionic-angular';
 import { BackendService } from '../../providers/backend-service';
+import { AuthService } from '../../providers/auth-service';
 /**
  * Generated class for the GymLeaderBoard page.
  *
@@ -23,7 +24,7 @@ export class GymLeaderboardPage {
   gymid: number;
   opengymid: string;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, public alertCtrl: AlertController, private backendService: BackendService, public loadingCtrl: LoadingController) {
+  constructor(public auth: AuthService, public navCtrl: NavController, public navParams: NavParams, public alertCtrl: AlertController, private backendService: BackendService, public loadingCtrl: LoadingController) {
     this.opengymid = this.navParams.get('opengymid');
     this.backendService.getGymByOpenId(this.opengymid)
       .subscribe(data => {
@@ -32,8 +33,6 @@ export class GymLeaderboardPage {
         this.sports = [];
         this.sports.push("Show all results");
         this.engage();
-        this.showResults("Show all results");
-        this.presentLoading();
       });
   }
 
@@ -88,31 +87,36 @@ export class GymLeaderboardPage {
         }
       }
       this.displayResults.sort(function(b, a) {
-        return parseFloat(a.reps) - parseFloat(b.reps);
+        return parseFloat(a.value) - parseFloat(b.value);
       });
     }
       //Ovan funkar inte eftersom namnen på grenarna inte skrivs i API, kollen blir alltså mot siffror istället = knasigt//
 
     engage(){
-
-      this.sports.push("Chins");
-      this.sports.push("Dips");
-      this.sports.push("Boxjump");
-      this.sports.push("Knäböj");
-      this.sports.push("Axelpress");
-      this.sports.push("Marklyft");
-      this.sports.push("Situps");
-      this.sports.push("Bänkpress");
-
+      console.log("engage.sports: " + JSON.stringify(this.navParams.get('sports')));
+      let allsports = this.navParams.get('sports');
+      for(let s of allsports) {
+        this.sports.push(s.name);
+      }
       this.results=[];
       //this.sports=[];
       this.backendService.getGymResults(this.gymid)
-      // .subscribe(data=>{
-      //   this.results=data;
-
       .subscribe(data => {
-       	this.results.push(data);
-       // this.sports=data.sport;
+        console.log("engage.gymresults: " + JSON.stringify(data));
+        for(let d of data) {
+          for(let s of allsports) {
+            if(s.id === d.sport) {
+              d.sport = s.name;
+            }
+          }
+          this.backendService.getUser(d.user)
+            .subscribe(res => {
+              d.username = res.username;
+              this.results.push(d);
+            });
+        }
+        this.showResults("Show all results");
+        this.presentLoading();
       });
     }
 

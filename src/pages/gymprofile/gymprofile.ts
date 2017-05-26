@@ -62,6 +62,11 @@ export class GymprofilePage {
       15 : "Snowfall"
     }
 
+    this.backendService.getAllSports()
+      .subscribe(data => {
+        this.allsports = data;
+      });
+
     this.time = new Date().getHours();
     this.opengymid = this.navParams.get('id');
 
@@ -87,7 +92,7 @@ export class GymprofilePage {
   }
 
   openLeaderBoard() {
-  	this.navCtrl.push(GymLeaderboardPage, { opengymid: this.opengymid, gymid: this.gymid });
+  	this.navCtrl.push(GymLeaderboardPage, { opengymid: this.opengymid, gymid: this.gymid, sports: this.allsports });
   }
 
   openAddResult() {

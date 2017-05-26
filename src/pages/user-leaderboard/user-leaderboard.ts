@@ -93,15 +93,12 @@ export class UserLeaderboardPage {
 
 
   engage(){
-
-    this.sports.push("Chins");
-    this.sports.push("Dips");
-    this.sports.push("Boxjump");
-    this.sports.push("Knäböj");
-    this.sports.push("Axelpress");
-    this.sports.push("Marklyft");
-    this.sports.push("Situps");
-    this.sports.push("Bänkpress");
+    this.backendService.getAllSports()
+      .subscribe(data => {
+        for(let s of data) {
+          this.sports.push(s.name);
+        }
+      });
 
     this.results=[];
 
