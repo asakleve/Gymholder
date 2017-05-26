@@ -8,18 +8,22 @@ import { DomSanitizer } from '@angular/platform-browser';
  * Angular Pipes.
  */
 @Pipe({
-  name: 'youtube  ',
+  name: 'youtube ',
 })
 export class Youtube implements PipeTransform {
   /**
    * Takes a value and makes it lowercase.
    */
 
-   constructor (private dom : DomSanitizer) {
 
-   }
+   constructor (private dom : DomSanitizer) {
+    console.log('inne i pipe');
+
+    }   
 
   transform(value: string, ...args) {
+  	console.log(' skriver från youtubepipe')
     return this.dom.bypassSecurityTrustResourceUrl(value);
   }
+
 }

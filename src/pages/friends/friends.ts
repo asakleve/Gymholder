@@ -50,6 +50,37 @@ friend: any;
     toast.present();
   }
 
+// addFriend(){
+// console.log(this.activeUser);
+// console.log(this.profileOwner);
+// this.backendService.checkIfFriends(this.profileOwner.id,this.activeUser.userid)
+// .subscribe(success=> {
+//   if(success){
+//     this.alreadyFriendsAlert()
+//     console.log("Redan vänner");
+//   }else{
+
+// this.backendService.postFriend(this.profileOwner.id,this.activeUser.userid);
+//    this.presentToast();
+
+//  }
+// })
+  
+//  }
+
+//  alreadyFriendsAlert() {
+//     let alert = this.alertCtrl.create({
+//       subTitle: 'You are already friends with ' + this.profileOwner.username,
+//       buttons: ['OK']
+//     });
+//     alert.present();
+//   }
+
+// deleteFriend(){
+
+// this.backendService.deleteFriend(this.profileOwner.id,this.activeUser.userid);
+// }
+
  deleteFriend() {
     let confirm = this.alertCtrl.create({
       title: 'Delete friend?',

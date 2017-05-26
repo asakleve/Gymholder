@@ -14,6 +14,9 @@ import { HttpModule } from '@angular/http';
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
+import { MediaCapture} from '@ionic-native/media-capture';
+import { YoutubeVideoPlayer } from '@ionic-native/youtube-video-player';
+//import { Camera } from '@ionic-native/camera';
 
 import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
@@ -62,11 +65,13 @@ import { SendChallengePage } from '../pages/send-challenge/send-challenge';
     Youtube,
     SendChallengePage
 
+
   ],
   imports: [
     BrowserModule,
     HttpModule,
     IonicModule.forRoot(MyApp),
+    
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -92,13 +97,16 @@ import { SendChallengePage } from '../pages/send-challenge/send-challenge';
   providers: [
     StatusBar,
     SplashScreen,
+    YoutubeVideoPlayer,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     AuthService,
     CoordService,
     HashService,
     OpenGymDataService,
     BackendService,
-    ObjectManager
+    ObjectManager,
+    MediaCapture
+    //Camera
   ]
 })
 export class AppModule {}

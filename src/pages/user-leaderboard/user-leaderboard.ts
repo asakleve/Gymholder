@@ -3,12 +3,14 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { AlertController } from 'ionic-angular';
 import { BackendService } from '../../providers/backend-service';
 import { AuthService } from '../../providers/auth-service';
+import { YoutubeVideoPlayer } from '@ionic-native/youtube-video-player';
+
 
 
 @IonicPage()
 @Component({
   selector: 'page-user-leaderboard',
-  templateUrl: 'user-leaderboard.html',
+  templateUrl: 'user-leaderboard.html'
 })
 export class UserLeaderboardPage {
   sport;
@@ -19,22 +21,29 @@ export class UserLeaderboardPage {
   activeUser: any;
   testResult: any;
   userid: any;
-  video: '/youtube/Ebb9REvbwRk';
+  video;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, public alertCtrl: AlertController, private backendService: BackendService,  private authService: AuthService) {
+  
+
+
+  constructor(public navCtrl: NavController, public navParams: NavParams, public alertCtrl: AlertController, private backendService: BackendService,  private authService: AuthService, private youtube: YoutubeVideoPlayer) {
+    
     this.activeUser = this.authService.getUser();
     this.userid = this.navParams.get('userid');
     this.sports = [];
     this.engage();
     this.sports.push("Show all results");
+    this.video = "https://www.youtube.com/embed/2L3gFYWU3hs";
+   
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad UserLeaderboard');
   }
 
-  print(){
+  playVideo(){
   console.log(this.userid);
+  this.youtube.openVideo('myvideoid');
   }
 
   showRadio() {
@@ -101,17 +110,7 @@ export class UserLeaderboardPage {
       .subscribe(data => {
         this.results = data[0];
         this.showResults("Show all results");
-        console.log(JSON.stringify(this.displayResults));
-        for(let r of this.displayResults) {
-          console.log(JSON.stringify(r));
-        }
         //behöver fixa en loop som lägger allt i arrayen. För detta behövs mer och bättre testdata.Går att göra när API returnerar ett array, det gör den inte i dagsläget
       });
-  }
-
-
-  playVideo(){
-    console.log("hit");
-
   }
 }

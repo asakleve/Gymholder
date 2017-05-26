@@ -9,8 +9,8 @@ import { RegisterPage } from '../register/register';
   templateUrl: 'inlogg.html'
 })
 export class InloggPage {
-  loading: Loading;
-  registerCredentials = { email: '', password: '' };
+    loading :Loading;
+    registerCredentials = { email: '', password: '' };
 
   constructor(public nav: NavController, public menu: MenuController, private auth: AuthService, private alertCtrl: AlertController, private loadingCtrl: LoadingController) {
     this.menu.enable(false);
@@ -19,8 +19,6 @@ export class InloggPage {
   public createAccount() {
     this.nav.push('RegisterPage');
   }
-
-
 
   public login() {
     this.showLoading()
