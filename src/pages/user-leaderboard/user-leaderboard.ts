@@ -34,7 +34,7 @@ export class UserLeaderboardPage {
   }
 
   print(){
-  console.log(this.userid);
+    console.log(this.userid);
   }
 
   showRadio() {

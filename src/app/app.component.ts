@@ -4,6 +4,7 @@ import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 
 import { AuthService } from '../providers/auth-service';
+import { BackendService } from '../providers/backend-service';
 
 import { HomePage } from '../pages/home/home';
 import { ProfilePage } from '../pages/profile/profile';
@@ -37,7 +38,7 @@ export class MyApp {
 
   pages: Array<{title: string, component: any}>;
 
-  constructor(authService: AuthService, public platform: Platform, public statusBar: StatusBar, public splashScreen: SplashScreen) {
+  constructor(authService: AuthService, public backendService: BackendService, public platform: Platform, public statusBar: StatusBar, public splashScreen: SplashScreen) {
     this.initializeApp();
     this.authService = authService;
 
@@ -57,6 +58,7 @@ export class MyApp {
     this.platform.ready().then(() => {
       // Okay, so the platform is ready and our plugins are available.
       // Here you can do any higher level native things you might need.
+      this.backendService.loadAllGyms();
       this.statusBar.styleDefault();
       this.splashScreen.hide();
     });

@@ -21,6 +21,7 @@ import { BadassPage } from '../badass/badass';
 export class GymprofilePage {
 
   activeUser: any;
+  activeGym: any;
   coordinates: any;
   gymData: any;
   opengymid: string;
@@ -67,7 +68,7 @@ export class GymprofilePage {
       });
 
     this.time = new Date().getHours();
-    this.opengymid = this.navParams.get('id');
+    this.opengymid = this.navParams.get('openid');
 
     this.backendService.getGymByOpenId(this.opengymid)
       .subscribe(data => {
@@ -76,7 +77,7 @@ export class GymprofilePage {
       });
 
     this.activeUser = this.authService.getUser();
-    this.coordinates = this.navParams.get('coordinates');
+    this.activeGym = this.navParams.get('gym');
     this.loadGymDetails();
   }
 
@@ -98,7 +99,7 @@ export class GymprofilePage {
   }
 
   getForecast() {
-    this.openGymData.getForecast(Math.round(this.coordinates.lon * 1000)/1000, Math.round(this.coordinates.lat * 1000)/1000)
+    this.openGymData.getForecast(Math.round(this.activeGym.position.lon * 1000)/1000, Math.round(this.activeGym.position.lat * 1000)/1000)
     .subscribe(data => {
       this.gymData.forecast = data.timeSeries[6].parameters;
       console.log(JSON.stringify(this.gymData.forecast));
@@ -114,7 +115,7 @@ export class GymprofilePage {
     this.backendService.getGymResults(this.gymid)
     .subscribe(data => {
       this.gymData.results = data;
-      console.log(this.gymData.results);
+      // console.log(this.gymData.results);
       // this.gymData.gymholder = this.gymData.results[0];
       // this.gymData.gymholder = MyApp.authService.getUser();
     });
