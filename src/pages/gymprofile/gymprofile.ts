@@ -6,6 +6,7 @@ import { BackendService } from '../../providers/backend-service';
 import { AuthService } from '../../providers/auth-service';
 import { AddresultPage } from '../addresult/addresult';
 import { BadassPage } from '../badass/badass';
+import { MediaCapture, MediaFile, CaptureError, CaptureImageOptions } from '@ionic-native/media-capture';
 
 /**
  * Generated class for the Gymprofile page.
@@ -32,7 +33,7 @@ export class GymprofilePage {
   weathercat: any;
   allsports: any;
 
-  constructor(private authService: AuthService, public navCtrl: NavController, public navParams: NavParams, private openGymData: OpenGymDataService, private backendService: BackendService) {
+  constructor(private authService: AuthService, public navCtrl: NavController, public navParams: NavParams, private openGymData: OpenGymDataService, private backendService: BackendService, private mediaCapture: MediaCapture) {
 
     this.pcat = {
       0 : "No precipitation",
@@ -83,6 +84,12 @@ export class GymprofilePage {
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad Gymprofile');
+  }
+
+  startRecording(options) {
+    this.mediaCapture.captureVideo((videodata) => {
+      alert(JSON.stringify(videodata));
+     })
   }
 
   openLeaderBoard() {

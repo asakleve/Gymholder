@@ -15,7 +15,23 @@
 
 <ion-content padding>
   <ion-list>
-    <ion-item *ngFor="let challange of challanges">{{challange.username}} {{challange.sport_name}} {{challange.reps}}>
+    <ion-list-header>
+        Pending challenges
+      </ion-list-header>
+    <ion-item *ngFor="let challenge of pendingChallenges">
+    <p class="titel">{{challenge.message}}</p>
+    <p class ="text">Challenger: {{challenge.sender}} Exercise: {{challenge.sport_name}}</p>
     </ion-item>
   </ion-list>
-</ion-content>
+
+ <!--  <ion-list>
+    <ion-list-header>
+      Completed challenges 
+    </ion-list-header>
+      <ion-item *ngFor="let challenge of completeChallenges">
+       <p class="titel">{{challenge.message}}</p>
+        <p class ="text">Challenger: {{challenge.username}} Exercise: {{challenge.sport_name}}</p>
+     </ion-item>
+    </ion-list> -->
+
+  </ion-content>

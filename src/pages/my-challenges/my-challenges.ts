@@ -17,13 +17,16 @@ import { AuthService } from '../../providers/auth-service';
 })
 export class MyChallengesPage {
 
-	challanges:any [];
+	challenges:any [];
+  pendingChallenges: any [];
+  completeChallenges: any [];
 	userid: any;
+  user: any;
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public backendService: BackendService, public authService: AuthService) {
-
- 	this.getChallanges();
- 	this.userid = this.authService.getUser();
+ 	this.user = this.authService.getUser();
+  this.userid = this.user.userid;
+  this.getChallenges(this.userid);
   }
 
   ionViewDidLoad() {
@@ -31,10 +34,14 @@ export class MyChallengesPage {
   }
 
 
-  getChallanges(){
-  	this.backendService.getChallanges(this.userid)
+  getChallenges(userid){
+
+    this.pendingChallenges =[];
+
+    console.log('Här är challenges '+ this.userid);
+  	this.backendService.getChallenges(userid)
   	.subscribe(data => {
-      this.challanges.push(data);
+      this.pendingChallenges = (data);
   });
   }
 
