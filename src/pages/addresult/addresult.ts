@@ -84,10 +84,9 @@ export class AddresultPage {
     alert.addButton({
       text: 'OK',
       handler: data => {
-        if(this.createSuccess) {
-          this.navCtrl.popToRoot();
+        if(!this.createSuccess) {
+          this.showAlert();
         }
-        this.showAlert();
         this.navCtrl.popToRoot();
       }
     });

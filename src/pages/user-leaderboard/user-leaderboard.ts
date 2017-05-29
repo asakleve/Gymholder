@@ -41,9 +41,11 @@ export class UserLeaderboardPage {
     console.log('ionViewDidLoad UserLeaderboard');
   }
 
+
   playVideo(){
   console.log(this.userid);
   this.youtube.openVideo('myvideoid');
+
   }
 
   showRadio() {

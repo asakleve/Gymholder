@@ -28,7 +28,6 @@ export class GymLeaderboardPage {
     this.opengymid = this.navParams.get('opengymid');
     this.backendService.getGymByOpenId(this.opengymid)
       .subscribe(data => {
-        console.log(" gym-leaderboard constructor: " + JSON.stringify(data.id));
         this.gymid = data.id;
         this.sports = [];
         this.sports.push("Show all results");
@@ -93,7 +92,6 @@ export class GymLeaderboardPage {
       //Ovan funkar inte eftersom namnen på grenarna inte skrivs i API, kollen blir alltså mot siffror istället = knasigt//
 
     engage(){
-      console.log("engage.sports: " + JSON.stringify(this.navParams.get('sports')));
       let allsports = this.navParams.get('sports');
       for(let s of allsports) {
         this.sports.push(s.name);
@@ -101,23 +99,22 @@ export class GymLeaderboardPage {
       this.results=[];
       //this.sports=[];
       this.backendService.getGymResults(this.gymid)
-      .subscribe(data => {
-        console.log("engage.gymresults: " + JSON.stringify(data));
-        for(let d of data) {
-          for(let s of allsports) {
-            if(s.id === d.sport) {
-              d.sport = s.name;
+        .subscribe(data => {
+          for(let d of data) {
+            for(let s of allsports) {
+              if(s.id == d.sport) {
+                d.sport = s.name;
+              }
             }
+            this.backendService.getUser(d.user)
+              .subscribe(res => {
+                d.username = res.username;
+                this.results.push(d);
+              });
           }
-          this.backendService.getUser(d.user)
-            .subscribe(res => {
-              d.username = res.username;
-              this.results.push(d);
-            });
-        }
-        this.showResults("Show all results");
-        this.presentLoading();
-      });
+          this.presentLoading();
+          this.showResults("Show all results");
+        });
     }
 
 }
