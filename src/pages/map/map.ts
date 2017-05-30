@@ -5,10 +5,13 @@ import { GymprofilePage } from '../gymprofile/gymprofile';
 import { OpenGymDataService } from '../../providers/open-gym-data-service';
 import { CoordService } from '../../providers/coord-service';
 
+import {Geolocation} from '@ionic-native/geolocation'
+
 export class Gym {
   name: string;
   lat: number;
   lon: number;
+
 
   constructor(name: string, lat: number, lon: number) {
     this.name = name;
@@ -33,6 +36,11 @@ declare var google;
 })
 export class MapPage {
 
+
+  coords: any;
+  accuracy: any;
+  error: any;
+
   lastMarker: any;
   pos: any;
 
@@ -43,7 +51,7 @@ export class MapPage {
   activeGym: any;
   processedGymData: Array<Gym> = [];
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, private openGymData: OpenGymDataService, private coordService: CoordService) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, private openGymData: OpenGymDataService, private coordService: CoordService, private geolocation: Geolocation) {
     /*if(this.navParams.get("gymId")) {
       this.loadGym(this.navParams.get("gymId"));
     } else {*/
@@ -128,5 +136,15 @@ export class MapPage {
       }, false);
     });
   }
+
+    watch() {
+    this.geolocation.getCurrentPosition().then((resp) => {
+      this.coords = resp.coords.latitude + ' ' + resp.coords.longitude;
+      this.accuracy = resp.coords.accuracy + ' meters';
+    }).catch((error) => {
+      this.error = 'Error getting location: ' + error;
+    });
+  }
+
 
 }
