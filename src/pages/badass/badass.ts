@@ -46,7 +46,7 @@ export class BadassPage {
      private backendService: BackendService) {
     // Hämtar User-objektinstansen från authService, innehållande
     // data för den aktiva användaren.
-    this.gymData = this.navParams.get('gymData');
+    this.gymData = this.navParams.get('opengymData');
     this.activeUser = this.authService.getUser();
 
     // Hämtar en användare från databasen baserat på @devUserId

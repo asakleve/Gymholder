@@ -30,7 +30,7 @@ export class SettingsPage {
 
   constructor(public auth: AuthService, public navCtrl: NavController, public navParams: NavParams, public platform: Platform, public actionsheetCtrl: ActionSheetController,
     ) {
-    
+
   this.event = {
     month: '1990-03-22',
     timeStarts: '07:43',
@@ -55,7 +55,7 @@ export class SettingsPage {
             handler: () => {
               console.log('Log out clicked');
               this.auth.logout();
-              this.navCtrl.setRoot('InloggPage');
+              this.navCtrl.setRoot(InloggPage);
             }
           },
           {

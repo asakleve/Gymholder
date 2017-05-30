@@ -19,19 +19,20 @@
         Pending challenges
       </ion-list-header>
     <ion-item *ngFor="let challenge of pendingChallenges">
+    <!--     <ion-icon name = "bonfire" (click) ="sendResponse()"></ion-icon> -->
     <p class="titel">{{challenge.message}}</p>
-    <p class ="text">Challenger: {{challenge.sender}} Exercise: {{challenge.sport_name}}</p>
+    <p class ="text">Challenger: {{challenge.sender}} Exercise: {{challenge.sport_name}} Requested reps: {{challenge.requested_reps}}</p>
     </ion-item>
   </ion-list>
 
- <!--  <ion-list>
+  <ion-list>
     <ion-list-header>
       Completed challenges 
     </ion-list-header>
       <ion-item *ngFor="let challenge of completeChallenges">
        <p class="titel">{{challenge.message}}</p>
-        <p class ="text">Challenger: {{challenge.username}} Exercise: {{challenge.sport_name}}</p>
+        <p class ="text">Challenger: {{challenge.sender}} Exercise: {{challenge.sport_name}}</p>
      </ion-item>
-    </ion-list> -->
+    </ion-list>
 
   </ion-content>
