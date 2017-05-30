@@ -1,14 +1,17 @@
 import { Component, ViewChild, ElementRef } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { GymprofilePage } from '../gymprofile/gymprofile';
-
 import { BackendService } from '../../providers/backend-service';
+import {Geolocation} from '@ionic-native/geolocation';
+
 
 /*
+
 export class Gym {
   name: string;
   lat: number;
   lon: number;
+
 
   constructor(name: string, lat: number, lon: number) {
     this.name = name;
@@ -34,6 +37,11 @@ declare var google;
 })
 export class MapPage {
 
+
+  coords: any;
+  accuracy: any;
+  error: any;
+
   lastMarker: any;
   pos: any;
 
@@ -44,7 +52,8 @@ export class MapPage {
   activeGym: any;
   processedallgyms: any[];
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, private backendService: BackendService) {
+
+  constructor(public navCtrl: NavController, public navParams: NavParams, private backendService: BackendService, private geolocation: Geolocation) {
     this.allgyms = this.backendService.getAllGyms();
     console.log("MapPage.constructor: " + JSON.stringify(this.allgyms));
   }
@@ -113,5 +122,15 @@ export class MapPage {
       }, false);
     });
   }
+
+    watch() {
+    this.geolocation.getCurrentPosition().then((resp) => {
+      this.coords = resp.coords.latitude + ' ' + resp.coords.longitude;
+      this.accuracy = resp.coords.accuracy + ' meters';
+    }).catch((error) => {
+      this.error = 'Error getting location: ' + error;
+    });
+  }
+
 
 }
