@@ -21,7 +21,8 @@
     [showCancelButton]="shouldShowCancel"
     (ionInput)="onInput($event)"
     (ionCancel)="onCancel($event)">
-</ion-searchbar> </div>
+    </ion-searchbar>
+  </div>
 
 <!--
   <ion-list>
@@ -34,5 +35,21 @@
     </ion-item>
   </ion-list>
 //-->
+
+
+
+
+<!--  Skriver ut koordinaterna ett tryck på en knapp (coords). Den finns under kartan
+//-->
+
+
+ <button ion-button (click)="watch()">Get Position</button>
+    <p>Position: {{ coords }}</p>
+    <p>Accuracy: {{ accuracy }} meters</p>
+    <p *ngIf="error">{{ error }}</p>
+ 
+<!-- TEST
+//-->
+
 
 </ion-content>
