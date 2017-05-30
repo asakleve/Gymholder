@@ -9,8 +9,8 @@ import { RegisterPage } from '../register/register';
   templateUrl: 'inlogg.html'
 })
 export class InloggPage {
-  loading: Loading;
-  registerCredentials = { email: '', password: '' };
+    loading :Loading;
+    registerCredentials = { email: '', password: '' };
 
   constructor(public nav: NavController, public menu: MenuController, private auth: AuthService, private alertCtrl: AlertController, private loadingCtrl: LoadingController) {
     this.menu.enable(false);
@@ -23,6 +23,7 @@ export class InloggPage {
   public login() {
     this.showLoading()
     this.auth.login(this.registerCredentials).subscribe(allowed => {
+      console.log("This is the allowed status: " + allowed);
       if (allowed) {
         this.nav.setRoot(HomePage);
       } else {

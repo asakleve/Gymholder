@@ -1,0 +1,51 @@
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>Create Challenge</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding class="card-background-page">
+  <img src="assets/img/sendChallenge.jpg" />
+  <ion-list>
+
+      <ion-item>
+        <ion-label>Exercise</ion-label>
+        <ion-select [(ngModel)]="os" submitText="Okay" cancelText="Nah">
+          <ion-option value="dos">Classic Push Ups</ion-option>
+          <ion-option value="lunix">Wide Grip Push Ups</ion-option>
+          <ion-option value="mac7">Close Grip Push Ups</ion-option>
+          <ion-option value="mac8">Sit Ups</ion-option>
+          <ion-option value="win3.1">Chin Ups</ion-option>
+          <ion-option value="win95">Pull Ups</ion-option>
+          <ion-option value="win98">One Arm Pull Ups</ion-option>
+          <ion-option value="win99">Toe To Bar</ion-option>
+          <ion-option value="win00">Toe Touch</ion-option>
+          <ion-option value="win01">Squats</ion-option>
+          <ion-option value="win02">Jumping Squats</ion-option>
+          <ion-option value="win03">Wall Squats</ion-option>
+          <ion-option value="win04">Hanging Dips</ion-option>
+          <ion-option value="win05">Box Jumps</ion-option>
+          <ion-option value="win06">Pistol Squats</ion-option>
+
+        </ion-select>
+      </ion-item>
+
+      <ion-item>
+        <ion-input type="text" placeholder="Type In Number Of Reps"></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-input type="text" placeholder="Type In Number Of Sets"></ion-input>
+      </ion-item>
+
+    </ion-list>
+
+    <button ion-button color="dark" block (click)="doPrompt()">
+       <p>  Send </p>
+  </button>
+
+
+</ion-content>

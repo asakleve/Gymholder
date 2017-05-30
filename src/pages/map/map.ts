@@ -1,11 +1,11 @@
 import { Component, ViewChild, ElementRef } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { GymprofilePage } from '../gymprofile/gymprofile';
+import { BackendService } from '../../providers/backend-service';
+import {Geolocation} from '@ionic-native/geolocation';
 
-import { OpenGymDataService } from '../../providers/open-gym-data-service';
-import { CoordService } from '../../providers/coord-service';
 
-import {Geolocation} from '@ionic-native/geolocation'
+/*
 
 export class Gym {
   name: string;
@@ -19,6 +19,7 @@ export class Gym {
     this.lon = lon;
   }
 }
+*/
 
 /**
  * Generated class for the Map page.
@@ -47,46 +48,14 @@ export class MapPage {
   @ViewChild('map') mapElement: ElementRef;
   map: any;
 
-  gymData: any;
+  allgyms: any;
   activeGym: any;
-  processedGymData: Array<Gym> = [];
+  processedallgyms: any[];
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, private openGymData: OpenGymDataService, private coordService: CoordService, private geolocation: Geolocation) {
-    /*if(this.navParams.get("gymId")) {
-      this.loadGym(this.navParams.get("gymId"));
-    } else {*/
-      this.loadGyms();
-    //}
-  }
 
-  loadGyms() {
-    // Hämta data från api.stockholm.se och mappa till gymData.
-    this.openGymData.loadGymData()
-    // När hämtningen är klar, kör en for-loop och konvertera rt90 till lat/long.
-    .subscribe(data => {
-      this.gymData = data;
-      for(let data of this.gymData) {
-        this.loadGymDetails(data);
-      }
-    });
-      /* processedGymData.push({ value.name, pos.lat, pos.lon }); */
-      /* this.push(key + ': ' + value); */
-  }
-
-  loadGymDetails(data) {
-    this.openGymData.loadGymDetails(data.Id)
-      .subscribe(res => {
-        var attrib = "Beskrivning saknas för detta gym.";
-        this.activeGym = res;
-        this.pos = this.coordService.gridToGeodetic(data.GeographicalPosition.X, data.GeographicalPosition.Y);
-        this.processedGymData.push(new Gym(data.Name, this.pos.lat, this.pos.lon));
-        for(let a of res.Attributes) {
-          if(a.Id == "ShortDescription") {
-            attrib = a.Value;
-          }
-        }
-        this.addMarker(data.Name, attrib, this.pos.lat, this.pos.lon, data.Id);
-      });
+  constructor(public navCtrl: NavController, public navParams: NavParams, private backendService: BackendService, private geolocation: Geolocation) {
+    this.allgyms = this.backendService.getAllGyms();
+    console.log("MapPage.constructor: " + JSON.stringify(this.allgyms));
   }
 
   ionViewDidLoad() {
@@ -105,10 +74,26 @@ export class MapPage {
 
     this.map = new google.maps.Map(this.mapElement.nativeElement, mapOptions);
 
+    // console.log("    >>>   Stringified allgyms " + JSON.stringify(this.allgyms));
+
+    for(let i = 0; i < this.allgyms.length; i++) {
+      if(this.allgyms[i] !== undefined) {
+        // console.log("loadGyms.for.data: " + gym.name, gym.description, gym.position.lat, gym.position.lon, gym.openid);
+        this.addMarker(
+          this.allgyms[i].name,
+          this.allgyms[i].description,
+          this.allgyms[i].position.lat,
+          this.allgyms[i].position.lon,
+          this.allgyms[i].openid,
+          this.allgyms[i]
+        );
+      }
+    }
+
   }
 
 
-  addMarker(name: string, text:string, x: number, y: number, id: string) {
+  addMarker(name: string, text:string, x: number, y: number, id: string, gym: any) {
     let marker = new google.maps.Marker({
       map: this.map,
       /*animation: google.maps.Animation.DROP,*/
@@ -132,7 +117,8 @@ export class MapPage {
     });
     google.maps.event.addListener(marker.infoWindow, 'domready', () => {
       document.getElementById('content').addEventListener('click', () => {
-        this.navCtrl.push(GymprofilePage, {id: id, coordinates: this.pos });
+        this.lastMarker.infoWindow.close();
+        this.navCtrl.push(GymprofilePage, { openid: id, gym: gym });
       }, false);
     });
   }

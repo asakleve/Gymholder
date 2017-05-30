@@ -12,8 +12,13 @@
 
 <ion-content padding>
   <button ion-button block color="green" (click)="showRadio()">Select exercise</button>
-  <h5>Displaying results for {{selectedSport}}</h5>
-  <ion-list>
-    <ion-item *ngFor="let d of displayResults">{{d.gym}} {{d.user}} {{d.sport}} {{d.value}}</ion-item>
-  </ion-list>
+    <h5>Displaying results for {{selectedSport}}</h5>
+    <p>{{video}}</p>
+    <ion-list>
+      <ion-item *ngFor="let d of displayResults">{{d[2]}} {{d[0]}}
+        <button ion-button block (click)="playVideo()"></button>
+      </ion-item>
+    </ion-list>
 </ion-content>
+
+

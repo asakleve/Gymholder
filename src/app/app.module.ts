@@ -3,11 +3,21 @@ import { CoordService } from '../providers/coord-service';
 import { HashService } from '../providers/hash-service';
 import { OpenGymDataService } from '../providers/open-gym-data-service';
 import { BackendService } from '../providers/backend-service';
+import { ObjectManager } from '../providers/object-manager';
+
+import { Youtube } from '../pipes/youtube';
 
 import { BrowserModule } from '@angular/platform-browser';
 import { ErrorHandler, NgModule } from '@angular/core';
 import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
 import { HttpModule } from '@angular/http';
+
+import { StatusBar } from '@ionic-native/status-bar';
+import { SplashScreen } from '@ionic-native/splash-screen';
+import { MediaCapture} from '@ionic-native/media-capture';
+import { YoutubeVideoPlayer } from '@ionic-native/youtube-video-player';
+//import { Camera } from '@ionic-native/camera';
+import {Geolocation} from '@ionic-native/geolocation';
 
 import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
@@ -18,17 +28,20 @@ import { SettingsPage } from '../pages/settings/settings';
 import { InloggPage } from '../pages/inlogg/inlogg';
 import { MessagesPage } from '../pages/messages/messages';
 import { MessagesPopOverPage } from '../pages/messages-pop-over/messages-pop-over';
-import { StatusBar } from '@ionic-native/status-bar';
-import { SplashScreen } from '@ionic-native/splash-screen';
+
 
 import { GymprofilePage } from '../pages/gymprofile/gymprofile';
 import { EventLeaderboardPage } from '../pages/eventLeaderboard/eventLeaderboard';
 import { MapPage } from '../pages/map/map';
+import { AddresultPage } from '../pages/addresult/addresult';
 import { MyChallengesPage } from '../pages/my-challenges/my-challenges';
 import { GymLeaderboardPage } from '../pages/gym-leaderboard/gym-leaderboard';
-import { ProfileSettingsPage } from '../pages/profile-settings/profile-settings';
 import { UserLeaderboardPage } from '../pages/user-leaderboard/user-leaderboard';
-import {Geolocation} from '@ionic-native/geolocation'
+import { BadassPage } from '../pages/badass/badass';
+import { SendChallengePage } from '../pages/send-challenge/send-challenge';
+
+
+
 
 
 
@@ -48,13 +61,19 @@ import {Geolocation} from '@ionic-native/geolocation'
     MapPage,
     MyChallengesPage,
     GymLeaderboardPage,
-    ProfileSettingsPage,
-    UserLeaderboardPage
+    UserLeaderboardPage,
+    AddresultPage,
+    BadassPage,
+    Youtube,
+    SendChallengePage
+
+
   ],
   imports: [
     BrowserModule,
     HttpModule,
     IonicModule.forRoot(MyApp),
+    
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -72,19 +91,26 @@ import {Geolocation} from '@ionic-native/geolocation'
     MapPage,
     MyChallengesPage,
     GymLeaderboardPage,
-    ProfileSettingsPage,
-    UserLeaderboardPage
+    UserLeaderboardPage,
+    AddresultPage,
+    BadassPage,
+    SendChallengePage
   ],
   providers: [
     StatusBar,
     SplashScreen,
+    YoutubeVideoPlayer,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     AuthService,
     CoordService,
     HashService,
     OpenGymDataService,
     BackendService,
-    Geolocation
+    Geolocation,
+    ObjectManager,
+    MediaCapture
+    //Camera
+
   ]
 })
 export class AppModule {}
