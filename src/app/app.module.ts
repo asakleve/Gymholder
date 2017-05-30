@@ -19,6 +19,10 @@ import { Camera } from '@ionic-native/camera';
 import { YoutubeVideoPlayer } from '@ionic-native/youtube-video-player';
 import { VideoPlayer} from '@ionic-native/video-player';
 
+//import { Camera } from '@ionic-native/camera';
+import {Geolocation} from '@ionic-native/geolocation';
+
+
 import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
 import { ProfilePage } from '../pages/profile/profile';
@@ -39,6 +43,7 @@ import { GymLeaderboardPage } from '../pages/gym-leaderboard/gym-leaderboard';
 import { UserLeaderboardPage } from '../pages/user-leaderboard/user-leaderboard';
 import { BadassPage } from '../pages/badass/badass';
 import { SendChallengePage } from '../pages/send-challenge/send-challenge';
+
 
 
 
@@ -105,11 +110,14 @@ import { SendChallengePage } from '../pages/send-challenge/send-challenge';
     HashService,
     OpenGymDataService,
     BackendService,
+    Geolocation,
     ObjectManager,
     MediaCapture,
     Camera,
     VideoPlayer,
     YoutubeVideoPlayer
+
+
   ]
 })
 export class AppModule {}
