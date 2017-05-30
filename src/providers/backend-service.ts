@@ -101,8 +101,9 @@ export class BackendService {
     console.log('Hello BackendService Provider');
 
     this.apibackend = "/backend";
-    this.apiuser = "/user";
-
+    //this.apibackend = "http://gymholder.herokuapp.com";
+    //this.apiuser = "http://gymholder.herokuapp.com/user";
+    this.apiuser = '/user';
     this.headers = new Headers();
     this.headers.append('Authentication', '0oXxWXkLknkhDa2JWZWF');
     this.headers.append('Accept', 'application/json');
@@ -307,6 +308,21 @@ export class BackendService {
     return this.http.post(this.apibackend + '/result', body, { headers: this.headers })
       .map(res => res.json());
   }
+
+  public postResultVideo(id: number, picture:string){
+    let body = JSON.stringify({
+      "id": id,
+      "picture": picture
+    });
+    return this.http.post(this.apibackend + 'userpicture', body, { headers: this.headers})
+    .map(res => res.json());
+  } 
+
+  public getResultVideo(id: number){
+    return this.http.get(this.apibackend + '/getuserpicture' + id ,{headers: this.headers})
+    .map(res=> res.json());
+  }
+  //inte helt klar, ovan
 
   public putResult(id: number, userid: number, gymid: number, sportid: number, value: number) {
     let body = JSON.stringify({

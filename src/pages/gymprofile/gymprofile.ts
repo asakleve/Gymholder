@@ -6,7 +6,7 @@ import { BackendService } from '../../providers/backend-service';
 import { AuthService } from '../../providers/auth-service';
 import { AddresultPage } from '../addresult/addresult';
 import { BadassPage } from '../badass/badass';
-import { MediaCapture, MediaFile, CaptureError, CaptureImageOptions } from '@ionic-native/media-capture';
+//import { MediaCapture, MediaFile, CaptureError, CaptureImageOptions } from '@ionic-native/media-capture';
 
 /**
  * Generated class for the Gymprofile page.
@@ -33,7 +33,7 @@ export class GymprofilePage {
   weathercat: any;
   allsports: any;
 
-  constructor(private authService: AuthService, public navCtrl: NavController, public navParams: NavParams, private openGymData: OpenGymDataService, private backendService: BackendService, private mediaCapture: MediaCapture) {
+  constructor(private authService: AuthService, public navCtrl: NavController, public navParams: NavParams, private openGymData: OpenGymDataService, private backendService: BackendService) {
 
     this.pcat = {
       0 : "No precipitation",
@@ -86,11 +86,11 @@ export class GymprofilePage {
     console.log('ionViewDidLoad Gymprofile');
   }
 
-  startRecording(options) {
-    this.mediaCapture.captureVideo((videodata) => {
-      alert(JSON.stringify(videodata));
-     })
-  }
+  // startRecording(options) {
+  //   this.mediaCapture.captureVideo((videodata) => {
+  //     alert(JSON.stringify(videodata));
+  //    })
+  // }
 
   openLeaderBoard() {
   	this.navCtrl.push(GymLeaderboardPage, { opengymid: this.opengymid, gymid: this.gymid, sports: this.allsports });

@@ -14,9 +14,10 @@ import { HttpModule } from '@angular/http';
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
-import { MediaCapture} from '@ionic-native/media-capture';
+import { MediaCapture } from '@ionic-native/media-capture';
+import { Camera } from '@ionic-native/camera';
 import { YoutubeVideoPlayer } from '@ionic-native/youtube-video-player';
-//import { Camera } from '@ionic-native/camera';
+import { VideoPlayer} from '@ionic-native/video-player';
 
 import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
@@ -64,6 +65,7 @@ import { SendChallengePage } from '../pages/send-challenge/send-challenge';
     BadassPage,
     Youtube,
     SendChallengePage
+    //VideoPlayer
 
 
   ],
@@ -97,7 +99,6 @@ import { SendChallengePage } from '../pages/send-challenge/send-challenge';
   providers: [
     StatusBar,
     SplashScreen,
-    YoutubeVideoPlayer,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     AuthService,
     CoordService,
@@ -105,8 +106,10 @@ import { SendChallengePage } from '../pages/send-challenge/send-challenge';
     OpenGymDataService,
     BackendService,
     ObjectManager,
-    MediaCapture
-    //Camera
+    MediaCapture,
+    Camera,
+    VideoPlayer,
+    YoutubeVideoPlayer
   ]
 })
 export class AppModule {}

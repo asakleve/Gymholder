@@ -82,33 +82,21 @@ export class EventLeaderboardPage {
         return parseFloat(a.reps) - parseFloat(b.reps);
       });
     }
-      //Ovan funkar inte eftersom namnen på grenarna inte skrivs i API, kollen blir alltså mot siffror istället = knasigt//
    
     engage(){
-      
-      this.sports.push("Classic Push Ups");
-      this.sports.push("Wide Grip Push Ups");
-      this.sports.push("Close Grip Push Ups");
-      this.sports.push("Sit Ups");
-      this.sports.push("Chin Ups");
-      this.sports.push("Pull Ups");
-      this.sports.push("One Arm Pull Ups");
-      this.sports.push("Toe To Bar");
-      this.sports.push("Toe Touch");
-      this.sports.push("Squats");
-      this.sports.push("Jumping Squats");
-      this.sports.push("Wall Squats");
-      this.sports.push("Hanging Dips");
-      this.sports.push("Box Jumps");
-      this.sports.push("Pistol Squats");
-
+         this.backendService.getAllSports()
+      .subscribe(data => {
+        for(let s of data) {
+          this.sports.push(s.name);
+        }
+      });
 
       this.results=[];
       //this.sports=[];
       this.backendService.getAllResults()
       .subscribe(data=>{
         this.results=data;
-       // this.sports=data.sport;
+     
       });
     }
 }
