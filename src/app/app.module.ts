@@ -11,7 +11,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { ErrorHandler, NgModule } from '@angular/core';
 import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
 import { HttpModule } from '@angular/http';
-
+import { Facebook, FacebookLoginResponse } from '@ionic-native/facebook';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { MediaCapture } from '@ionic-native/media-capture';
@@ -78,7 +78,7 @@ import { SendChallengePage } from '../pages/send-challenge/send-challenge';
     BrowserModule,
     HttpModule,
     IonicModule.forRoot(MyApp),
-    
+
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -112,11 +112,11 @@ import { SendChallengePage } from '../pages/send-challenge/send-challenge';
     BackendService,
     Geolocation,
     ObjectManager,
+    Facebook,
     MediaCapture,
     Camera,
     VideoPlayer,
     YoutubeVideoPlayer
-
 
   ]
 })
