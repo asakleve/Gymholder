@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams,LoadingController } from 'ionic-angular';
 import { AlertController } from 'ionic-angular';
 import { BackendService } from '../../providers/backend-service';
+import { ProfilePage } from '../profile/profile';
 
 
 
@@ -19,6 +20,7 @@ export class EventLeaderboardPage {
   displayResults: any[];
   testResult: any;
   user: any;
+  id;
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public alertCtrl: AlertController, private backendService: BackendService, public loadingCtrl: LoadingController) {
     this.sports = [];
@@ -87,7 +89,7 @@ export class EventLeaderboardPage {
          this.backendService.getAllSports()
       .subscribe(data => {
         for(let s of data) {
-          this.sports.push(s.name);
+          this.sports.push(s.sportName);
         }
       });
 
@@ -99,4 +101,15 @@ export class EventLeaderboardPage {
      
       });
     }
+     openProfile(username: string){
+      
+      this.backendService.getUserByUsername(username)
+      .subscribe(data=>{
+        this.id = data.id;
+      })
+
+      console.log("this is from leaderbard" + this.id);
+    this.navCtrl.push(ProfilePage, { userid: this.id });
+  }
+
 }

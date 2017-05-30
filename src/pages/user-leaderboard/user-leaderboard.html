@@ -11,7 +11,12 @@
 </ion-header>
 
 <ion-content padding>
-  <button ion-button block color="green" (click)="showRadio()">Select exercise</button>
+<ion-content padding>
+  <ion-card>
+      <img src="assets/img/leader.jpg" />
+      </ion-card>
+
+  <button ion-button block class="button-layout" (click)="showRadio()">Select exercise</button>
     <h5>Displaying results for {{selectedSport}}</h5>
     <p>{{video}}</p>
     <ion-list>

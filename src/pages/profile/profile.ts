@@ -45,7 +45,7 @@ export class ProfilePage {
     // Hämtar User-objektinstansen från authService, innehållande
     // data för den aktiva användaren.
     this.activeUser = this.authService.getUser();
-    if(this.navParams.get('userid') != null) {
+    if(this.navParams.get('userid') != null ) {
       this.profileId = this.navParams.get('userid');
     } else {
       this.profileId = this.activeUser.userid;

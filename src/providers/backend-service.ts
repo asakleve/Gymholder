@@ -187,6 +187,11 @@ export class BackendService {
       .map(res => res.json());
   }
 
+  public getUserByUsername(username : string) {
+   return this.http.get(this.apibackend + '/userbyusername/' + username , { headers: this.headers })
+    .map(res => res.json());
+  }
+
 
 
   ////////////////////////////////////////////////////////////////////////

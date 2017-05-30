@@ -19,9 +19,9 @@ page-gymprofile {
 		float: left;
 
 		.image {
-			position: absolute;
-			top: 0px;
-			left: 0px;
+			//position: absolute;
+			//top: 0px;
+			//left: 0px;
 			height: 211px;
 			width: 100%;
 			overflow: hidden;
@@ -36,9 +36,9 @@ page-gymprofile {
 		.cardHeader {
 			position: absolute;
 			top: 165px;
-			left: -3px;
+			//left: -3px;
 			width: 100%;
-			height: 46px;
+			//height: 46px;
 			background: linear-gradient(to right, #000, rgba(0,0,0,0));
 		}
 	}
@@ -59,28 +59,33 @@ page-gymprofile {
 	}
 
 	.bCard {
-		position: relative;
+		//position: relative;
 		float: left;
 		//width: 100%;
-		margin: 0px;
-		margin-left: 10px;
-		padding: 0px;
-		text-align: left;
-		background-color: #000;
+		//margin: 0px;
+		//margin-left: 10px;
+		//padding: 0px;
+		//text-align: left;
+		//background-color: #000;
+		margin-right: 10px;
+
+		.button-ios {
+		  margin: 0;
+		}
 	}
 
 	.card-title {
-		position: relative;
-		float: left;
-		padding: 10px;
-		background: linear-gradient(to right, #000, rgba(0,0,0,0.7), rgba(0,0,0,0));
-		clear: right;
+		//position: relative;
+		//float: left;
+		//padding: 10px;
+		//background: linear-gradient(to right, #000, rgba(0,0,0,0.7), rgba(0,0,0,0));
+		//clear: right;
 
 		color: #fff;
 		font-family: Arial;
 		font-size: 1.4em;
-		font-weight: normal;
-		background-color: inherit;
+		//font-weight: normal;
+		//background-color: inherit;
 		// font-variant: small-caps;
 	}
 

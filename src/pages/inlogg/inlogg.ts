@@ -4,6 +4,7 @@ import { HomePage } from '../home/home';
 import { AuthService } from '../../providers/auth-service';
 import { RegisterPage } from '../register/register';
 import { Facebook } from '@ionic-native/facebook';
+import { NativeStorage } from '@ionic-native/native-storage';
 
 @Component({
   selector: 'page-inlogg',
@@ -15,7 +16,8 @@ export class InloggPage {
     FB_APP_ID: number = 1575498892474159;
 
 
-  constructor(public nav: NavController, public menu: MenuController, private auth: AuthService, private alertCtrl: AlertController, private loadingCtrl: LoadingController, private facebook: Facebook) {
+  constructor(public nav: NavController, public menu: MenuController, private auth: AuthService, private alertCtrl: AlertController, private loadingCtrl: LoadingController, 
+    private facebook: Facebook, private nativeStorage: NativeStorage) {
     this.facebook.browserInit(this.FB_APP_ID, "v.28");
     this.menu.enable(false);
   }
@@ -64,6 +66,42 @@ export class InloggPage {
   dummyLogin(){
     this.nav.setRoot(HomePage);
   }
+
+  doFB(){
+
+    let permissions = new Array<string>();
+    let nav = this.nav;
+    //the permissions your facebook app needs from the user
+    permissions = ["public_profile"];
+
+
+    this.facebook.login(permissions)
+    .then(function(response){
+      let userId = response.authResponse.userID;
+      let params = new Array<string>();
+
+      //Getting name and gender properties
+      this.facebook.api("/me?fields=name,gender", params)
+      .then(function(user) {
+        user.picture = "https://graph.facebook.com/" + userId + "/picture?type=large";
+        //now we have the users info, let's save it in the NativeStorage
+        this.nativeStorage.setItem('user',
+        {
+          name: user.name,
+          gender: user.gender,
+          picture: user.picture
+        })
+        .then(function(){
+          nav.push(HomePage);
+        }, function (error) {
+          console.log(error);
+        })
+      })
+    }, function(error){
+      console.log(error);
+    });
+  }
+  
 
 
 }

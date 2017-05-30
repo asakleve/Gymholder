@@ -15,10 +15,14 @@ import { AuthService } from '../../providers/auth-service';
 })
 export class RegisterPage {
   createSuccess = false;
-  registerCredentials = { email: '', username: '', age: '', password: '' };
+  registerCredentials ;
 
   constructor(private nav: NavController, private auth: AuthService, private alertCtrl: AlertController, public navParams: NavParams) {
-
+    this.registerCredentials = { email: '', username: '', age: '', password: '' };   
+    // if (this.navParams.get(credentials == !null) {
+    //   this.registerCredentials = credentials;
+    //   this.register();
+    // })
   }
 
   ionViewDidLoad() {

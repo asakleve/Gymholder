@@ -12,6 +12,7 @@ import { ErrorHandler, NgModule } from '@angular/core';
 import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
 import { HttpModule } from '@angular/http';
 import { Facebook, FacebookLoginResponse } from '@ionic-native/facebook';
+import { NativeStorage } from '@ionic-native/native-storage';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { MediaCapture } from '@ionic-native/media-capture';
@@ -116,7 +117,8 @@ import { SendChallengePage } from '../pages/send-challenge/send-challenge';
     MediaCapture,
     Camera,
     VideoPlayer,
-    YoutubeVideoPlayer
+    YoutubeVideoPlayer,
+    NativeStorage
 
   ]
 })

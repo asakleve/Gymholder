@@ -14,7 +14,11 @@
 
 
 <ion-content padding>
-  <button ion-button block color="green" (click)="showRadio()">Select exercise</button>
+  <ion-card>
+      <img src="assets/img/leaderBoard.jpg" />
+      </ion-card>
+
+  <button ion-button block class="button-layout" (click)="showRadio()">Select exercise</button>
   <h5 class="leaderboard-title">Displaying results for {{selectedSport}}</h5>
   <ion-list>
     <ion-item class="result" *ngFor="let d of displayResults">{{d.username}} {{d.sport}} {{d.value}}</ion-item>
