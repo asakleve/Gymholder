@@ -2,8 +2,10 @@ import { Component, ViewChild } from '@angular/core';
 import { Nav, Platform } from 'ionic-angular';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
+import { YoutubeVideoPlayer } from '@ionic-native/youtube-video-player';
 
 import { AuthService } from '../providers/auth-service';
+import { BackendService } from '../providers/backend-service';
 
 import { HomePage } from '../pages/home/home';
 import { ProfilePage } from '../pages/profile/profile';
@@ -17,13 +19,11 @@ import { MessagesPage } from '../pages/messages/messages';
 import { GymprofilePage } from '../pages/gymprofile/gymprofile';
 import { EventLeaderboardPage } from '../pages/eventLeaderboard/eventLeaderboard';
 import { MapPage } from '../pages/map/map';
-import { SettingPopOverPage } from '../pages/setting-pop-over/setting-pop-over';
-import { KontoSettingsPage } from '../pages/konto-settings/konto-settings';
 import { MyChallengesPage } from '../pages/my-challenges/my-challenges';
 import { GymLeaderboardPage } from '../pages/gym-leaderboard/gym-leaderboard';
-import { ProfileSettingsPage } from '../pages/profile-settings/profile-settings';
 import { UserLeaderboardPage } from '../pages/user-leaderboard/user-leaderboard';
-
+import { BadassPage } from '../pages/badass/badass';
+import { SendChallengePage } from '../pages/send-challenge/send-challenge';
 
 @Component({
   templateUrl: 'app.html'
@@ -36,7 +36,7 @@ export class MyApp {
 
   pages: Array<{title: string, component: any}>;
 
-  constructor(authService: AuthService, public platform: Platform, public statusBar: StatusBar, public splashScreen: SplashScreen) {
+  constructor(authService: AuthService, public backendService: BackendService, public platform: Platform, public statusBar: StatusBar, public splashScreen: SplashScreen) {
     this.initializeApp();
     this.authService = authService;
 
@@ -56,6 +56,7 @@ export class MyApp {
     this.platform.ready().then(() => {
       // Okay, so the platform is ready and our plugins are available.
       // Here you can do any higher level native things you might need.
+      this.backendService.loadAllGyms();
       this.statusBar.styleDefault();
       this.splashScreen.hide();
     });

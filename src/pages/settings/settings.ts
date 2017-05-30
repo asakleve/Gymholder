@@ -5,6 +5,9 @@ import { SettingPopOverPage } from '../setting-pop-over/setting-pop-over';
 import { Platform, ActionSheetController } from 'ionic-angular';
 import { KontoSettingsPage } from '../konto-settings/konto-settings';
 import { ProfileSettingsPage } from '../profile-settings/profile-settings';
+import { InloggPage } from '../inlogg/inlogg';
+
+import { AuthService } from '../../providers/auth-service';
 
 /**
  * Generated class for the Settings page.
@@ -21,33 +24,23 @@ import { ProfileSettingsPage } from '../profile-settings/profile-settings';
 })
 export class SettingsPage {
 
-public event = {
-  month: '1990-03-22',
-  timeStarts: '07:43',
-  timeEnds: '1990-03-23'
-}
+
   item;
-  constructor(
-  public navCtrl: NavController,
-  public navParams: NavParams,
-  public platform: Platform,
-  public actionsheetCtrl: ActionSheetController,
-  ) {
+  event;
+
+  constructor(public auth: AuthService, public navCtrl: NavController, public navParams: NavParams, public platform: Platform, public actionsheetCtrl: ActionSheetController,
+    ) {
+
+  this.event = {
+    month: '1990-03-22',
+    timeStarts: '07:43',
+    timeEnds: '1990-03-23'
   }
 
-
-
+  }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad Settings');
-  }
-
-  klickaklick(){
-  this.navCtrl.push('SettingPopOverPage');
-  }
-
-  popOverToKontoPage(){
-  this.navCtrl.push('KontoSettingsPage');
   }
 
   openMenu() {
@@ -61,6 +54,8 @@ public event = {
             icon: !this.platform.is('ios') ? 'trash' : null,
             handler: () => {
               console.log('Log out clicked');
+              this.auth.logout();
+              this.navCtrl.setRoot(InloggPage);
             }
           },
           {
@@ -75,9 +70,4 @@ public event = {
       });
       actionSheet.present();
     }
-
-  openProfileSettings(){
-  this.navCtrl.push(ProfileSettingsPage);
-  }
-
 }

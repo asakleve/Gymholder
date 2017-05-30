@@ -13,7 +13,6 @@
 
 <ion-content>
 
-
   <div class="cardLayout">
 
     <div class="headerImage">
@@ -52,13 +51,17 @@
     <!-- <ion-icon name="trophy"></ion-icon> //-->
   <div class="cardLayout">
     <div class="localMenu">
-      <button ion-button>
-        <ion-icon name="flash"></ion-icon>
-        BADASS
-      </button>
-      <button ion-button>
+     <!--  <button ion-button on-click="openAddResult()">
         <ion-icon name="add"></ion-icon>
         Add Result
+      </button> -->
+      <button ion-button on-click="startRecording()">
+        <ion-icon name="add"></ion-icon>
+        Add Result
+      </button> 
+      <button ion-button on-click="openBadass()">
+        <ion-icon name="flash"></ion-icon>
+        BADASS
       </button>
       <button ion-button on-click="openLeaderBoard()">
         <ion-icon name="globe"></ion-icon>

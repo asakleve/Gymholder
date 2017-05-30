@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { BackendService } from '../../providers/backend-service';
+import { AuthService } from '../../providers/auth-service';
 
 /**
  * Generated class for the MyChallenges page.
@@ -15,12 +17,32 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 })
 export class MyChallengesPage {
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+	challenges:any [];
+  pendingChallenges: any [];
+  completeChallenges: any [];
+	userid: any;
+  user: any;
+
+  constructor(public navCtrl: NavController, public navParams: NavParams, public backendService: BackendService, public authService: AuthService) {
+ 	this.user = this.authService.getUser();
+  this.userid = this.user.userid;
+  this.getChallenges(this.userid);
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad MyChallenges');
   }
 
+
+  getChallenges(userid){
+
+    this.pendingChallenges =[];
+
+    console.log('Här är challenges '+ this.userid);
+  	this.backendService.getChallenges(userid)
+  	.subscribe(data => {
+      this.pendingChallenges = (data);
+  });
+  }
 
 }

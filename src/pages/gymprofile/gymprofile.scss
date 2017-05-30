@@ -46,6 +46,8 @@ page-gymprofile {
 	.localMenu{
 		text-align: center;
 		position: relative;
+		padding: 0 40px 0;
+
 		button {
 			align: center;
 			position: relative;
@@ -82,11 +84,7 @@ page-gymprofile {
 		// font-variant: small-caps;
 	}
 
-	.weatherdata {
-		position: relative;
-		float: left;
-		margin-right: 10px;
-	}
+
 
 	.titel {
 		position: inherit;

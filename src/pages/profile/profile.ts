@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, ToastController, AlertController } from 'ionic-angular';
 import { UserLeaderboardPage } from '../user-leaderboard/user-leaderboard';
+import { SendChallengePage } from '../send-challenge/send-challenge';
 
 // Här sker import av våra providers
 import { BackendService } from '../../providers/backend-service';
@@ -20,13 +21,20 @@ import { AuthService } from '../../providers/auth-service';
 export class ProfilePage {
 
   // Tas bort när inloggning är färdigimplementerad.
-  devUserId = 18;
+  // devUserId = 18;
 
   // Denna variabel håller aktiv användare
   activeUser: any;
+  viewingUserid: any;
   testRadioOpen;
   testRadioResult;
+  profileOwner: any;
+  profileId: any;
+  radioResult;
   messageA;
+  challangeName;
+  userid: any;
+
 
   // public authService: AuthService & public backendService: BackendService
   // laddar in AuthService ur importen och gör dessa tillgängliga för åtkomst
@@ -37,12 +45,20 @@ export class ProfilePage {
     // Hämtar User-objektinstansen från authService, innehållande
     // data för den aktiva användaren.
     this.activeUser = this.authService.getUser();
+    if(this.navParams.get('userid') != null) {
+      this.profileId = this.navParams.get('userid');
+    } else {
+      this.profileId = this.activeUser.userid;
+    }
+    console.log("This is the navparam userid: " + this.navParams.get('userid'));
 
     // Hämtar en användare från databasen baserat på @devUserId
     // @param devUserId : variabel för att hålla användarid för
     // en aktiv användare medan utveckling pågår och inloggning
     // ännu ej är färdig.
-    this.loadUserData(this.devUserId);
+
+    this.loadUserData(this.profileId);
+
   }
 
   // Metod som laddar användardata från backendService. Som argument
@@ -56,10 +72,11 @@ export class ProfilePage {
   // från api tar tid att färdigställas, och koden annars inte väntar
   // på att läsningen ska köras klart.
   loadUserData(userid: number) {
-    this.activeUser = this.backendService.getUser(userid)
+   this.backendService.getUser(userid)
     .subscribe(data => {
-      this.activeUser = data;
+      this.profileOwner = data;
     });
+
   }
 
   ionViewDidLoad() {
@@ -67,35 +84,22 @@ export class ProfilePage {
     console.log('ionViewDidLoad Profile');
   }
 
-  openUserLeaderboard(){
-    this.navCtrl.push(UserLeaderboardPage);
+
+  openUserLeaderboard(profileOwner){
+    console.log(profileOwner);
+    this.navCtrl.push(UserLeaderboardPage, { userid: profileOwner });
   }
 
-  showRadio() {
-    let alert = this.alertCtrl.create();
-
-    alert.setTitle('Event');
-    alert.addInput({type: 'radio', label: 'Chins', value: 'chins'});
-    alert.addInput({type: 'radio', label: 'Dips', value: 'dips'})
-    alert.addInput({type: 'radio', label: 'Box Jump', value: 'boxJump'})
-    alert.addInput({type: 'radio', label: 'Sit Ups', value: 'sitUps'})
-    alert.addInput({type: 'radio', label: 'Chins', value: 'chins'})
-    alert.addInput({type: 'radio', label: 'Chins', value: 'chins'})
-    alert.addInput({type: 'radio', label: 'Chins', value: 'chins'})
-    alert.addInput({type: 'radio', label: 'Chins', value: 'chins'})
-    alert.addInput({type: 'radio', label: 'Chins', value: 'chins'})
-    alert.addInput({type: 'radio', label: 'Blue', value: 'blue', checked: false});
-    alert.addButton('Cancel');
-    alert.addButton({
-      text: 'OK',
-      handler: data => {
-        this.testRadioOpen = false;
-        this.testRadioResult = data;
-        this.showAlert();
-        }
-      });
-    alert.present();
+  sendChallange(){
+    this.navCtrl.push(SendChallengePage);
   }
+
+
+
+//   addFriend(){
+//     this.backendService.postFriend(activeUser,userToAdd);
+// //userToAdd finns inte
+//   }
 
 
   presentToast() {
@@ -106,13 +110,13 @@ export class ProfilePage {
     toast.present();
   }
 
-  userChallengedFirstToast() {
-    let toast = this.toastCtrl.create({
-      message: 'You have challenged Jackie',
-      duration: 3000
-    });
-    toast.present();
-  }
+  // userChallengedFirstToast() {
+  //   let toast = this.toastCtrl.create({
+  //     message: 'You have challenged Jackie',
+  //     duration: 3000
+  //   });
+  //   toast.present();
+  // }
 
   messageSentToast() {
     let toast = this.toastCtrl.create({
@@ -122,14 +126,16 @@ export class ProfilePage {
     toast.present();
   }
 
+
    showAlert() {
     let alert = this.alertCtrl.create({
       title: 'Challenge sent!',
-      subTitle: 'You have challenged Jackie in chins, she has seven days to accept the challenge',
+      subTitle: 'Your challange:' + this.challangeName + ' where you challenge ' + this.profileOwner.username + ' in '+ this.radioResult + ' has been sent. She has seven days to accept the challenge',
       buttons: ['Cancel' , 'OK']
     });
     alert.present();
   }
+
   showPrompt() {
     let prompt = this.alertCtrl.create({
       title: 'Send Message',

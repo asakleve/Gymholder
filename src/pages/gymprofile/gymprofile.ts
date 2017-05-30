@@ -1,9 +1,12 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, PopoverController } from 'ionic-angular';
 import { GymLeaderboardPage } from '../gym-leaderboard/gym-leaderboard';
 import { OpenGymDataService } from '../../providers/open-gym-data-service';
 import { BackendService } from '../../providers/backend-service';
 import { AuthService } from '../../providers/auth-service';
+import { AddresultPage } from '../addresult/addresult';
+import { BadassPage } from '../badass/badass';
+import { MediaCapture, MediaFile, CaptureError, CaptureImageOptions } from '@ionic-native/media-capture';
 
 /**
  * Generated class for the Gymprofile page.
@@ -11,7 +14,7 @@ import { AuthService } from '../../providers/auth-service';
  * See http://ionicframework.com/docs/components/#navigation for more info
  * on Ionic pages and navigation.
  */
-@IonicPage() 
+@IonicPage()
 @Component({
   selector: 'page-gymprofile',
   templateUrl: 'gymprofile.html',
@@ -19,45 +22,64 @@ import { AuthService } from '../../providers/auth-service';
 export class GymprofilePage {
 
   activeUser: any;
+  activeGym: any;
   coordinates: any;
   gymData: any;
-  gymid: string;
+  opengymid: string;
+  gymid: number;
   gymImageId: string;
   time: any;
+  pcat: any;
+  weathercat: any;
+  allsports: any;
 
-  pcat = {
-    0 : "No precipitation",
-    1 :	"Snow",
-    2 :	"Snow and rain",
-    3	: "Rain",
-    4	: "Drizzle",
-    5 :	"Freezing rain",
-    6 :	"Freezing drizzle"
-  };
+  constructor(private authService: AuthService, public navCtrl: NavController, public navParams: NavParams, private openGymData: OpenGymDataService, private backendService: BackendService, private mediaCapture: MediaCapture) {
 
-  weathercat = {
-    1	: "Clear sky",
-    2	: "Nearly clear sky",
-    3	: "Variable cloudiness",
-    4	: "Halfclear sky",
-    5	: "Cloudy sky",
-    6	: "Overcast",
-    7	: "Fog",
-    8	: "Rain showers",
-    9	: "Thunderstorm",
-    10 : "Light sleet",
-    11 : "Snow showers",
-    12 : "Rain",
-    13 : "Thunder",
-    14 : "Sleet",
-    15 : "Snowfall"
-  };
+    this.pcat = {
+      0 : "No precipitation",
+      1 :	"Snow",
+      2 :	"Snow and rain",
+      3	: "Rain",
+      4	: "Drizzle",
+      5 :	"Freezing rain",
+      6 :	"Freezing drizzle"
+    };
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, private openGymData: OpenGymDataService, private backendService: BackendService) {
+    this.weathercat = {
+      1	: "Clear sky",
+      2	: "Nearly clear sky",
+      3	: "Variable cloudiness",
+      4	: "Halfclear sky",
+      5	: "Cloudy sky",
+      6	: "Overcast",
+      7	: "Fog",
+      8	: "Rain showers",
+      9	: "Thunderstorm",
+      10 : "Light sleet",
+      11 : "Snow showers",
+      12 : "Rain",
+      13 : "Thunder",
+      14 : "Sleet",
+      15 : "Snowfall"
+    }
+
+    this.backendService.getAllSports()
+      .subscribe(data => {
+        this.allsports = data;
+      });
+
+
     this.time = new Date().getHours();
-    this.gymid = this.navParams.get('id');
-    this.activeUser = this.navParams.get('user');
-    this.coordinates = this.navParams.get('coordinates');
+    this.opengymid = this.navParams.get('openid');
+
+    this.backendService.getGymByOpenId(this.opengymid)
+      .subscribe(data => {
+        console.log(JSON.stringify(data));
+        this.gymid = data.id;
+      });
+
+    this.activeUser = this.authService.getUser();
+    this.activeGym = this.navParams.get('gym');
     this.loadGymDetails();
   }
 
@@ -65,16 +87,34 @@ export class GymprofilePage {
     console.log('ionViewDidLoad Gymprofile');
   }
 
-  openLeaderBoard() {
-  	this.navCtrl.push(GymLeaderboardPage,{gymid:this.gymid});
+  startRecording(options) {
+    this.mediaCapture.captureVideo((videodata) => {
+      alert(JSON.stringify(videodata));
+     })
+  }
 
+  openLeaderBoard() {
+<<<<<<< HEAD
+  	this.navCtrl.push(GymLeaderboardPage,{gymid:this.gymid});
+=======
+  	this.navCtrl.push(GymLeaderboardPage, { opengymid: this.opengymid, gymid: this.gymid, sports: this.allsports });
+  }
+
+  openAddResult() {
+    console.log(JSON.stringify(this.allsports));
+    this.navCtrl.push(AddresultPage, { opengymid: this.opengymid, opengymData: this.gymData, sports: this.allsports, userid: this.activeUser.userid });
+  }
+>>>>>>> eb3bee4b38c8c449cf7ee776c09ca6dd38aa96ae
+
+  openBadass() {
+    this.navCtrl.push(BadassPage, { opengymData: this.gymData });
   }
 
   getForecast() {
-    this.openGymData.getForecast(Math.round(this.coordinates.lon * 1000)/1000, Math.round(this.coordinates.lat * 1000)/1000)
+    this.openGymData.getForecast(Math.round(this.activeGym.position.lon * 1000)/1000, Math.round(this.activeGym.position.lat * 1000)/1000)
     .subscribe(data => {
       this.gymData.forecast = data.timeSeries[6].parameters;
-      console.log(this.gymData.forecast);
+      console.log(JSON.stringify(this.gymData.forecast));
       this.gymData.forecast.temperature = this.gymData.forecast[1].values[0];
       this.gymData.forecast.windspeed = this.gymData.forecast[4].values[0];
       this.gymData.forecast.thunderprob = this.gymData.forecast[6].values[0];
@@ -87,14 +127,14 @@ export class GymprofilePage {
     this.backendService.getGymResults(this.gymid)
     .subscribe(data => {
       this.gymData.results = data;
-      console.log(this.gymData.results);
+      // console.log(this.gymData.results);
       // this.gymData.gymholder = this.gymData.results[0];
       // this.gymData.gymholder = MyApp.authService.getUser();
     });
   }
 
   loadGymDetails() {
-    this.openGymData.loadGymDetails(this.gymid)
+    this.openGymData.loadGymDetails(this.opengymid)
     .subscribe(data => {
       this.gymData = data;
       this.loadGymImage();

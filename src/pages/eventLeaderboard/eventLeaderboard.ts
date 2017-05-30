@@ -86,14 +86,22 @@ export class EventLeaderboardPage {
    
     engage(){
       
-      this.sports.push("Chins");
-      this.sports.push("Dips");
-      this.sports.push("Boxjump");
-      this.sports.push("Knäböj");
-      this.sports.push("Axelpress");
-      this.sports.push("Marklyft");
-      this.sports.push("Situps");
-      this.sports.push("Bänkpress");
+      this.sports.push("Classic Push Ups");
+      this.sports.push("Wide Grip Push Ups");
+      this.sports.push("Close Grip Push Ups");
+      this.sports.push("Sit Ups");
+      this.sports.push("Chin Ups");
+      this.sports.push("Pull Ups");
+      this.sports.push("One Arm Pull Ups");
+      this.sports.push("Toe To Bar");
+      this.sports.push("Toe Touch");
+      this.sports.push("Squats");
+      this.sports.push("Jumping Squats");
+      this.sports.push("Wall Squats");
+      this.sports.push("Hanging Dips");
+      this.sports.push("Box Jumps");
+      this.sports.push("Pistol Squats");
+
 
       this.results=[];
       //this.sports=[];

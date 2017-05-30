@@ -1,0 +1,102 @@
+<ion-header>
+  <ion-navbar class = "navigationbar" color='navbarColor'>
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <button ion-button clear color ='navbarTextColor' class ="navButton">Gym<span class="another-color">holder</span></button>
+    <button ion-button clear icon-search>
+     	<ion-icon name="search" color='white'></ion-icon>
+	</button>
+  </ion-navbar>
+</ion-header>
+
+
+<ion-content class="card-background-page">
+
+<h3> BADASS Multiplier </h3>
+
+        <div class="card-title">{{ gymData?.Name }}</div>
+
+<ion-row> 
+
+<ion-col> 
+</ion-col>
+<ion-col> 
+<p class="huvud"> Category: </p>
+</ion-col>
+<ion-col> 
+<p class="huvud"> Value: </p>
+</ion-col>
+<ion-col> 
+<p class="huvud"> Bonus: </p>
+</ion-col>
+
+
+</ion-row>
+
+<ion-row> 
+	<ion-col class="ikon"> 
+		<ion-icon name="ios-thermometer-outline"></ion-icon>
+	</ion-col>
+	<ion-col> 
+		<br>
+				 Temp: 
+	</ion-col>
+	<ion-col class="third"> 
+		<br>
+				<div class="weatherdata"> {{ gymData?.forecast?.temperature }}  °C </div>
+	</ion-col>
+	<ion-col> 
+	 	<br>
+	 +  {{ tMult }}
+	</ion-col>
+</ion-row>
+
+<ion-row> 
+	<ion-col class="ikon"> 
+		        <ion-icon name="ios-rainy-outline"></ion-icon>
+	</ion-col>		
+	<ion-col> 
+	<br>
+				 Rain:  
+	</ion-col>
+	<ion-col class="third"> 
+	<br>
+
+				  <div class="weatherdata"> {{ gymData?.forecast?.precipitationcat }} m/m </div>
+	</ion-col>
+	<ion-col class="third"> 
+	<br>
+	 + {{ pMult }}
+	</ion-col>
+</ion-row>
+
+
+<ion-row> 
+	<ion-col class="ikon"> 
+		        <ion-icon name="ios-speedometer-outline"></ion-icon>
+	</ion-col>
+	<ion-col> 
+	<br>
+	
+				 Wind: 
+	</ion-col>
+	<ion-col class="third">
+	<br> 
+				  <div class="weatherdata"> {{ gymData?.forecast?.windspeed }} m/s </div>
+
+	</ion-col>
+	<ion-col> 
+	<br>
+		 + {{ wMult }}
+	</ion-col>
+</ion-row>
+
+
+<div class="base"> Base Multiplier:  &nbsp; + 75 </div>
+<div class="huvudscore"> Your Score x  {{ badassMult }}
+</div>
+	<button ion-button class="knapp" on-click="showAlert();"> How does the scoring system work? </button>
+
+
+</ion-content>
