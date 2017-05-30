@@ -68,6 +68,7 @@ export class GymprofilePage {
         this.allsports = data;
       });
 
+
     this.time = new Date().getHours();
     this.opengymid = this.navParams.get('openid');
 
@@ -93,6 +94,9 @@ export class GymprofilePage {
   }
 
   openLeaderBoard() {
+<<<<<<< HEAD
+  	this.navCtrl.push(GymLeaderboardPage,{gymid:this.gymid});
+=======
   	this.navCtrl.push(GymLeaderboardPage, { opengymid: this.opengymid, gymid: this.gymid, sports: this.allsports });
   }
 
@@ -100,6 +104,7 @@ export class GymprofilePage {
     console.log(JSON.stringify(this.allsports));
     this.navCtrl.push(AddresultPage, { opengymid: this.opengymid, opengymData: this.gymData, sports: this.allsports, userid: this.activeUser.userid });
   }
+>>>>>>> eb3bee4b38c8c449cf7ee776c09ca6dd38aa96ae
 
   openBadass() {
     this.navCtrl.push(BadassPage, { opengymData: this.gymData });
