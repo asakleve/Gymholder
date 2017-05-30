@@ -3,6 +3,7 @@ import { NavController, MenuController, AlertController, LoadingController, Load
 import { HomePage } from '../home/home';
 import { AuthService } from '../../providers/auth-service';
 import { RegisterPage } from '../register/register';
+import { Facebook } from '@ionic-native/facebook';
 
 @Component({
   selector: 'page-inlogg',
@@ -11,10 +12,15 @@ import { RegisterPage } from '../register/register';
 export class InloggPage {
     loading :Loading;
     registerCredentials = { email: '', password: '' };
+    FB_APP_ID: number = 1575498892474159;
 
-  constructor(public nav: NavController, public menu: MenuController, private auth: AuthService, private alertCtrl: AlertController, private loadingCtrl: LoadingController) {
+
+  constructor(public nav: NavController, public menu: MenuController, private auth: AuthService, private alertCtrl: AlertController, private loadingCtrl: LoadingController, private facebook: Facebook) {
+    this.facebook.browserInit(this.FB_APP_ID, "v.28");
     this.menu.enable(false);
   }
+
+
 
   public createAccount() {
     this.nav.push('RegisterPage');
@@ -34,6 +40,7 @@ export class InloggPage {
         this.showError(error);
       });
   }
+
 
   showLoading() {
     this.loading = this.loadingCtrl.create({
