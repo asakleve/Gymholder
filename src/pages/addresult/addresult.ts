@@ -121,10 +121,9 @@ export class AddresultPage {
    startRecording(){
     this.mediaCapture.captureVideo((videodata)=>{
        alert(JSON.stringify(videodata));
-       this.backendService.postResultVideo(18,videodata);
+  
     });
    
-
   }
 
 //testfunktion
