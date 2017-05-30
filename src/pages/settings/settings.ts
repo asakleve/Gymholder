@@ -55,7 +55,7 @@ export class SettingsPage {
             handler: () => {
               console.log('Log out clicked');
               this.auth.logout();
-              this.navCtrl.setRoot('InloggPage');
+              this.navCtrl.setRoot(InloggPage);
             }
           },
           {
