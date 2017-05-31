@@ -9,39 +9,29 @@
 
 <ion-content padding class="card-background-page">
   <img src="assets/img/sendChallenge.jpg" />
-  <ion-list>
+  <form (ngSubmit)="doPrompt()" #challengeForm="ngForm">
+    <ion-list>
+      <ion-list-header>
+        Create Challange
+      </ion-list-header>
 
       <ion-item>
-        <ion-label>Exercise</ion-label>
-        <ion-select [(ngModel)]="os" submitText="Okay" cancelText="Nah">
-          <ion-option *ngFor="let sport of sports"> {{sport.name}} </ion-option>
-          <!-- <ion-option value="lunix">Wide Grip Push Ups</ion-option>
-          <ion-option value="mac7">Close Grip Push Ups</ion-option>
-          <ion-option value="mac8">Sit Ups</ion-option>
-          <ion-option value="win3.1">Chin Ups</ion-option>
-          <ion-option value="win95">Pull Ups</ion-option>
-          <ion-option value="win98">One Arm Pull Ups</ion-option>
-          <ion-option value="win99">Toe To Bar</ion-option>
-          <ion-option value="win00">Toe Touch</ion-option>
-          <ion-option value="win01">Squats</ion-option>
-          <ion-option value="win02">Jumping Squats</ion-option>
-          <ion-option value="win03">Wall Squats</ion-option>
-          <ion-option value="win04">Hanging Dips</ion-option>
-          <ion-option value="win05">Box Jumps</ion-option>
-          <ion-option value="win06">Pistol Squats</ion-option> -->
-
-        </ion-select>
+        <ion-input type="sport" placeholder="Exercise" name = "sport"[(ngModel)]="challengeCredentials.sport" required ></ion-input>
       </ion-item>
 
       <ion-item>
-        <ion-input type="text" placeholder="Type In Number Of Reps"></ion-input>
+        <ion-input type="reps" placeholder="Type In Number Of Reps" name ="reps" [(ngModel)]="challengeCredentials.reps" required ></ion-input>
       </ion-item>
 
+       <ion-item>
+        <ion-input type="message" placeholder="Put a Name On Your Challenge" name ="message" [(ngModel)]="challengeCredentials.message" required ></ion-input>
+      </ion-item>
+     
+      <div ion-content padding class="action-sheets-basic-page">
+        <button class="button-layout"  class="submit-btn" ion-button full type="submit" [disabled]="!challengeForm.form.valid">Send</button></div>
+
+
+     
     </ion-list>
-
-    <button ion-button class="button-layout" block (click)="doPrompt()">
-       <p>  Send </p>
-  </button>
-
-
+    </form>
 </ion-content>

@@ -3,6 +3,7 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { HomePage } from '../home/home';
 import { AlertController } from 'ionic-angular';
 import { BackendService } from '../../providers/backend-service';
+import { AuthService } from '../../providers/auth-service';
 
 /**
  * Generated class for the SendChallange page.
@@ -17,11 +18,19 @@ import { BackendService } from '../../providers/backend-service';
 })
 export class SendChallengePage {
   os: string;
-  sports: any[];
+  challengeCredentials;
+  activeUser;
+  profileOwnerId;
+  userid;
 
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, public alertCtrl: AlertController, private backendService: BackendService) {
-    this.engage();
+  constructor(public auth: AuthService, public navCtrl: NavController, public navParams: NavParams, public alertCtrl: AlertController, private backendService: BackendService) {
+    this.challengeCredentials={sender: '', receiver: '', sport:'', reps:'',message:''};
+    this.activeUser = this.auth.getUser;
+    this.profileOwnerId = this.navParams.get('userid');
+    this.challengeCredentials.sender = this.activeUser.userid;
+    this.challengeCredentials.receiver = this.profileOwnerId;
+   
  
   }
 
@@ -33,27 +42,11 @@ export class SendChallengePage {
   this.navCtrl.setRoot(HomePage);
 }
 
-  engage(){
-    // this.sports[];
-    
-    this.backendService.getAllSports()
-    .subscribe(data => {
-      for(let s of data) {
-        this.sports.push(s.name);
-        }
-      });
-  }
+
 
 doPrompt() {
   let prompt = this.alertCtrl.create({
     title: 'Awesome!',
-    message: "Now enter a name for this new challenge you're so keen on adding",
-    inputs: [
-      {
-        name: 'title',
-        placeholder: 'Title'
-      },
-    ],
     buttons: [
       {
         text: 'Cancel',
@@ -62,32 +55,36 @@ doPrompt() {
         }
       },
       {
-        text: 'Send',
+        text: 'Send Challenge',
         handler: data => {
           console.log('Saved clicked');
-          // this.backendService.postchallenge(sender:activeUser.id, receiver: userid, sport: )
-          // .subscribe(data=>{
-          //    if (data==true){
-          //      this.showAlert();
-          //     }
-          //  }
-          //Väntar på HTML-förändringar innan denna kan färdigställas/ åsa
-          } 
-       }  
+          this.postChallenge();
+            }
+         }
+        
     ]
   });
   prompt.present();
 }
 
+postChallenge(){
+  this.backendService.postChallenge(this.challengeCredentials.sender, this.profileOwnerId, this.challengeCredentials.sport, this.challengeCredentials.reps, this.challengeCredentials.message)
+  .subscribe(data=>{
+     if (data=="Challenge created"){
+      this.showAlert();
 
-  //  showAlert() {
-  //   let alert = this.alertCtrl.create({
-  //     title: 'Challenge sent!',
-  //     subTitle: 'Your challange:' + this.challangeName + ' where you challenge ' + this.profileOwner.username + ' in '+ this.radioResult + ' has been sent. She has seven days to accept the challenge',
-  //     buttons: ['Cancel' , 'OK']
-  //   });
-  //   alert.present();
-  // }
+    }
+   });
+}
+
+
+   showAlert() {
+    let alert = this.alertCtrl.create({
+      title: 'Challenge sent!',
+      buttons: ['Cancel' , 'OK']
+    });
+    alert.present();
+  }
           //Väntar på HTML-förändringar innan denna kan färdigställas/ åsa
 
 }
