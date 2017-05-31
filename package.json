@@ -27,6 +27,7 @@
     "@ionic-native/native-storage": "^3.10.3",
     "@ionic-native/splash-screen": "3.6.1",
     "@ionic-native/status-bar": "3.6.1",
+    "@ionic-native/video-player": "^3.10.3",
     "@ionic-native/youtube-video-player": "^3.10.3",
     "@ionic/storage": "2.0.1",
     "cordova-android": "^6.2.3",

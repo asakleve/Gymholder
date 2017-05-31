@@ -395,6 +395,11 @@ export class BackendService {
   public getFriends(userid: number){
     return this.http.get(this.apibackend + '/allfriends/' + userid, {headers: this.headers})
     .map(res=> res.json());
+  }  
+
+  public searchUser(name: string){
+    return this.http.get(this.apibackend + '/searchuser/' + name, {headers: this.headers})
+    .map(res=> res.json());
   }
 
   public deleteFriend(user_one_id: number, user_two_id: number){
