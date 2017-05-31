@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { BackendService } from '../../providers/backend-service';
 import { AuthService } from '../../providers/auth-service';
+import { HomePage } from '../home/home';
 
 /**
  * Generated class for the MyChallenges page.
@@ -57,5 +58,8 @@ export class MyChallengesPage {
   sendResponse(){
     // kolla med chris om man kan återanvända "add result" här 
   }
+    toHomepage(){
+  this.navCtrl.setRoot(HomePage);
 
+}
 }

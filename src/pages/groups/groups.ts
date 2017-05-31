@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams,AlertController, ToastController } from 'ionic-angular';
 import { BackendService } from '../../providers/backend-service';
+import { HomePage } from '../home/home';
 
 /**
  * Generated class for the Groups page.
@@ -54,6 +55,7 @@ export class GroupsPage {
   }
 
 
-
-
+  toHomepage(){
+  this.navCtrl.setRoot(HomePage);
+}
 }

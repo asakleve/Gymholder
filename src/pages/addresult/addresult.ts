@@ -3,10 +3,12 @@ import { Observable } from 'rxjs/Observable';
 import { IonicPage, AlertController, NavController, NavParams, ViewController } from 'ionic-angular';
 import { AuthService } from '../../providers/auth-service';
 import { BackendService } from '../../providers/backend-service';
+import { HomePage } from '../home/home';
 import { MediaCapture } from '@ionic-native/media-capture';
 import { Camera } from '@ionic-native/camera';
 import { SafeResourceUrl, DomSanitizer } from '@angular/platform-browser';
 import { VideoPlayer } from '@ionic-native/video-player';
+
 
 /**
  * Generated class for the Addresult page.
@@ -116,6 +118,11 @@ export class AddresultPage {
      buttons: ['OK']
    });
    alert.present();
+
+ }
+  toHomepage(){
+  this.navCtrl.setRoot(HomePage);
+
 }
 
    startRecording(){
@@ -150,4 +157,5 @@ export class AddresultPage {
       video.play();
 
   } 
+}
 }

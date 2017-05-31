@@ -1,8 +1,8 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { HomePage } from '../home/home';
 import { AlertController } from 'ionic-angular';
 import { BackendService } from '../../providers/backend-service';
-
 
 /**
  * Generated class for the SendChallange page.
@@ -28,6 +28,10 @@ export class SendChallengePage {
   ionViewDidLoad() {
     console.log('ionViewDidLoad SendChallenge');
   }
+
+  toHomepage(){
+  this.navCtrl.setRoot(HomePage);
+
 
   engage(){
     // this.sports[];
@@ -85,5 +89,5 @@ doPrompt() {
   //   alert.present();
   // }
           //Väntar på HTML-förändringar innan denna kan färdigställas/ åsa
-
+}
 }

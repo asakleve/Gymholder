@@ -3,10 +3,9 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { AlertController } from 'ionic-angular';
 import { BackendService } from '../../providers/backend-service';
 import { AuthService } from '../../providers/auth-service';
+import { HomePage } from '../pages/home/home';
 import { YoutubeVideoPlayer } from '@ionic-native/youtube-video-player'; // kan ev tas bort
 //import { VideoPlayer} from '@ionic-native/video-player';
-
-
 
 @IonicPage()
 @Component({
@@ -111,4 +110,7 @@ export class UserLeaderboardPage {
         //behöver fixa en loop som lägger allt i arrayen. För detta behövs mer och bättre testdata.Går att göra när API returnerar ett array, det gör den inte i dagsläget
       });
   }
+  toHomepage(){
+  this.navCtrl.setRoot('HomePage');
+}
 }

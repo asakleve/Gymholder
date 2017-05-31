@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams,LoadingController } from 'ionic-angular';
 import { AlertController } from 'ionic-angular';
 import { BackendService } from '../../providers/backend-service';
+import { HomePage } from '../home/home';
 import { ProfilePage } from '../profile/profile';
 
 
@@ -100,6 +101,10 @@ export class EventLeaderboardPage {
      
       });
     }
+
+      toHomepage(){
+  this.navCtrl.setRoot(HomePage);
+
      openProfile(username: string){
       
       this.backendService.getUserByUsername(username)
@@ -109,5 +114,5 @@ export class EventLeaderboardPage {
     this.navCtrl.push(ProfilePage, { userid: this.id });
       })
   }
-
+}
 }

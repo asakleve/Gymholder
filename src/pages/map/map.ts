@@ -5,6 +5,10 @@ import { BackendService } from '../../providers/backend-service';
 import {Geolocation} from '@ionic-native/geolocation';
 
 
+import { Geolocation } from '@ionic-native/geolocation';
+import { HomePage } from '../home/home';
+
+
 /*
 
 export class Gym {
@@ -51,7 +55,6 @@ export class MapPage {
   allgyms: any;
   activeGym: any;
   processedallgyms: any[];
-
 
   constructor(public navCtrl: NavController, public navParams: NavParams, private backendService: BackendService, private geolocation: Geolocation) {
     this.allgyms = this.backendService.getAllGyms();
@@ -122,8 +125,7 @@ export class MapPage {
       }, false);
     });
   }
-
-    watch() {
+   watch() {
     this.geolocation.getCurrentPosition().then((resp) => {
       this.coords = resp.coords.latitude + ' ' + resp.coords.longitude;
       this.accuracy = resp.coords.accuracy + ' meters';
@@ -133,4 +135,16 @@ export class MapPage {
   }
 
 
+  toHomepage(){
+  this.navCtrl.setRoot(HomePage);
+}
+
+    watch() {
+    this.geolocation.getCurrentPosition().then((resp) => {
+      this.coords = resp.coords.latitude + ' ' + resp.coords.longitude;
+      this.accuracy = resp.coords.accuracy + ' meters';
+    }).catch((error) => {
+      this.error = 'Error getting location: ' + error;
+    });
+  }
 }

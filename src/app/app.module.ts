@@ -46,6 +46,7 @@ import { BadassPage } from '../pages/badass/badass';
 import { SendChallengePage } from '../pages/send-challenge/send-challenge';
 
 
+import { Geolocation } from '@ionic-native/geolocation';
 
 
 
@@ -119,6 +120,7 @@ import { SendChallengePage } from '../pages/send-challenge/send-challenge';
     VideoPlayer,
     YoutubeVideoPlayer,
     NativeStorage
+
 
   ]
 })

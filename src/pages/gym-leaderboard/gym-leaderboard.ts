@@ -2,6 +2,8 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, AlertController, LoadingController } from 'ionic-angular';
 import { BackendService } from '../../providers/backend-service';
 import { AuthService } from '../../providers/auth-service';
+import { HomePage } from '../home/home';
+
 /**
  * Generated class for the GymLeaderBoard page.
  *
@@ -117,5 +119,7 @@ export class GymLeaderboardPage {
           this.showResults("Show all results");
         });
     }
-
+  toHomepage(){
+  this.navCtrl.setRoot(HomePage);
+}
 }
