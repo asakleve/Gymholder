@@ -26,6 +26,8 @@ export class BadassPage {
   tMult;
   pMult; 
   wMult;
+  weathericon;
+
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public alertCtrl: AlertController) {
 
@@ -44,6 +46,7 @@ export class BadassPage {
     // ännu ej är färdig.
    //åsa this.loadUserData(this.devUserId);
     this.calcBadassMult(); 
+    this.getWeatherIcon(); 
   }
 
   // .subscribe(data => { ... }) skapar en prenumeration på datan som
@@ -52,7 +55,26 @@ export class BadassPage {
   // från api tar tid att färdigställas, och koden annars inte väntar
   // på att läsningen ska köras klart.
 
-
+getWeatherIcon() {
+      switch (this.gymData.forecast.weathersymbol) {
+        case 3: case 4: 
+          this.weathericon = ion-ios-partlysunny
+          break;
+        case 5: case 6: case 7:
+          this.weathericon = ion-ios-cloudy-outline
+          break;
+        case 8: case 12:
+          this.weathericon = ion-ios-rainy-outline
+          break;
+        case 9: case 13:
+          this.weathericon = ion-ios-thunderstorm-outline
+          break;
+        case 10: case 11: case 14: case 15:
+          this.weathericon = ion-ios-snowy
+        default:
+          this.weathericon = ion-ios-sunny-outline
+      }
+    }
 
 
   calcBadassMult() {

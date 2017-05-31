@@ -34,6 +34,7 @@ export class GymprofilePage {
   weathercat: any;
   allsports: any;
   gymHolder;
+  weathericon: string;
 
   constructor(private authService: AuthService, public navCtrl: NavController, public navParams: NavParams, private openGymData: OpenGymDataService, private backendService: BackendService) {
 
@@ -83,6 +84,7 @@ export class GymprofilePage {
     this.activeUser = this.authService.getUser();
     this.activeGym = this.navParams.get('gym');
     this.loadGymDetails();
+    this.getWeatherIcon();
 
     this.backendService.getGymHolder(this.activeGym.id)
     .subscribe(data=>{
@@ -128,6 +130,27 @@ export class GymprofilePage {
       this.gymData.forecast.precipitationcat = this.gymData.forecast[15].values[0];
       this.gymData.forecast.weathersymbol = this.gymData.forecast[18].values[0];
     });
+  }
+
+  getWeatherIcon() {
+    switch (this.gymData.forecast.weathersymbol) {
+      case 3: case 4: 
+        this.weathericon = ion-ios-partlysunny
+        break;
+      case 5: case 6: case 7:
+        this.weathericon = ion-ios-cloudy-outline
+        break;
+      case 8: case 12:
+        this.weathericon = ion-ios-rainy-outline
+        break;
+      case 9: case 13:
+        this.weathericon = ion-ios-thunderstorm-outline
+        break;
+      case 10: case 11: case 14: case 15:
+        this.weathericon = ion-ios-snowy
+      default:
+        this.weathericon = ion-ios-sunny-outline
+    }
   }
 
   loadResults() {
