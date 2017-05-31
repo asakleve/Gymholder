@@ -123,14 +123,14 @@ export class MapPage {
     });
   }
 
-    watch() {
-    this.geolocation.getCurrentPosition().then((resp) => {
-      this.coords = resp.coords.latitude + ' ' + resp.coords.longitude;
-      this.accuracy = resp.coords.accuracy + ' meters';
-    }).catch((error) => {
-      this.error = 'Error getting location: ' + error;
-    });
-  }
+  //   watch() {
+  //   this.geolocation.getCurrentPosition().then((resp) => {
+  //     this.coords = resp.coords.latitude + ' ' + resp.coords.longitude;
+  //     this.accuracy = resp.coords.accuracy + ' meters';
+  //   }).catch((error) => {
+  //     this.error = 'Error getting location: ' + error;
+  //   });
+  // }
 
 
 }

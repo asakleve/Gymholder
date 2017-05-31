@@ -5,7 +5,7 @@ import { OpenGymDataService } from '../providers/open-gym-data-service';
 import { BackendService } from '../providers/backend-service';
 import { ObjectManager } from '../providers/object-manager';
 
-import { Youtube } from '../pipes/youtube';
+//import { Youtube } from '../pipes/youtube';
 
 import { BrowserModule } from '@angular/platform-browser';
 import { ErrorHandler, NgModule } from '@angular/core';
@@ -15,7 +15,7 @@ import { HttpModule } from '@angular/http';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { MediaCapture} from '@ionic-native/media-capture';
-import { YoutubeVideoPlayer } from '@ionic-native/youtube-video-player';
+// import { YoutubeVideoPlayer } from '@ionic-native/youtube-video-player';
 //import { Camera } from '@ionic-native/camera';
 import {Geolocation} from '@ionic-native/geolocation';
 
@@ -64,7 +64,7 @@ import { SendChallengePage } from '../pages/send-challenge/send-challenge';
     UserLeaderboardPage,
     AddresultPage,
     BadassPage,
-    Youtube,
+    //  Youtube,
     SendChallengePage
 
 
@@ -73,7 +73,7 @@ import { SendChallengePage } from '../pages/send-challenge/send-challenge';
     BrowserModule,
     HttpModule,
     IonicModule.forRoot(MyApp),
-    
+
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -99,7 +99,7 @@ import { SendChallengePage } from '../pages/send-challenge/send-challenge';
   providers: [
     StatusBar,
     SplashScreen,
-    YoutubeVideoPlayer,
+    // YoutubeVideoPlayer,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     AuthService,
     CoordService,
