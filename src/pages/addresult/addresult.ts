@@ -4,7 +4,7 @@ import { IonicPage, AlertController, NavController, NavParams, ViewController } 
 import { AuthService } from '../../providers/auth-service';
 import { BackendService } from '../../providers/backend-service';
 import { HomePage } from '../home/home';
-import { MediaCapture } from '@ionic-native/media-capture';
+import { MediaCapture, MediaFile, CaptureError} from '@ionic-native/media-capture';
 import { Camera } from '@ionic-native/camera';
 import { SafeResourceUrl, DomSanitizer } from '@angular/platform-browser';
 import { VideoPlayer } from '@ionic-native/video-player';
@@ -125,37 +125,67 @@ export class AddresultPage {
 
 }
 
-   startRecording(){
-    this.mediaCapture.captureVideo((videodata)=>{
-       alert(JSON.stringify(videodata));
+
+// function videoCapture() {
+
+//    var options = {
+//       limit: 1,
+//       duration: 10
+//    };
+
+//    navigator.device.capture.captureVideo(onSuccess, onError, options);
+
+//    function onSuccess(mediaFiles) {
+//       var i, path, len;
+    
+//       for (i = 0, len = mediaFiles.length; i < len; i += 1) {
+//          path = mediaFiles[i].fullPath;
+//          console.log(mediaFiles);
+//       }
+//    }
+
+//    function onError(error) {
+//       navigator.notification.alert('Error code: ' + error.code, null, 'Capture Error');
+//    }
   
-    });
+// }
+
+
+
+   startRecording(){
+    this.mediaCapture.captureVideo()
+    .then(
+      (data: MediaFile [])=> console.log (data),
+      (err: CaptureError) => console.error(err)
+      );
+  
+    
    
   }
 
-//testfunktion
-  playResultVideo(){
-    this.backendService.getResultVideo(18)
-      .subscribe(data=>{ 
-      this.playVideo = (data.src);
-    });
+// //testfunktion
+//   playResultVideo(){
+//     this.backendService.getResultVideo(18)
+//       .subscribe(data=>{ 
+//       this.playVideo = (data.src);
+//     });
      
 
-     this.videoPlayer.play(this.playVideo);
-  }
+//      this.videoPlayer.play(this.playVideo);
+//   }
 
 
-  selectVideo(){
-    let video = this.myvideo.nativeElement;
-    var options = {
-      sourceType:2,
-      mediaType:1
-    };
-    this.camera.getPicture(options).then((data)=>
-      video.src = data);
-      //this.safeUrl = this.domSanitizer.bypassSecurityTrustUrl(this.fileEntry.nativeURL));
-      video.play();
+//   selectVideo(){
+//     let video = this.myvideo.nativeElement;
+//     var options = {
+//       sourceType:2,
+//       mediaType:1
+//     };
+//     this.camera.getPicture(options).then((data)=>
+//       video.src = data);
+//       //this.safeUrl = this.domSanitizer.bypassSecurityTrustUrl(this.fileEntry.nativeURL));
+//       video.play();
 
-  } 
+//   } 
 
 }

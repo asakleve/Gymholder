@@ -88,11 +88,11 @@ export class ProfilePage {
 
   openUserLeaderboard(profileOwner){
     console.log(profileOwner);
-    this.navCtrl.push(UserLeaderboardPage, { userid: profileOwner });
+    this.navCtrl.push(UserLeaderboardPage, { userid: this.profileOwner });
   }
 
   sendChallange(){
-    this.navCtrl.push(SendChallengePage);
+    this.navCtrl.push(SendChallengePage, {userid: this.profileOwner.userid});
   }
 
 

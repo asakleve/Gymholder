@@ -413,18 +413,19 @@ export class BackendService {
     .map(res=> res.json());
   }
 
-  public postChallenge(user_one_id: number, user_two_id: number){
+  public postChallenge(user_one_id: number, user_two_id: number, sport: string, message: string, reps: number){
     let body = JSON.stringify({
       "id": 0,
-      "user_1": user_one_id,
-      "user_2": user_two_id
+      "sender": user_one_id,
+      "receiver": user_two_id,
+      "sport": sport,
+      "message": message,
+      "reps": reps
     });
-
-    return this.http.post(this.apibackend + '/makeChallange/' + user_one_id + '/' + user_two_id, body, {headers: this.headers})
-
+    return this.http.post(this.apibackend + '/newchallenge',body, {headers: this.headers})
     .map(res=> res.json());
   }
-  // inte testkörd, har ingen dok.på API = osäker på om url:namet stämmer samt parametrar //Åsa
+
 
 
   ////////////////////////////////////////////////////////////////////////

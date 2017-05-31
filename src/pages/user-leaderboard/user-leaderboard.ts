@@ -3,9 +3,12 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { AlertController } from 'ionic-angular';
 import { BackendService } from '../../providers/backend-service';
 import { AuthService } from '../../providers/auth-service';
+
+//import { YoutubeVideoPlayer } from '@ionic-native/youtube-video-player';
 import { HomePage } from '../pages/home/home';
-import { YoutubeVideoPlayer } from '@ionic-native/youtube-video-player'; // kan ev tas bort
+
 //import { VideoPlayer} from '@ionic-native/video-player';
+
 
 @IonicPage()
 @Component({
@@ -23,18 +26,18 @@ export class UserLeaderboardPage {
   userid: any;
   video;
 
-  
 
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, public alertCtrl: AlertController, private backendService: BackendService,  private authService: AuthService, private youtube: YoutubeVideoPlayer) {
-    
+
+  constructor(public navCtrl: NavController, public navParams: NavParams, public alertCtrl: AlertController, private backendService: BackendService,  private authService: AuthService) {
+
     this.activeUser = this.authService.getUser();
     this.userid = this.navParams.get('userid');
     this.sports = [];
     this.engage();
     this.sports.push("Show all results");
     this.video = "https://www.youtube.com/embed/2L3gFYWU3hs";
-   
+
   }
 
   ionViewDidLoad() {
@@ -42,9 +45,13 @@ export class UserLeaderboardPage {
   }
 
 
-  // playVideo(){
-  // this.youtube.openVideo('https://www.youtube.com/embed/2L3gFYWU3hs');
-  // }
+
+//  playVideo(){
+//  console.log(this.userid);
+//  this.youtube.openVideo('myvideoid');
+//
+//  }
+
 
   showRadio() {
     let alert = this.alertCtrl.create();
