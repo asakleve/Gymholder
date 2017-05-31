@@ -33,6 +33,7 @@ import { SettingsPage } from '../pages/settings/settings';
 import { InloggPage } from '../pages/inlogg/inlogg';
 import { MessagesPage } from '../pages/messages/messages';
 import { MessagesPopOverPage } from '../pages/messages-pop-over/messages-pop-over';
+import { AboutPage } from '../pages/about/about';
 
 
 import { GymprofilePage } from '../pages/gymprofile/gymprofile';
@@ -68,8 +69,14 @@ import { SendChallengePage } from '../pages/send-challenge/send-challenge';
     UserLeaderboardPage,
     AddresultPage,
     BadassPage,
+<<<<<<< HEAD
     //  Youtube,
     SendChallengePage
+=======
+    Youtube,
+    SendChallengePage,
+    AboutPage
+>>>>>>> master
     //VideoPlayer
 
 
@@ -99,7 +106,8 @@ import { SendChallengePage } from '../pages/send-challenge/send-challenge';
     UserLeaderboardPage,
     AddresultPage,
     BadassPage,
-    SendChallengePage
+    SendChallengePage,
+    AboutPage
   ],
   providers: [
     StatusBar,
