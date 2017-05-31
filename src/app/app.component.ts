@@ -16,6 +16,7 @@ import { SettingsPage } from '../pages/settings/settings';
 import { InloggPage } from '../pages/inlogg/inlogg';
 import { RegisterPage } from '../pages/register/register';
 import { MessagesPage } from '../pages/messages/messages';
+import { AboutPage } from '../pages/about/about';
 
 import { GymprofilePage } from '../pages/gymprofile/gymprofile';
 import { EventLeaderboardPage } from '../pages/eventLeaderboard/eventLeaderboard';
@@ -49,6 +50,7 @@ export class MyApp {
       { title: 'Friends', component: FriendsPage },
       { title: 'Groups', component: GroupsPage },
       { title: 'Settings', component: SettingsPage },
+      {title: 'Info', component: AboutPage }
     ];
 
     // platform.ready().then(() => {

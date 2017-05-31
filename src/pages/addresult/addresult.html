@@ -128,32 +128,33 @@
            </ion-list>
          </ion-col>
        </ion-row>
-        <button ion-button (click)="startRecording()">Add recording</button>
+       <ion-row>
+       <ion-col>
 
+          <ion-col>
+      <button ion-button class="button-layout" (click) = "selectVideo()">Start recording</button>
+      </ion-col>
+      
+        <button ion-button class="button-layout" (click)="startRecording()">Add recording</button>
 
-      <ion-card>
-      <ion-card-content>
-      <div data-tap-disable="true">    
+          <div data-tap-disable="true">           
         <video #myvideo></video>
         </div>
-      </ion-card-content>
-      <button ion-button (click) = "selectVideo()">Preview video</button>
-      </ion-card>
-
-      <ion-row>
-        <ion-col class="add-col">
-          <button ion-button class="submit-btn" full type="submit" [disabled]="!addForm.form.valid">Add result</button>
         </ion-col>
-      </ion-row>
+  
+</ion-row>
+
+     
 
     </form>
 
-      
-      <ion-card>
-      <ion-card-content>
-          <button ion-button (click) = "playResultVideo()">Play video</button>
-      </ion-card-content>
-      </ion-card>
+                <button class="button-layout" ion-button full (click) = "playResultVideo()">Play video</button>
+    
+     <ion-row>
+        <ion-col class="add-col">
+          <button ion-button class="submit-btn" full type="submit" [disabled]="!addForm.form.valid">Add result</button>
+        </ion-col>
+      </ion-row>            
 
 
   </div>

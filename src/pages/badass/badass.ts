@@ -26,7 +26,7 @@ export class BadassPage {
   pMult; 
   wMult;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, public alertCtrl: AlertController ) {
 
       this.badassMult = 0;
       this.tMult = 0;
@@ -51,6 +51,14 @@ export class BadassPage {
   // från api tar tid att färdigställas, och koden annars inte väntar
   // på att läsningen ska köras klart.
 
+showAlerts() {
+    let alert = this.alertCtrl.create({
+      title: 'Badass explained!',
+      subTitle: 'Badass is the scoring system of the Gymholder app. Depending on the weather condition you can get different score of your workout. The purpose of the badass scoring system is to generate higher scores for people who dare to challenge severe weather. It is way more badass to exercise in a thunderstorm than to workout in sunshine.',
+      buttons: ['OK']
+    });
+    alert.present();
+  }  
 
 
 
