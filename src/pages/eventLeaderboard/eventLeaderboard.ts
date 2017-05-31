@@ -68,7 +68,7 @@ export class EventLeaderboardPage {
 
     showResults(sport){
       this.displayResults=[];
-      if(sport==="Show all results"){
+      if( sport == "Show all results" || sport == undefined ){
         this.displayResults = this.results;
         this.selectedSport = "all exercises";
       }
@@ -89,12 +89,11 @@ export class EventLeaderboardPage {
          this.backendService.getAllSports()
       .subscribe(data => {
         for(let s of data) {
-          this.sports.push(s.sportName);
+          this.sports.push(s.name);
         }
       });
 
       this.results=[];
-      //this.sports=[];
       this.backendService.getAllResults()
       .subscribe(data=>{
         this.results=data;

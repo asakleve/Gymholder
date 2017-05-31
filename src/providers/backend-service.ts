@@ -280,6 +280,11 @@ export class BackendService {
       .map(res => res.json());
   }
 
+  public getGymHolder(id:number){
+    return this.http.get(this.apibackend + '/gymholder/' + id, { headers: this.headers })
+      .map(res => res.json());
+  }
+
   ////////////////////////////////////////////////////////////////////////
   // RESULT
   ////////////////////////////////////////////////////////////////////////
@@ -367,15 +372,14 @@ export class BackendService {
   // FRIENDS
   ////////////////////////////////////////////////////////////////////////
 
-  public postFriend(user_one_id: number, user_two_id: number) {
+ public postFriend(user_one_id: number, user_two_id: number) {
     let body = JSON.stringify({
       "id": 0,
       "user_1": user_one_id,
       "user_2": user_two_id
     });
 
-    return this.http.post(this.apibackend + '/makefriends', body, { headers: this.headers })
-
+   return this.http.post(this.apibackend + '/makefriends', body, { headers: this.headers })
       .map(res => res.json());
   }
 
@@ -386,7 +390,7 @@ export class BackendService {
 
   public deleteFriend(user_one_id: number, user_two_id: number){
 
-    return this.http.delete(this.apibackend + '/deletefriends' + user_one_id + user_two_id, {headers: this.headers})
+    return this.http.delete(this.apibackend + '/deletefriends' + user_one_id +'/'+ user_two_id, {headers: this.headers})
 
     .map(res=> res.json());
   }
@@ -396,7 +400,7 @@ export class BackendService {
   ////////////////////////////////////////////////////////////////////////
 
   public getChallenges(userid: number){
-    return this.http.get('/backend/challenges/' + userid, {headers: this.headers})
+    return this.http.get(this.apibackend+'/challenges/' + userid, {headers: this.headers})
     .map(res=> res.json());
   }
 
@@ -407,7 +411,7 @@ export class BackendService {
       "user_2": user_two_id
     });
 
-    return this.http.post(this.apibackend + '/makeChallange', body, {headers: this.headers})
+    return this.http.post(this.apibackend + '/makeChallange/' + user_one_id + '/' + user_two_id, body, {headers: this.headers})
 
     .map(res=> res.json());
   }

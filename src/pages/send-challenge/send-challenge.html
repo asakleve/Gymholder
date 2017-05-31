@@ -14,8 +14,8 @@
       <ion-item>
         <ion-label>Exercise</ion-label>
         <ion-select [(ngModel)]="os" submitText="Okay" cancelText="Nah">
-          <ion-option value="dos">Classic Push Ups</ion-option>
-          <ion-option value="lunix">Wide Grip Push Ups</ion-option>
+          <ion-option *ngFor="let sport of sports"> {{sport.name}} </ion-option>
+          <!-- <ion-option value="lunix">Wide Grip Push Ups</ion-option>
           <ion-option value="mac7">Close Grip Push Ups</ion-option>
           <ion-option value="mac8">Sit Ups</ion-option>
           <ion-option value="win3.1">Chin Ups</ion-option>
@@ -28,7 +28,7 @@
           <ion-option value="win03">Wall Squats</ion-option>
           <ion-option value="win04">Hanging Dips</ion-option>
           <ion-option value="win05">Box Jumps</ion-option>
-          <ion-option value="win06">Pistol Squats</ion-option>
+          <ion-option value="win06">Pistol Squats</ion-option> -->
 
         </ion-select>
       </ion-item>

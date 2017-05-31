@@ -32,6 +32,7 @@ export class GymprofilePage {
   pcat: any;
   weathercat: any;
   allsports: any;
+  gymHolder: any;
 
   constructor(private authService: AuthService, public navCtrl: NavController, public navParams: NavParams, private openGymData: OpenGymDataService, private backendService: BackendService) {
 
@@ -81,6 +82,12 @@ export class GymprofilePage {
     this.activeUser = this.authService.getUser();
     this.activeGym = this.navParams.get('gym');
     this.loadGymDetails();
+
+    this.backendService.getGymHolder(this.activeGym.id)
+    .subscribe(data=>{
+      this.gymHolder=data;
+      console.log(this.gymHolder);
+    });
   }
 
   ionViewDidLoad() {

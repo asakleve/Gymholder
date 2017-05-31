@@ -96,10 +96,15 @@ export class ProfilePage {
 
 
 
-//   addFriend(){
-//     this.backendService.postFriend(activeUser,userToAdd);
-// //userToAdd finns inte
-//   }
+  addFriend(){
+    this.backendService.postFriend(this.activeUser.userid,this.profileId)
+    .subscribe(data=>{
+      if (data==true){
+        this.presentToast();
+      }      
+    })
+
+  }
 
 
   presentToast() {
@@ -126,15 +131,6 @@ export class ProfilePage {
     toast.present();
   }
 
-
-   showAlert() {
-    let alert = this.alertCtrl.create({
-      title: 'Challenge sent!',
-      subTitle: 'Your challange:' + this.challangeName + ' where you challenge ' + this.profileOwner.username + ' in '+ this.radioResult + ' has been sent. She has seven days to accept the challenge',
-      buttons: ['Cancel' , 'OK']
-    });
-    alert.present();
-  }
 
   showPrompt() {
     let prompt = this.alertCtrl.create({
