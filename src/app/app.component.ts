@@ -45,9 +45,9 @@ export class MyApp {
     this.pages = [
       { title: 'Home', component: HomePage },
       { title: 'Profile', component: ProfilePage },
-      { title: 'Messages', component: MessagesPage },
+      //{ title: 'Messages', component: MessagesPage },
       { title: 'Friends', component: FriendsPage },
-      { title: 'Groups', component: GroupsPage },
+      //{ title: 'Groups', component: GroupsPage },
       { title: 'Settings', component: SettingsPage },
     ];
 

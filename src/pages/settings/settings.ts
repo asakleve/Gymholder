@@ -35,6 +35,7 @@ export class SettingsPage {
     public platform: Platform, public actionsheetCtrl: ActionSheetController, public backendService: BackendService, public toastCtrl: ToastController) {
 
     this.activeUser = this.auth.getUser();
+    console.log("här är settingspage och activeUser" + this.activeUser.userid);
     this.changepasswordCredentials = {oldpass: '', newpass: '', repeatpass: ''}; 
 
     this.event = {
@@ -85,9 +86,7 @@ export class SettingsPage {
 
         if ( this.tempUser == this.activeUser.userid || this.changepasswordCredentials.newpass==this.changepasswordCredentials.repeatpass){
           let hashpassword =  this.hash(this.changepasswordCredentials.newpass);
-
-          console.log(this.tempUser);
-          this.backendService.putAuth(this.tempUser,hashpassword)
+          this.backendService.putAuth(this.activeUser.userid,hashpassword)
           .subscribe(data=>{
             if (data.result == "true")
             this.showConfirmToast();
@@ -96,8 +95,6 @@ export class SettingsPage {
         else{
           console.log("kunde inte ändra lösenord");
         }
-
-
           });
     }
 
