@@ -106,10 +106,9 @@ export class EventLeaderboardPage {
       this.backendService.getUserByUsername(username)
       .subscribe(data=>{
         this.id = data.id;
-      })
-
-      console.log("this is from leaderbard" + this.id);
+            console.log("this is from leaderbard" + this.id);
     this.navCtrl.push(ProfilePage, { userid: this.id });
+      })
   }
 
 }
