@@ -101,8 +101,9 @@ export class BackendService {
     console.log('Hello BackendService Provider');
 
     this.apibackend = "/backend";
-    this.apiuser = "/user";
-
+    //this.apibackend = "http://gymholder.herokuapp.com";
+    //this.apiuser = "http://gymholder.herokuapp.com/user";
+    this.apiuser = '/user';
     this.headers = new Headers();
     this.headers.append('Authentication', '0oXxWXkLknkhDa2JWZWF');
     this.headers.append('Accept', 'application/json');
@@ -170,6 +171,15 @@ export class BackendService {
       .map(res => res.json());
   }
 
+    public putAuth(id: number, password: string) {
+    let body = JSON.stringify({
+      "id": id,
+      "pass": password
+    });
+    return this.http.put(this.apibackend + '/auth', body, { headers: this.headers })
+      .map(res => res.json());
+  }
+
   public putUser(id: number, username: string, email: string, age: number/*, password: string*/) {
     let body = JSON.stringify({
       "id": id,
@@ -184,6 +194,11 @@ export class BackendService {
   public deleteUser(id: number) {
     return this.http.delete(this.apibackend + '/user/' + id, { headers: this.headers })
       .map(res => res.json());
+  }
+
+  public getUserByUsername(username : string) {
+   return this.http.get(this.apibackend + '/userbyusername/' + username , { headers: this.headers })
+    .map(res => res.json());
   }
 
 
@@ -274,6 +289,11 @@ export class BackendService {
       .map(res => res.json());
   }
 
+  public getGymHolder(id:number){
+    return this.http.get(this.apibackend + '/gymholder/' + id, { headers: this.headers })
+      .map(res => res.json());
+  }
+
   ////////////////////////////////////////////////////////////////////////
   // RESULT
   ////////////////////////////////////////////////////////////////////////
@@ -307,6 +327,21 @@ export class BackendService {
     return this.http.post(this.apibackend + '/result', body, { headers: this.headers })
       .map(res => res.json());
   }
+
+  public postResultVideo(id: number, picture:string){
+    let body = JSON.stringify({
+      "id": id,
+      "picture": picture
+    });
+    return this.http.post(this.apibackend + 'userpicture', body, { headers: this.headers})
+    .map(res => res.json());
+  } 
+
+  public getResultVideo(id: number){
+    return this.http.get(this.apibackend + '/getuserpicture' + id ,{headers: this.headers})
+    .map(res=> res.json());
+  }
+  //inte helt klar, ovan
 
   public putResult(id: number, userid: number, gymid: number, sportid: number, value: number) {
     let body = JSON.stringify({
@@ -346,15 +381,14 @@ export class BackendService {
   // FRIENDS
   ////////////////////////////////////////////////////////////////////////
 
-  public postFriend(user_one_id: number, user_two_id: number) {
+ public postFriend(user_one_id: number, user_two_id: number) {
     let body = JSON.stringify({
       "id": 0,
       "user_1": user_one_id,
       "user_2": user_two_id
     });
 
-    return this.http.post(this.apibackend + '/makefriends', body, { headers: this.headers })
-
+   return this.http.post(this.apibackend + '/makefriends', body, { headers: this.headers })
       .map(res => res.json());
   }
 
@@ -365,7 +399,7 @@ export class BackendService {
 
   public deleteFriend(user_one_id: number, user_two_id: number){
 
-    return this.http.delete(this.apibackend + '/deletefriends' + user_one_id + user_two_id, {headers: this.headers})
+    return this.http.delete(this.apibackend + '/deletefriends' + user_one_id +'/'+ user_two_id, {headers: this.headers})
 
     .map(res=> res.json());
   }
@@ -375,7 +409,7 @@ export class BackendService {
   ////////////////////////////////////////////////////////////////////////
 
   public getChallenges(userid: number){
-    return this.http.get('/backend/challenges/' + userid, {headers: this.headers})
+    return this.http.get(this.apibackend+'/challenges/' + userid, {headers: this.headers})
     .map(res=> res.json());
   }
 
@@ -386,7 +420,7 @@ export class BackendService {
       "user_2": user_two_id
     });
 
-    return this.http.post(this.apibackend + '/makeChallange', body, {headers: this.headers})
+    return this.http.post(this.apibackend + '/makeChallange/' + user_one_id + '/' + user_two_id, body, {headers: this.headers})
 
     .map(res=> res.json());
   }

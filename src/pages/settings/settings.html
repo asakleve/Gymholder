@@ -21,7 +21,7 @@
         Settings
       </ion-list-header>
       <ion-item>
-        <ion-toggle color="secondary" checked="false"></ion-toggle>
+        <ion-toggle color="secondary" checked="true"></ion-toggle>
           <ion-label>
           Push Notifications
         </ion-label>
@@ -56,28 +56,30 @@
        </ion-item>
     </ion-list>
 
+
+    <form (ngSubmit)="changePassword()" #changePassForm="ngForm">
     <ion-list>
       <ion-list-header>
-        Password Settings
+        CREATE NEW PASSWORD
       </ion-list-header>
-      <ion-item>
-        <ion-icon name='lock' item-start></ion-icon>
-        Create new Password
-      </ion-item>
-      <ion-item>
-        <ion-input type="password" placeholder="Old Password"></ion-input>
-      </ion-item>
 
       <ion-item>
-        <ion-input type="password" placeholder="New Password"></ion-input>
+        <ion-input type="password" placeholder="Old Password" name = "oldpass"[(ngModel)]="changepasswordCredentials.oldpass" required ></ion-input>
       </ion-item>
       <ion-item>
-        <ion-input type="password" placeholder="Repeat Password"></ion-input>
+        <ion-input type="password" placeholder="New Password" name ="newpass" [(ngModel)]="changepasswordCredentials.newpass" required ></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-input type="password" placeholder="Repeat Password" name ="repeatpass" [(ngModel)]="changepasswordCredentials.repeatpass" required ></ion-input>
       </ion-item>
       <div ion-content padding class="action-sheets-basic-page">
-        <button ion-button full on-click="openMenu()">
+        <button class="button-layout"  class="submit-btn" ion-button full type="submit" [disabled]="!changePassForm.form.valid">Save new password</button></div>
+        
+      <div ion-content padding class="action-sheets-basic-page">
+        <button class="button-layout" ion-button full on-click="openMenu()">
           Log out
         </button>
       </div>
     </ion-list>
+    </form>
   </ion-content>

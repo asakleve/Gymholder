@@ -13,10 +13,17 @@
   </ion-navbar>
 </ion-header>
 
-<ion-content padding>
-  <button ion-button block color="green" (click)="showRadio()">Select exercise</button>
+<ion-content padding class="card-background-page">
+
+  <ion-card>
+      <img src="assets/img/gymLeaderBoard.jpg" />
+      </ion-card>
+  <button ion-button block class="button-layout" (click)="showRadio()">Select exercise</button>
   <h5>Displaying results for {{selectedSport}}</h5>
+
   <ion-list>
-    <ion-item *ngFor="let d of displayResults">{{d.gym}} {{d.user}} {{d.sport}} {{d.value}}</ion-item>
+    <ion-item *ngFor="let d of displayResults" (click)="openProfile(d.username)" >{{d.username}} {{d.sportName}} {{d.reps}}</ion-item>
   </ion-list>
+
+
 </ion-content>

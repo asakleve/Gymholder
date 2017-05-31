@@ -1,9 +1,14 @@
-import { Component } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
 import { IonicPage, AlertController, NavController, NavParams, ViewController } from 'ionic-angular';
 import { AuthService } from '../../providers/auth-service';
 import { BackendService } from '../../providers/backend-service';
 import { HomePage } from '../home/home';
+import { MediaCapture } from '@ionic-native/media-capture';
+import { Camera } from '@ionic-native/camera';
+import { SafeResourceUrl, DomSanitizer } from '@angular/platform-browser';
+import { VideoPlayer } from '@ionic-native/video-player';
+
 
 /**
  * Generated class for the Addresult page.
@@ -17,21 +22,35 @@ import { HomePage } from '../home/home';
   templateUrl: 'addresult.html',
 })
 export class AddresultPage {
+
+@ViewChild('myvideo') myvideo: any;
+
+
   createSuccess = false;
   sports: any;
   opengymid: any;
   gymid: any;
-  registerResult = { user: '', gym: '', sport: '', value: '' };
+  registerResult;
+  video:any;
+  //myvideo:any;
+  imageData:any;
+  safeUrl;
+  fileEntry;
+  user;
+  playVideo;
 
-  constructor(public auth: AuthService, public backendService: BackendService, private alertCtrl: AlertController, public viewCtrl: ViewController, public navCtrl: NavController, public navParams: NavParams) {
+  constructor(public auth: AuthService, public backendService: BackendService, private alertCtrl: AlertController, public viewCtrl: ViewController, public navCtrl: NavController, public navParams: NavParams, private mediaCapture: MediaCapture, private camera: Camera,
+    private domSanitizer: DomSanitizer, private videoPlayer: VideoPlayer) {
+    this.registerResult = { user: '', gym: '', sport: '', value: '' };
     this.sports = this.navParams.get('sports');
     this.opengymid = this.navParams.get('opengymid');
     console.log("addresult.constructor: " + this.opengymid);
     this.backendService.getGymByOpenId(this.opengymid)
       .subscribe(data => {
         this.registerResult.gym = data;
-      });
+      }); 
   }
+
 
   close() {
     this.viewCtrl.dismiss();
@@ -99,8 +118,44 @@ export class AddresultPage {
      buttons: ['OK']
    });
    alert.present();
+
  }
   toHomepage(){
   this.navCtrl.setRoot(HomePage);
+
+}
+
+   startRecording(){
+    this.mediaCapture.captureVideo((videodata)=>{
+       alert(JSON.stringify(videodata));
+  
+    });
+   
+  }
+
+//testfunktion
+  playResultVideo(){
+    this.backendService.getResultVideo(18)
+      .subscribe(data=>{ 
+      this.playVideo = (data.src);
+    });
+     
+
+     this.videoPlayer.play(this.playVideo);
+  }
+
+
+  selectVideo(){
+    let video = this.myvideo.nativeElement;
+    var options = {
+      sourceType:2,
+      mediaType:1
+    };
+    this.camera.getPicture(options).then((data)=>
+      video.src = data);
+      //this.safeUrl = this.domSanitizer.bypassSecurityTrustUrl(this.fileEntry.nativeURL));
+      video.play();
+
+  } 
 }
 }

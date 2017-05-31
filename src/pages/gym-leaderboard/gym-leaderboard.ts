@@ -26,6 +26,7 @@ export class GymLeaderboardPage {
   gymid: number;
   opengymid: string;
 
+
   constructor(public auth: AuthService, public navCtrl: NavController, public navParams: NavParams, public alertCtrl: AlertController, private backendService: BackendService, public loadingCtrl: LoadingController) {
     this.opengymid = this.navParams.get('opengymid');
     this.backendService.getGymByOpenId(this.opengymid)

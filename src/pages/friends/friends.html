@@ -16,30 +16,25 @@
 
 
 <ion-content padding>
-
-
 <ion-list>
 <p class="name">{{ activeUser.username }}</p>
   <ion-item-sliding>
 
       <ion-item *ngFor="let friend of friendlist" (click)="openProfile(friend.id);"> {{friend.picture}} {{friend.username}}
-
-   <!--  <ion-item-options side="left">
+    <ion-item-options side="left">
       <button class="deleteFriend" ion-button color=red (click)="deleteFriend();">
         <ion-icon name="trash"></ion-icon>
-      </button> -->
+      </button>
+      </ion-item-options>
         </ion-item>
 
- <!--    </ion-item-options>
+   
     <ion-item-options side="right">
-      <button ion-button color="primary" (click)="openProfile(friend.id);">
+      <button ion-button class="button-layout" (click)="openProfile(friend.id);">
         <ion-icon name="person"></ion-icon>
         Profile
       </button>
     </ion-item-options>
-   -->
-
   </ion-item-sliding>
 </ion-list>
-
 </ion-content>

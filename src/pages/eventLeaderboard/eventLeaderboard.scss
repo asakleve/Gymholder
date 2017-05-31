@@ -1,4 +1,16 @@
 page-eventLeaderboard {
 
+  .card-background-page {
+    ion-card {
+  	  position: relative;
+  	  margin-top: 20px;
+	  }
+  }
+
+   ion-card {
+    position: relative;
+    text-align: center;
+		height:30%;
+  }
 
 }
