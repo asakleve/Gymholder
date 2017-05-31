@@ -29,7 +29,11 @@ export class BadassPage {
   weathericon;
 
 
+<<<<<<< HEAD
   constructor(public navCtrl: NavController, public navParams: NavParams, public alertCtrl: AlertController) {
+=======
+  constructor(public navCtrl: NavController, public navParams: NavParams, public alertCtrl: AlertController ) {
+>>>>>>> master
 
       this.badassMult = 0;
       this.tMult = 0;
@@ -55,6 +59,7 @@ export class BadassPage {
   // från api tar tid att färdigställas, och koden annars inte väntar
   // på att läsningen ska köras klart.
 
+<<<<<<< HEAD
 getWeatherIcon() {
       switch (this.gymData.forecast.weathersymbol) {
         case 3: case 4: 
@@ -75,6 +80,17 @@ getWeatherIcon() {
           this.weathericon = ion-ios-sunny-outline
       }
     }
+=======
+showAlerts() {
+    let alert = this.alertCtrl.create({
+      title: 'Badass explained!',
+      subTitle: 'Badass is the scoring system of the Gymholder app. Depending on the weather condition you can get different score of your workout. The purpose of the badass scoring system is to generate higher scores for people who dare to challenge severe weather. It is way more badass to exercise in a thunderstorm than to workout in sunshine.',
+      buttons: ['OK']
+    });
+    alert.present();
+  }  
+
+>>>>>>> origin/aron
 
 
   calcBadassMult() {

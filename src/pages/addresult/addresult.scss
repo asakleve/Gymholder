@@ -1,3 +1,129 @@
 page-addresult {
 
+	.cardLayout {
+		position: relative;
+		margin: 0px;
+		padding: 0px;
+		width: 100%;
+		clear: both;
+		float: left;
+	}
+
+	.headerImage {
+		position: relative;
+		margin: 0px;
+		padding: 0px;
+		width: 100%;
+		min-height: 211px;
+		clear: both;
+		float: left;
+
+		.image {
+			//position: absolute;
+			//top: 0px;
+			//left: 0px;
+			height: 211px;
+			width: 100%;
+			overflow: hidden;
+
+			img {
+				min-height: 211px;
+				min-width: 100%;
+				overflow: hidden;
+			}
+		}
+
+		.cardHeader {
+			position: absolute;
+			top: 165px;
+			//left: -3px;
+			width: 100%;
+			//height: 46px;
+			background: linear-gradient(to right, #000, rgba(0,0,0,0));
+		}
+	}
+
+	.localMenu{
+		text-align: center;
+		position: relative;
+		padding: 0 40px 0;
+
+		button {
+			align: center;
+			position: relative;
+
+		}
+		ion-icon {
+			margin-right: 10px;
+		}
+	}
+
+	.bCard {
+		//position: relative;
+		float: left;
+		//width: 100%;
+		//margin: 0px;
+		//margin-left: 10px;
+		//padding: 0px;
+		//text-align: left;
+		//background-color: #000;
+		margin-right: 10px;
+
+		.button-ios {
+		  margin: 0;
+		}
+	}
+
+	.card-title {
+		//position: relative;
+		//float: left;
+		//padding: 10px;
+		//background: linear-gradient(to right, #000, rgba(0,0,0,0.7), rgba(0,0,0,0));
+		//clear: right;
+
+		color: #fff;
+		font-family: Arial;
+		font-size: 1.4em;
+		//font-weight: normal;
+		//background-color: inherit;
+		// font-variant: small-caps;
+	}
+
+
+
+	.titel {
+		position: inherit;
+		top: 0px;
+		text-align: center;
+		font-size: 1.2em;
+		z-index: 2;
+	}
+
+	.gymholder {
+		position: relative;
+		margin: 0px;
+		padding: 0px;
+		font-size: 1.4em;
+	}
+
+	.userPic {
+		position: relative;
+		width: 100%;
+	 	text-align: center;
+		z-index: 1;
+
+		img {
+			position: relative;
+			text-align: center;
+		    padding: 5px;
+		    width: 50px;
+		    height: 70px;
+		    text-color: black;
+		}
+
+		ion-icon{
+			font-size: 50px;
+			color: #678567;
+		}
+	}
 }

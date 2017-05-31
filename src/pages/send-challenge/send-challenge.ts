@@ -38,11 +38,42 @@ export class SendChallengePage {
     console.log('ionViewDidLoad SendChallenge');
   }
 
+<<<<<<< HEAD
   toHomepage(){
   this.navCtrl.setRoot(HomePage);
 }
 
 
+=======
+  presentAlert() {
+  let alert = this.alertCtrl.create({
+    title: 'Challenges explained!',
+    subTitle: '',
+    buttons: ['Ok']
+  });
+  alert.present();
+}
+
+
+  engage(){
+    // this.sports[];
+    
+    this.backendService.getAllSports()
+    .subscribe(data => {
+      for(let s of data) {
+        this.sports.push(s.name);
+        }
+      });
+  }
+showAlert() {
+    let alert = this.alertCtrl.create({
+      title: 'Challenges explained!',
+      subTitle: 'Start by writing the exercise you want your friend to do. Then choose how many repetitions you want him or her to do and click on “Send”. Now it’s time to enter a name for the challenge and click on “send”. If you change your mind you can always choose to cancel.',
+      buttons: ['OK']
+    });
+    alert.present();
+  }
+>>>>>>> master
 
 doPrompt() {
   let prompt = this.alertCtrl.create({
@@ -78,6 +109,7 @@ postChallenge(){
 }
 
 
+<<<<<<< HEAD
    showAlert() {
     let alert = this.alertCtrl.create({
       title: 'Challenge sent!',
@@ -85,6 +117,16 @@ postChallenge(){
     });
     alert.present();
   }
+=======
+  //  showAlert() {
+  //   let alert = this.alertCtrl.create({
+  //     title: 'Challenge sent!',
+  //     subTitle: 'Your challange:' + this.challangeName + ' where you challenge ' + this.profileOwner.username + ' in '+ this.radioResult + ' has been sent. She has seven days to accept the challenge',
+  //     buttons: ['Cancel' , 'OK']
+  //   });
+  //   alert.present();
+  // }
+>>>>>>> master
           //Väntar på HTML-förändringar innan denna kan färdigställas/ åsa
 
 }
