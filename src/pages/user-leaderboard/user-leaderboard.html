@@ -3,7 +3,7 @@
     <button ion-button menuToggle>
       <ion-icon name="menu"></ion-icon>
     </button>
-     <button ion-button clear color ='navbarTextColor' class ="navButton">Gym<span class="another-color">holder</span></button>
+     <button ion-button clear color ='navbarTextColor' class ="navButton" (click)="toHomepage()">Gym<span class="another-color">holder</span></button>
      <button ion-button clear icon-search>
      	<ion-icon name="search" color='white'></ion-icon>
 	</button>
@@ -11,12 +11,24 @@
 </ion-header>
 
 <ion-content padding>
-  <button ion-button block color="green" (click)="showRadio()">Select exercise</button>
-    <h5>Displaying results for {{selectedSport}}</h5>
+<ion-content padding>
+  <ion-card>
+      <img src="assets/img/leader.jpg" />
+      </ion-card>
+
+  <button ion-button block class="button-layout" (click)="showRadio()">Select exercise</button>
     <p>{{video}}</p>
     <ion-list>
       <ion-item *ngFor="let d of displayResults">{{d[2]}} {{d[0]}}
-        <button ion-button block (click)="playVideo()"></button>
+        <ion-card>
+          <ion-card-content>
+          <iframe width="100%" height="100%" src={{video}} frameborder="0" allowfullscreen></iframe>
+          </ion-card-content>
+        </ion-card>
+
+    <!--     <button ion-button (click)="playVideo()">
+          <ion-icon name = "bonfire"></ion-icon>
+        </button> -->
       </ion-item>
     </ion-list>
 </ion-content>

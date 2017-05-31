@@ -3,6 +3,7 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { GymprofilePage } from '../gymprofile/gymprofile';
 import { BackendService } from '../../providers/backend-service';
 import {Geolocation} from '@ionic-native/geolocation';
+import { HomePage } from '../home/home';
 
 
 /*
@@ -51,7 +52,6 @@ export class MapPage {
   allgyms: any;
   activeGym: any;
   processedallgyms: any[];
-
 
   constructor(public navCtrl: NavController, public navParams: NavParams, private backendService: BackendService, private geolocation: Geolocation) {
     this.allgyms = this.backendService.getAllGyms();
@@ -123,6 +123,7 @@ export class MapPage {
     });
   }
 
+
   //   watch() {
   //   this.geolocation.getCurrentPosition().then((resp) => {
   //     this.coords = resp.coords.latitude + ' ' + resp.coords.longitude;
@@ -132,5 +133,10 @@ export class MapPage {
   //   });
   // }
 
+
+
+  toHomepage(){
+  this.navCtrl.setRoot(HomePage);
+}
 
 }

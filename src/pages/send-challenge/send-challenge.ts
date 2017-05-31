@@ -1,8 +1,9 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { HomePage } from '../home/home';
 import { AlertController } from 'ionic-angular';
-
-
+import { BackendService } from '../../providers/backend-service';
+import { AuthService } from '../../providers/auth-service';
 
 /**
  * Generated class for the SendChallange page.
@@ -17,35 +18,35 @@ import { AlertController } from 'ionic-angular';
 })
 export class SendChallengePage {
   os: string;
+  challengeCredentials;
+  activeUser;
+  profileOwnerId;
+  userid;
 
 
-  musicAlertOpts: { title: string, subTitle: string };
-
-
-  constructor(public navCtrl: NavController, public navParams: NavParams, public alertCtrl: AlertController) {
-
-  this.musicAlertOpts = {
-       title: '1994 Music',
-       subTitle: 'Select your favorite'
-     };
+  constructor(public auth: AuthService, public navCtrl: NavController, public navParams: NavParams, public alertCtrl: AlertController, private backendService: BackendService) {
+    this.challengeCredentials={sender: '', receiver: '', sport:'', reps:'',message:''};
+    this.activeUser = this.auth.getUser;
+    this.profileOwnerId = this.navParams.get('userid');
+    this.challengeCredentials.sender = this.activeUser.userid;
+    this.challengeCredentials.receiver = this.profileOwnerId;
+   
+ 
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad SendChallenge');
   }
-  stpSelect() {
-  console.log('STP selected');
+
+  toHomepage(){
+  this.navCtrl.setRoot(HomePage);
 }
+
+
+
 doPrompt() {
   let prompt = this.alertCtrl.create({
     title: 'Awesome!',
-    message: "Now enter a name for this new challenge you're so keen on adding",
-    inputs: [
-      {
-        name: 'title',
-        placeholder: 'Title'
-      },
-    ],
     buttons: [
       {
         text: 'Cancel',
@@ -54,15 +55,36 @@ doPrompt() {
         }
       },
       {
-        text: 'Send',
+        text: 'Send Challenge',
         handler: data => {
           console.log('Saved clicked');
-        }
-      }
+          this.postChallenge();
+            }
+         }
+        
     ]
   });
   prompt.present();
 }
 
+postChallenge(){
+  this.backendService.postChallenge(this.challengeCredentials.sender, this.profileOwnerId, this.challengeCredentials.sport, this.challengeCredentials.reps, this.challengeCredentials.message)
+  .subscribe(data=>{
+     if (data=="Challenge created"){
+      this.showAlert();
+
+    }
+   });
+}
+
+
+   showAlert() {
+    let alert = this.alertCtrl.create({
+      title: 'Challenge sent!',
+      buttons: ['Cancel' , 'OK']
+    });
+    alert.present();
+  }
+          //Väntar på HTML-förändringar innan denna kan färdigställas/ åsa
 
 }

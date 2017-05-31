@@ -3,7 +3,7 @@
     <button ion-button menuToggle>
       <ion-icon name="menu"></ion-icon>
     </button>
-    <button ion-button clear color ='navbarTextColor' class ="navButton">Gym<span class="another-color">holder</span></button>
+    <button ion-button clear color ='navbarTextColor' class ="navButton" (click)= "toHomepage()">Gym<span class="another-color">holder</span></button>
     <button ion-button clear icon-search>
      	<ion-icon name="search" color='white'></ion-icon>
 	</button>
@@ -96,7 +96,8 @@
 <div class="base"> Base Multiplier:  &nbsp; + 75 </div>
 <div class="huvudscore"> Your Score x  {{ badassMult }}
 </div>
-	<button ion-button class="knapp" on-click="showAlert();"> How does the scoring system work? </button>
+	<button class="button-layout" ion-button on-click="showAlert();"> How does the scoring system work?
+	 </button>
 
 
 </ion-content>

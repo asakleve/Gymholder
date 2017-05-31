@@ -11,13 +11,18 @@ import { BrowserModule } from '@angular/platform-browser';
 import { ErrorHandler, NgModule } from '@angular/core';
 import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
 import { HttpModule } from '@angular/http';
-
+import { Facebook, FacebookLoginResponse } from '@ionic-native/facebook';
+import { NativeStorage } from '@ionic-native/native-storage';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
-import { MediaCapture} from '@ionic-native/media-capture';
-// import { YoutubeVideoPlayer } from '@ionic-native/youtube-video-player';
+import { MediaCapture } from '@ionic-native/media-capture';
+import { Camera } from '@ionic-native/camera';
+import { VideoPlayer} from '@ionic-native/video-player';
+
+
 //import { Camera } from '@ionic-native/camera';
 import {Geolocation} from '@ionic-native/geolocation';
+
 
 import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
@@ -44,7 +49,6 @@ import { SendChallengePage } from '../pages/send-challenge/send-challenge';
 
 
 
-
 @NgModule({
   declarations: [
     MyApp,
@@ -66,6 +70,7 @@ import { SendChallengePage } from '../pages/send-challenge/send-challenge';
     BadassPage,
     //  Youtube,
     SendChallengePage
+    //VideoPlayer
 
 
   ],
@@ -99,7 +104,6 @@ import { SendChallengePage } from '../pages/send-challenge/send-challenge';
   providers: [
     StatusBar,
     SplashScreen,
-    // YoutubeVideoPlayer,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     AuthService,
     CoordService,
@@ -108,8 +112,13 @@ import { SendChallengePage } from '../pages/send-challenge/send-challenge';
     BackendService,
     Geolocation,
     ObjectManager,
-    MediaCapture
-    //Camera
+    Facebook,
+    MediaCapture,
+    Camera,
+    VideoPlayer,
+    YoutubeVideoPlayer,
+    NativeStorage
+
 
   ]
 })

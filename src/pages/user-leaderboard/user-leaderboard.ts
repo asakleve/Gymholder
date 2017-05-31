@@ -3,8 +3,11 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { AlertController } from 'ionic-angular';
 import { BackendService } from '../../providers/backend-service';
 import { AuthService } from '../../providers/auth-service';
-//import { YoutubeVideoPlayer } from '@ionic-native/youtube-video-player';
 
+//import { YoutubeVideoPlayer } from '@ionic-native/youtube-video-player';
+import { HomePage } from '../pages/home/home';
+
+//import { VideoPlayer} from '@ionic-native/video-player';
 
 
 @IonicPage()
@@ -42,11 +45,13 @@ export class UserLeaderboardPage {
   }
 
 
+
 //  playVideo(){
 //  console.log(this.userid);
 //  this.youtube.openVideo('myvideoid');
 //
 //  }
+
 
   showRadio() {
     let alert = this.alertCtrl.create();
@@ -105,11 +110,14 @@ export class UserLeaderboardPage {
     this.results=[];
 
     console.log("In engage: " + this.userid);
-    this.backendService.getResult(this.userid)
+    this.backendService.getUserResults(this.userid)
       .subscribe(data => {
         this.results = data[0];
         this.showResults("Show all results");
         //behöver fixa en loop som lägger allt i arrayen. För detta behövs mer och bättre testdata.Går att göra när API returnerar ett array, det gör den inte i dagsläget
       });
   }
+  toHomepage(){
+  this.navCtrl.setRoot('HomePage');
+}
 }

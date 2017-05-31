@@ -3,7 +3,7 @@
     <button ion-button menuToggle>
       <ion-icon name="menu"></ion-icon>
     </button>
-     <button ion-button clear color ='navbarTextColor' class ="navButton">Gym<span class="another-color">holder</span></button>
+     <button ion-button clear color ='navbarTextColor' class ="navButton" (click)= "toHomepage()">Gym<span class="another-color">holder</span></button>
      <button ion-button clear icon-search>
        <ion-icon name="search" color='white'></ion-icon>
     </button>
@@ -56,25 +56,30 @@
        </ion-item>
     </ion-list>
 
+
+    <form (ngSubmit)="changePassword()" #changePassForm="ngForm">
     <ion-list>
       <ion-list-header>
         CREATE NEW PASSWORD
       </ion-list-header>
 
       <ion-item>
-        <ion-input type="password" placeholder="Old Password"></ion-input>
-      </ion-item>
-
-      <ion-item>
-        <ion-input type="password" placeholder="New Password"></ion-input>
+        <ion-input type="password" placeholder="Old Password" name = "oldpass"[(ngModel)]="changepasswordCredentials.oldpass" required ></ion-input>
       </ion-item>
       <ion-item>
-        <ion-input type="password" placeholder="Repeat Password"></ion-input>
+        <ion-input type="password" placeholder="New Password" name ="newpass" [(ngModel)]="changepasswordCredentials.newpass" required ></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-input type="password" placeholder="Repeat Password" name ="repeatpass" [(ngModel)]="changepasswordCredentials.repeatpass" required ></ion-input>
       </ion-item>
       <div ion-content padding class="action-sheets-basic-page">
-        <button ion-button full on-click="openMenu()">
+        <button class="button-layout"  class="submit-btn" ion-button full type="submit" [disabled]="!changePassForm.form.valid">Save new password</button></div>
+        
+      <div ion-content padding class="action-sheets-basic-page">
+        <button class="button-layout" ion-button full on-click="openMenu()">
           Log out
         </button>
       </div>
     </ion-list>
+    </form>
   </ion-content>

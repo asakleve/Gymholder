@@ -3,7 +3,7 @@
     <button ion-button menuToggle>
       <ion-icon name="menu"></ion-icon>
     </button>
-    <button ion-button clear color ='navbarTextColor' class ="navButton">Gym<span class="another-color">holder</span></button>
+    <button ion-button clear color ='navbarTextColor' class ="navButton" (click)= "toHomepage()">Gym<span class="another-color">holder</span></button>
     <button ion-button clear icon-search>
       <ion-icon name="search" color='white'></ion-icon>
     </button>
@@ -36,20 +36,6 @@
   </ion-list>
 //-->
 
-
-
-
-<!--  Skriver ut koordinaterna ett tryck på en knapp (coords). Den finns under kartan
-//-->
-
-
- <button ion-button (click)="watch()">Get Position</button>
-    <p>Position: {{ coords }}</p>
-    <p>Accuracy: {{ accuracy }} meters</p>
-    <p *ngIf="error">{{ error }}</p>
- 
-<!-- TEST
-//-->
 
 
 </ion-content>

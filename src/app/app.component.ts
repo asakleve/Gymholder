@@ -3,6 +3,7 @@ import { Nav, Platform } from 'ionic-angular';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 // import { YoutubeVideoPlayer } from '@ionic-native/youtube-video-player';
+import { NativeStorage } from '@ionic-native/native-storage';
 
 import { AuthService } from '../providers/auth-service';
 import { BackendService } from '../providers/backend-service';
@@ -36,7 +37,7 @@ export class MyApp {
 
   pages: Array<{title: string, component: any}>;
 
-  constructor(authService: AuthService, public backendService: BackendService, public platform: Platform, public statusBar: StatusBar, public splashScreen: SplashScreen) {
+  constructor(authService: AuthService, public backendService: BackendService,public nativeStorage: NativeStorage, public platform: Platform, public statusBar: StatusBar, public splashScreen: SplashScreen) {
     this.initializeApp();
     this.authService = authService;
 
@@ -44,11 +45,30 @@ export class MyApp {
     this.pages = [
       { title: 'Home', component: HomePage },
       { title: 'Profile', component: ProfilePage },
-      { title: 'Messages', component: MessagesPage },
+      //{ title: 'Messages', component: MessagesPage },
       { title: 'Friends', component: FriendsPage },
-      { title: 'Groups', component: GroupsPage },
+      //{ title: 'Groups', component: GroupsPage },
       { title: 'Settings', component: SettingsPage },
     ];
+
+    // platform.ready().then(() => {
+    //   // Here we will check if the user is already logged in
+    //   // because we don't want to ask users to log in each time they open the app
+    //   var env = this;
+    //   this.nativeStorage.getItem('user')
+    //   .then( function (data) {
+    //     // user is previously logged and we have his data
+    //     // we will let him access the app
+    //     env.nav.push(HomePage);
+    //     this.splashscreen.hide();
+    //   }, function (error) {
+    //     //we don't have the user data so we will ask him to log in
+    //     env.nav.push(InloggPage);
+    //     this.splashscreen.hide();
+    //   });
+
+    //   StatusBar.styleDefault();
+    // });
 
   }
 

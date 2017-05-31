@@ -2,6 +2,8 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams,LoadingController } from 'ionic-angular';
 import { AlertController } from 'ionic-angular';
 import { BackendService } from '../../providers/backend-service';
+import { HomePage } from '../home/home';
+import { ProfilePage } from '../profile/profile';
 
 
 
@@ -19,6 +21,7 @@ export class EventLeaderboardPage {
   displayResults: any[];
   testResult: any;
   user: any;
+  id;
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public alertCtrl: AlertController, private backendService: BackendService, public loadingCtrl: LoadingController) {
     this.sports = [];
@@ -66,7 +69,7 @@ export class EventLeaderboardPage {
 
     showResults(sport){
       this.displayResults=[];
-      if(sport==="Show all results"){
+      if( sport == "Show all results" || sport == undefined ){
         this.displayResults = this.results;
         this.selectedSport = "all exercises";
       }
@@ -82,33 +85,35 @@ export class EventLeaderboardPage {
         return parseFloat(a.reps) - parseFloat(b.reps);
       });
     }
-      //Ovan funkar inte eftersom namnen på grenarna inte skrivs i API, kollen blir alltså mot siffror istället = knasigt//
    
     engage(){
-      
-      this.sports.push("Classic Push Ups");
-      this.sports.push("Wide Grip Push Ups");
-      this.sports.push("Close Grip Push Ups");
-      this.sports.push("Sit Ups");
-      this.sports.push("Chin Ups");
-      this.sports.push("Pull Ups");
-      this.sports.push("One Arm Pull Ups");
-      this.sports.push("Toe To Bar");
-      this.sports.push("Toe Touch");
-      this.sports.push("Squats");
-      this.sports.push("Jumping Squats");
-      this.sports.push("Wall Squats");
-      this.sports.push("Hanging Dips");
-      this.sports.push("Box Jumps");
-      this.sports.push("Pistol Squats");
-
+         this.backendService.getAllSports()
+      .subscribe(data => {
+        for(let s of data) {
+          this.sports.push(s.name);
+        }
+      });
 
       this.results=[];
-      //this.sports=[];
       this.backendService.getAllResults()
       .subscribe(data=>{
         this.results=data;
-       // this.sports=data.sport;
+     
       });
     }
+
+      toHomepage(){
+    this.navCtrl.setRoot(HomePage);
+  }
+
+     openProfile(username: string){
+      
+      this.backendService.getUserByUsername(username)
+      .subscribe(data=>{
+        this.id = data.id;
+            console.log("this is from leaderbard" + this.id);
+    this.navCtrl.push(ProfilePage, { userid: this.id });
+      })
+  }
+
 }

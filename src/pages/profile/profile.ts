@@ -6,6 +6,7 @@ import { SendChallengePage } from '../send-challenge/send-challenge';
 // Här sker import av våra providers
 import { BackendService } from '../../providers/backend-service';
 import { AuthService } from '../../providers/auth-service';
+import { HomePage } from '../home/home';
 
 /**
  * Generated class for the Profile page.
@@ -45,7 +46,7 @@ export class ProfilePage {
     // Hämtar User-objektinstansen från authService, innehållande
     // data för den aktiva användaren.
     this.activeUser = this.authService.getUser();
-    if(this.navParams.get('userid') != null) {
+    if(this.navParams.get('userid') != null ) {
       this.profileId = this.navParams.get('userid');
     } else {
       this.profileId = this.activeUser.userid;
@@ -87,19 +88,24 @@ export class ProfilePage {
 
   openUserLeaderboard(profileOwner){
     console.log(profileOwner);
-    this.navCtrl.push(UserLeaderboardPage, { userid: profileOwner });
+    this.navCtrl.push(UserLeaderboardPage, { userid: this.profileOwner });
   }
 
   sendChallange(){
-    this.navCtrl.push(SendChallengePage);
+    this.navCtrl.push(SendChallengePage, {userid: this.profileOwner.userid});
   }
 
 
 
-//   addFriend(){
-//     this.backendService.postFriend(activeUser,userToAdd);
-// //userToAdd finns inte
-//   }
+  addFriend(){
+    this.backendService.postFriend(this.activeUser.userid,this.profileId)
+    .subscribe(data=>{
+      if (data==true){
+        this.presentToast();
+      }      
+    })
+
+  }
 
 
   presentToast() {
@@ -126,15 +132,6 @@ export class ProfilePage {
     toast.present();
   }
 
-
-   showAlert() {
-    let alert = this.alertCtrl.create({
-      title: 'Challenge sent!',
-      subTitle: 'Your challange:' + this.challangeName + ' where you challenge ' + this.profileOwner.username + ' in '+ this.radioResult + ' has been sent. She has seven days to accept the challenge',
-      buttons: ['Cancel' , 'OK']
-    });
-    alert.present();
-  }
 
   showPrompt() {
     let prompt = this.alertCtrl.create({
@@ -164,4 +161,7 @@ export class ProfilePage {
     });
     prompt.present();
   }
+    toHomepage(){
+  this.navCtrl.setRoot(HomePage);
+}
 }

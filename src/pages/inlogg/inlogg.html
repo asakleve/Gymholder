@@ -2,7 +2,7 @@
   <ion-list>
 
     <ion-item>
-      <ion-input type="text" placeholder="E-post" name="email" [(ngModel)]="registerCredentials.email" required></ion-input>
+      <ion-input type="text" placeholder="Användarnamn/E-Post" name="email" [(ngModel)]="registerCredentials.email" required></ion-input>
     </ion-item>
 
     <!--
@@ -28,6 +28,7 @@
 
       <button ion-button (click)="createAccount()">Register now</button>
       <button ion-button (click)="login()" type="submit" [disabled]="!registerForm.form.valid">Log in</button>
+      <button ion-button (click)="doFB()"> Log in with Facebook </button>
 
     </div>
   </ion-card>

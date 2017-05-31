@@ -6,7 +6,8 @@ import { BackendService } from '../../providers/backend-service';
 import { AuthService } from '../../providers/auth-service';
 import { AddresultPage } from '../addresult/addresult';
 import { BadassPage } from '../badass/badass';
-import { MediaCapture, MediaFile, CaptureError, CaptureImageOptions } from '@ionic-native/media-capture';
+import { HomePage } from '../home/home';
+//import { MediaCapture, MediaFile, CaptureError, CaptureImageOptions } from '@ionic-native/media-capture';
 
 /**
  * Generated class for the Gymprofile page.
@@ -32,8 +33,9 @@ export class GymprofilePage {
   pcat: any;
   weathercat: any;
   allsports: any;
+  gymHolder;
 
-  constructor(private authService: AuthService, public navCtrl: NavController, public navParams: NavParams, private openGymData: OpenGymDataService, private backendService: BackendService, private mediaCapture: MediaCapture) {
+  constructor(private authService: AuthService, public navCtrl: NavController, public navParams: NavParams, private openGymData: OpenGymDataService, private backendService: BackendService) {
 
     this.pcat = {
       0 : "No precipitation",
@@ -68,6 +70,7 @@ export class GymprofilePage {
         this.allsports = data;
       });
 
+
     this.time = new Date().getHours();
     this.opengymid = this.navParams.get('openid');
 
@@ -80,19 +83,27 @@ export class GymprofilePage {
     this.activeUser = this.authService.getUser();
     this.activeGym = this.navParams.get('gym');
     this.loadGymDetails();
+
+    this.backendService.getGymHolder(this.activeGym.id)
+    .subscribe(data=>{
+      this.gymHolder=data;
+      console.log(JSON.stringify(data));
+      console.log(this.gymHolder.username);
+    });
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad Gymprofile');
   }
 
-  startRecording(options) {
-    this.mediaCapture.captureVideo((videodata) => {
-      alert(JSON.stringify(videodata));
-     })
-  }
+  // startRecording(options) {
+  //   this.mediaCapture.captureVideo((videodata) => {
+  //     alert(JSON.stringify(videodata));
+  //    })
+  // }
 
   openLeaderBoard() {
+
   	this.navCtrl.push(GymLeaderboardPage, { opengymid: this.opengymid, gymid: this.gymid, sports: this.allsports });
   }
 
@@ -102,6 +113,7 @@ export class GymprofilePage {
   }
 
   openBadass() {
+    console.log("Till funktionen openbadass");
     this.navCtrl.push(BadassPage, { opengymData: this.gymData });
   }
 
@@ -151,5 +163,7 @@ export class GymprofilePage {
     // Förbered URL för användning.
     this.gymData.gymImage = 'http://www.stockholm.se/Web/Core/Pages/Special/StreamServiceGuideImage.aspx?path=%2fWeb%2fCore%2fPages%2fSpecial%2fServiceGuideFile.aspx%3ffileid%3d' + this.gymImageId;
   }
-
+  toHomepage(){
+  this.navCtrl.setRoot(HomePage);
+}
 }
