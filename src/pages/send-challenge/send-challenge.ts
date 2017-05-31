@@ -31,7 +31,7 @@ export class SendChallengePage {
 
   toHomepage(){
   this.navCtrl.setRoot(HomePage);
-
+}
 
   engage(){
     // this.sports[];
@@ -89,5 +89,5 @@ doPrompt() {
   //   alert.present();
   // }
           //Väntar på HTML-förändringar innan denna kan färdigställas/ åsa
-}
+
 }

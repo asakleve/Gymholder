@@ -81,7 +81,7 @@ export class SettingsPage {
 
       toHomepage(){
   this.navCtrl.setRoot(HomePage);
-
+}
 
     changePassword(){
 
@@ -120,5 +120,5 @@ export class SettingsPage {
     });
     toast.present();
   }
-}
+
 }

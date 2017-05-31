@@ -157,5 +157,5 @@ export class AddresultPage {
       video.play();
 
   } 
-}
+
 }

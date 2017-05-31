@@ -3,9 +3,6 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { GymprofilePage } from '../gymprofile/gymprofile';
 import { BackendService } from '../../providers/backend-service';
 import {Geolocation} from '@ionic-native/geolocation';
-
-
-import { Geolocation } from '@ionic-native/geolocation';
 import { HomePage } from '../home/home';
 
 
@@ -139,12 +136,4 @@ export class MapPage {
   this.navCtrl.setRoot(HomePage);
 }
 
-    watch() {
-    this.geolocation.getCurrentPosition().then((resp) => {
-      this.coords = resp.coords.latitude + ' ' + resp.coords.longitude;
-      this.accuracy = resp.coords.accuracy + ' meters';
-    }).catch((error) => {
-      this.error = 'Error getting location: ' + error;
-    });
-  }
 }

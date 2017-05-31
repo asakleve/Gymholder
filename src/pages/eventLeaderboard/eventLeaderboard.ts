@@ -103,7 +103,8 @@ export class EventLeaderboardPage {
     }
 
       toHomepage(){
-  this.navCtrl.setRoot(HomePage);
+    this.navCtrl.setRoot(HomePage);
+  }
 
      openProfile(username: string){
       
@@ -114,5 +115,5 @@ export class EventLeaderboardPage {
     this.navCtrl.push(ProfilePage, { userid: this.id });
       })
   }
-}
+
 }
