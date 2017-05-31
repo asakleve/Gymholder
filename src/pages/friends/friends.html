@@ -16,22 +16,27 @@
 
 
 <ion-content padding>
+<div align="center"><button ion-button class="showFriends" (click)="displayFriends();">Show friends</button>
+<button ion-button class="searchFriends" color="gym-green" (click)="showPrompt();">Search users</button>
+</div>
 <ion-list>
-<p class="name">{{ activeUser.username }}</p>
+  <p class="name">{{ activeUser.username }}</p>
   <ion-item-sliding>
 
-      <ion-item *ngFor="let friend of friendlist" (click)="openProfile(friend.id);"> {{friend.picture}} {{friend.username}}
+    <ion-item *ngFor="let friend of friendlist" (click)="openProfile(friend.id);"> {{friend.picture}} {{friend.username}}
     <ion-item-options side="left">
       <button class="deleteFriend" ion-button color=red (click)="deleteFriend();">
         <ion-icon name="trash"></ion-icon>
       </button>
-      </ion-item-options>
-        </ion-item>
+    </ion-item-options>
+  </ion-item>
 
-   
-    <ion-item-options side="right">
-      <button ion-button class="button-layout" (click)="openProfile(friend.id);">
-        <ion-icon name="person"></ion-icon>
+
+
+
+  <ion-item-options side="right">
+    <button ion-button class="button-layout" (click)="openProfile(friend.id);">
+      <ion-icon name="person"></ion-icon>
         Profile
       </button>
     </ion-item-options>

@@ -100,10 +100,10 @@ export class BackendService {
   constructor(public http: Http, public openGymData: OpenGymDataService, public coordService: CoordService) {
     console.log('Hello BackendService Provider');
 
-    this.apibackend = "/backend";
-    //this.apibackend = "http://gymholder.herokuapp.com";
-    //this.apiuser = "http://gymholder.herokuapp.com/user";
-    this.apiuser = '/user';
+    //this.apibackend = "/backend";
+    this.apibackend = "http://gymholder.herokuapp.com";
+    this.apiuser = "http://gymholder.herokuapp.com/user";
+    //this.apiuser = '/user';
     this.headers = new Headers();
     this.headers.append('Authentication', '0oXxWXkLknkhDa2JWZWF');
     this.headers.append('Accept', 'application/json');
@@ -394,6 +394,11 @@ export class BackendService {
 
   public getFriends(userid: number){
     return this.http.get(this.apibackend + '/allfriends/' + userid, {headers: this.headers})
+    .map(res=> res.json());
+  }  
+
+  public searchUser(name: string){
+    return this.http.get(this.apibackend + '/searchuser/' + name, {headers: this.headers})
     .map(res=> res.json());
   }
 

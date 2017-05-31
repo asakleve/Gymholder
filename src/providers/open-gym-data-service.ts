@@ -18,10 +18,10 @@ export class OpenGymDataService {
   private ourApiKey = 'ffd5810dd624442ca44452e55964fd67';
 
   constructor(public http: Http) {
-    //this.apismhi = "http://opendata-download-metfcst.smhi.se";
-    this.apismhi= '/smhi';
-    //this.apistockholm = "http://api.stockholm.se";
-    this.apistockholm  = '/openStockholm';
+    this.apismhi = "http://opendata-download-metfcst.smhi.se";
+    //this.apismhi= '/smhi';
+    this.apistockholm = "http://api.stockholm.se";
+    //this.apistockholm  = '/openStockholm';
   }
 
   public getForecast(lon: number, lat: number) {

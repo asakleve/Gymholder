@@ -21,13 +21,13 @@ export class FriendsPage {
 activeUser: any;
 friendlist: any [];
 friend: any;
-
+searchUsers: any [];
 
   constructor(public navCtrl: NavController, public navParams: NavParams,public alertCtrl: AlertController,public toastCtrl: ToastController,private backendService: BackendService, public authService: AuthService) {
   	this.activeUser = this.authService.getUser();
     //this.loadUserData(this.activeUser.userid);
     this.friendlist = [];
-    this.displayFriends(this.activeUser.userid);
+    this.displayFriends();
   }
 
   ionViewDidLoad() {
@@ -35,9 +35,17 @@ friend: any;
 
   }
 
-  displayFriends(userid){
+  displayFriends(){
     this.friendlist = [];
-    this.backendService.getFriends(userid)
+    this.backendService.getFriends(this.activeUser.userid)
+       .subscribe(data => {
+        this.friendlist = (data);
+       });
+  }
+
+  searchUser(name){
+    this.friendlist = [];
+    this.backendService.searchUser(name)
        .subscribe(data => {
         this.friendlist = (data);
        });
@@ -112,4 +120,33 @@ friend: any;
   toHomepage(){
   this.navCtrl.setRoot(HomePage);
 }
+showPrompt() {
+    let prompt = this.alertCtrl.create({
+      title: 'Search friends',
+      inputs: [
+        {
+          name: 'name',
+          placeholder: 'Name'
+        },
+      ],
+      buttons: [
+        {
+          text: 'Cancel',
+          handler: data => {
+            console.log('Cancel clicked');
+          }
+        },
+        {
+          text: 'Search',
+          handler: data => {
+            console.log('Saved clicked');
+            console.log(data.name);
+            this.searchUser(data.name);
+          }
+        }
+      ]
+    });
+    prompt.present();
+  }
+
 }

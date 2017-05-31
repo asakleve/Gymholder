@@ -124,7 +124,6 @@ import { SendChallengePage } from '../pages/send-challenge/send-challenge';
     MediaCapture,
     Camera,
     VideoPlayer,
-    YoutubeVideoPlayer,
     NativeStorage
 
 
