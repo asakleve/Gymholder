@@ -69,14 +69,9 @@ import { SendChallengePage } from '../pages/send-challenge/send-challenge';
     UserLeaderboardPage,
     AddresultPage,
     BadassPage,
-<<<<<<< HEAD
-    //  Youtube,
-    SendChallengePage
-=======
     Youtube,
     SendChallengePage,
     AboutPage
->>>>>>> master
     //VideoPlayer
 
 

@@ -38,13 +38,10 @@ export class SendChallengePage {
     console.log('ionViewDidLoad SendChallenge');
   }
 
-<<<<<<< HEAD
   toHomepage(){
   this.navCtrl.setRoot(HomePage);
 }
 
-
-=======
   presentAlert() {
   let alert = this.alertCtrl.create({
     title: 'Challenges explained!',
@@ -73,7 +70,6 @@ showAlert() {
     });
     alert.present();
   }
->>>>>>> master
 
 doPrompt() {
   let prompt = this.alertCtrl.create({
@@ -109,15 +105,6 @@ postChallenge(){
 }
 
 
-<<<<<<< HEAD
-   showAlert() {
-    let alert = this.alertCtrl.create({
-      title: 'Challenge sent!',
-      buttons: ['Cancel' , 'OK']
-    });
-    alert.present();
-  }
-=======
   //  showAlert() {
   //   let alert = this.alertCtrl.create({
   //     title: 'Challenge sent!',
@@ -126,7 +113,6 @@ postChallenge(){
   //   });
   //   alert.present();
   // }
->>>>>>> master
           //Väntar på HTML-förändringar innan denna kan färdigställas/ åsa
 
 }
