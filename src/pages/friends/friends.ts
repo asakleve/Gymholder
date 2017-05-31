@@ -3,6 +3,7 @@ import { IonicPage, NavController, NavParams,AlertController, ToastController } 
 import { BackendService } from '../../providers/backend-service';
 import { AuthService } from '../../providers/auth-service';
 import { ProfilePage } from '../profile/profile';
+import { HomePage } from '../home/home';
 
 /**
  * Generated class for the Friends page.
@@ -108,6 +109,7 @@ friend: any;
   openProfile(userid: number){
     this.navCtrl.push(ProfilePage, { userid: userid });
   }
-
-
+  toHomepage(){
+  this.navCtrl.setRoot(HomePage);
+}
 }

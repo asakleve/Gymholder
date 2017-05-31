@@ -3,6 +3,7 @@ import { Observable } from 'rxjs/Observable';
 import { IonicPage, AlertController, NavController, NavParams, ViewController } from 'ionic-angular';
 import { AuthService } from '../../providers/auth-service';
 import { BackendService } from '../../providers/backend-service';
+import { HomePage } from '../home/home';
 
 /**
  * Generated class for the Addresult page.
@@ -99,5 +100,7 @@ export class AddresultPage {
    });
    alert.present();
  }
-
+  toHomepage(){
+  this.navCtrl.setRoot(HomePage);
+}
 }

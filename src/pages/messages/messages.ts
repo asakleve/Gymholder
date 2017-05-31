@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { MessagesPopOverPage} from '../messages-pop-over/messages-pop-over';
+import { HomePage } from '../home/home';
 
 /**
  * Generated class for the Messages page.
@@ -24,5 +25,8 @@ export class MessagesPage {
   openConversation(){
   this.navCtrl.push(MessagesPopOverPage);
   }
+    toHomepage(){
+  this.navCtrl.setRoot(HomePage);
 
+}
 }

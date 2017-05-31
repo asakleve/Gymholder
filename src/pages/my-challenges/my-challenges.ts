@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { BackendService } from '../../providers/backend-service';
 import { AuthService } from '../../providers/auth-service';
+import { HomePage } from '../home/home';
 
 /**
  * Generated class for the MyChallenges page.
@@ -44,5 +45,8 @@ export class MyChallengesPage {
       this.pendingChallenges = (data);
   });
   }
+    toHomepage(){
+  this.navCtrl.setRoot(HomePage);
 
+}
 }

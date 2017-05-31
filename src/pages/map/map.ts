@@ -5,6 +5,7 @@ import { GymprofilePage } from '../gymprofile/gymprofile';
 import { BackendService } from '../../providers/backend-service';
 
 import { Geolocation } from '@ionic-native/geolocation';
+import { HomePage } from '../home/home';
 
 
 /*
@@ -131,5 +132,7 @@ coords: any;
     });
   }
 
-
+  toHomepage(){
+  this.navCtrl.setRoot(HomePage);
+}
 }

@@ -6,6 +6,7 @@ import { SendChallengePage } from '../send-challenge/send-challenge';
 // Här sker import av våra providers
 import { BackendService } from '../../providers/backend-service';
 import { AuthService } from '../../providers/auth-service';
+import { HomePage } from '../home/home';
 
 /**
  * Generated class for the Profile page.
@@ -164,4 +165,7 @@ export class ProfilePage {
     });
     prompt.present();
   }
+    toHomepage(){
+  this.navCtrl.setRoot(HomePage);
+}
 }

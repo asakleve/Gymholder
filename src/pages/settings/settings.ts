@@ -8,6 +8,7 @@ import { ProfileSettingsPage } from '../profile-settings/profile-settings';
 import { InloggPage } from '../inlogg/inlogg';
 
 import { AuthService } from '../../providers/auth-service';
+import { HomePage } from '../home/home';
 
 /**
  * Generated class for the Settings page.
@@ -70,4 +71,7 @@ export class SettingsPage {
       });
       actionSheet.present();
     }
+      toHomepage(){
+  this.navCtrl.setRoot(HomePage);
+}
 }

@@ -4,7 +4,7 @@ import { AlertController } from 'ionic-angular';
 import { BackendService } from '../../providers/backend-service';
 import { AuthService } from '../../providers/auth-service';
 import { YoutubeVideoPlayer } from '@ionic-native/youtube-video-player';
-
+import { HomePage } from '../pages/home/home';
 
 
 @IonicPage()
@@ -112,4 +112,7 @@ export class UserLeaderboardPage {
         //behöver fixa en loop som lägger allt i arrayen. För detta behövs mer och bättre testdata.Går att göra när API returnerar ett array, det gör den inte i dagsläget
       });
   }
+  toHomepage(){
+  this.navCtrl.setRoot('HomePage');
+}
 }

@@ -7,7 +7,7 @@ import { AuthService } from '../../providers/auth-service';
 import { AddresultPage } from '../addresult/addresult';
 import { BadassPage } from '../badass/badass';
 import { MediaCapture, MediaFile, CaptureError, CaptureImageOptions } from '@ionic-native/media-capture';
-
+import { HomePage } from '../home/home';
 /**
  * Generated class for the Gymprofile page.
  *
@@ -151,5 +151,7 @@ export class GymprofilePage {
     // Förbered URL för användning.
     this.gymData.gymImage = 'http://www.stockholm.se/Web/Core/Pages/Special/StreamServiceGuideImage.aspx?path=%2fWeb%2fCore%2fPages%2fSpecial%2fServiceGuideFile.aspx%3ffileid%3d' + this.gymImageId;
   }
-
+  toHomepage(){
+  this.navCtrl.setRoot(HomePage);
+}
 }

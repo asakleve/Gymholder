@@ -3,6 +3,7 @@ import { IonicPage, NavController, NavParams, ToastController, AlertController }
 import { UserLeaderboardPage } from '../user-leaderboard/user-leaderboard';
 import { BackendService } from '../../providers/backend-service';
 import { AuthService } from '../../providers/auth-service';
+import { HomePage } from '../home/home';
 
 // Här sker import av våra providers
 
@@ -254,4 +255,7 @@ export class BadassPage {
     });
     prompt.present();
   }
+    toHomepage(){
+  this.navCtrl.setRoot(HomePage);
+}
 }

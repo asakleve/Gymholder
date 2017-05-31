@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams,LoadingController } from 'ionic-angular';
 import { AlertController } from 'ionic-angular';
 import { BackendService } from '../../providers/backend-service';
+import { HomePage } from '../home/home';
 
 
 
@@ -111,4 +112,7 @@ export class EventLeaderboardPage {
        // this.sports=data.sport;
       });
     }
+      toHomepage(){
+  this.navCtrl.setRoot(HomePage);
+}
 }
