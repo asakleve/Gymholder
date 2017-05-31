@@ -19,10 +19,6 @@ export class RegisterPage {
 
   constructor(private nav: NavController, private auth: AuthService, private alertCtrl: AlertController, public navParams: NavParams) {
     this.registerCredentials = { email: '', username: '', age: '', password: '' };   
-    // if (this.navParams.get(credentials == !null) {
-    //   this.registerCredentials = credentials;
-    //   this.register();
-    // })
   }
 
   ionViewDidLoad() {

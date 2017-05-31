@@ -1,12 +1,12 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, ToastController } from 'ionic-angular';
 
 import { SettingPopOverPage } from '../setting-pop-over/setting-pop-over';
 import { Platform, ActionSheetController } from 'ionic-angular';
 import { KontoSettingsPage } from '../konto-settings/konto-settings';
 import { ProfileSettingsPage } from '../profile-settings/profile-settings';
 import { InloggPage } from '../inlogg/inlogg';
-
+import { BackendService } from '../../providers/backend-service';
 import { AuthService } from '../../providers/auth-service';
 
 /**
@@ -27,11 +27,17 @@ export class SettingsPage {
 
   item;
   event;
+  activeUser;
+  changepasswordCredentials;
+  tempUser;
 
-  constructor(public auth: AuthService, public navCtrl: NavController, public navParams: NavParams, public platform: Platform, public actionsheetCtrl: ActionSheetController,
-    ) {
+  constructor(public auth: AuthService, public navCtrl: NavController, public navParams: NavParams, 
+    public platform: Platform, public actionsheetCtrl: ActionSheetController, public backendService: BackendService, public toastCtrl: ToastController) {
 
-  this.event = {
+    this.activeUser = this.auth.getUser();
+    this.changepasswordCredentials = {oldpass: '', newpass: '', repeatpass: ''}; 
+
+    this.event = {
     month: '1990-03-22',
     timeStarts: '07:43',
     timeEnds: '1990-03-23'
@@ -70,4 +76,46 @@ export class SettingsPage {
       });
       actionSheet.present();
     }
+
+    changePassword(){
+
+      this.backendService.validateUser(this.activeUser.userid,this.changepasswordCredentials.oldpass)
+        .subscribe(data=>{
+          this.tempUser==data.id;
+
+        if ( this.tempUser == this.activeUser.userid || this.changepasswordCredentials.newpass==this.changepasswordCredentials.repeatpass){
+          let hashpassword =  this.hash(this.changepasswordCredentials.newpass);
+
+          console.log(this.tempUser);
+          this.backendService.putAuth(this.tempUser,hashpassword)
+          .subscribe(data=>{
+            if (data.result == "true")
+            this.showConfirmToast();
+          });
+        }
+        else{
+          console.log("kunde inte ändra lösenord");
+        }
+
+
+          });
+    }
+
+      hash(code: string) {
+    var hex, i;
+    var result = "";
+    for (i = 0; i < code.length; i++) {
+        hex = (code.charCodeAt(i)*31).toString(16);
+        result += ("000"+hex).slice(-4);
+    }
+    return result;
+  }
+
+    showConfirmToast() {
+    let toast = this.toastCtrl.create({
+      message: 'Password changed',
+      duration: 3000
+    });
+    toast.present();
+  }
 }

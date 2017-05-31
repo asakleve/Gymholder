@@ -32,7 +32,7 @@ export class GymprofilePage {
   pcat: any;
   weathercat: any;
   allsports: any;
-  gymHolder: any;
+  gymHolder;
 
   constructor(private authService: AuthService, public navCtrl: NavController, public navParams: NavParams, private openGymData: OpenGymDataService, private backendService: BackendService) {
 
@@ -86,7 +86,8 @@ export class GymprofilePage {
     this.backendService.getGymHolder(this.activeGym.id)
     .subscribe(data=>{
       this.gymHolder=data;
-      console.log(this.gymHolder);
+      console.log(JSON.stringify(data));
+      console.log(this.gymHolder.username);
     });
   }
 
@@ -111,6 +112,7 @@ export class GymprofilePage {
   }
 
   openBadass() {
+    console.log("Till funktionen openbadass");
     this.navCtrl.push(BadassPage, { opengymData: this.gymData });
   }
 

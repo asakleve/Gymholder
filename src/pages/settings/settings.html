@@ -56,23 +56,24 @@
        </ion-item>
     </ion-list>
 
+
+    <form (ngSubmit)="changePassword()" #changePassForm="ngForm">
     <ion-list>
       <ion-list-header>
         CREATE NEW PASSWORD
       </ion-list-header>
 
       <ion-item>
-        <ion-input type="password" placeholder="Old Password"></ion-input>
-      </ion-item>
-
-      <ion-item>
-        <ion-input type="password" placeholder="New Password"></ion-input>
+        <ion-input type="password" placeholder="Old Password" name = "oldpass"[(ngModel)]="changepasswordCredentials.oldpass" required ></ion-input>
       </ion-item>
       <ion-item>
-        <ion-input type="password" placeholder="Repeat Password"></ion-input>
+        <ion-input type="password" placeholder="New Password" name ="newpass" [(ngModel)]="changepasswordCredentials.newpass" required ></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-input type="password" placeholder="Repeat Password" name ="repeatpass" [(ngModel)]="changepasswordCredentials.repeatpass" required ></ion-input>
       </ion-item>
       <div ion-content padding class="action-sheets-basic-page">
-        <button class="button-layout" ion-button full>Save new password</button></div>
+        <button class="button-layout"  class="submit-btn" ion-button full type="submit" [disabled]="!changePassForm.form.valid">Save new password</button></div>
         
       <div ion-content padding class="action-sheets-basic-page">
         <button class="button-layout" ion-button full on-click="openMenu()">
@@ -80,4 +81,5 @@
         </button>
       </div>
     </ion-list>
+    </form>
   </ion-content>

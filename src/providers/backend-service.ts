@@ -171,6 +171,15 @@ export class BackendService {
       .map(res => res.json());
   }
 
+    public putAuth(id: number, password: string) {
+    let body = JSON.stringify({
+      "id": id,
+      "pass": password
+    });
+    return this.http.put(this.apibackend + '/auth', body, { headers: this.headers })
+      .map(res => res.json());
+  }
+
   public putUser(id: number, username: string, email: string, age: number/*, password: string*/) {
     let body = JSON.stringify({
       "id": id,
