@@ -1,100 +1,3 @@
-<!--<ion-header>
-  <ion-navbar class = "navigationbar" color='navbarColor'>
-    <button ion-button menuToggle>
-      <ion-icon name="menu"></ion-icon>
-    </button>
-    <button ion-button clear color ='navbarTextColor' class ="navButton">Gym<span class="another-color">holder</span></button>
-    <button ion-button clear icon-search>
-     	<ion-icon name="search" color='white'></ion-icon>
-	</button>
-  </ion-navbar>
-</ion-header>
-
-
-<ion-content class="card-background-page">
-
-<h3> Add result </h3>
-
-        <div class="card-title">{{ gymData?.Name }}</div>
-
-<ion-row>
-
-<ion-col>
-</ion-col>
-<ion-col>
-<p class="huvud"> Category: </p>
-</ion-col>
-<ion-col>
-<p class="huvud"> Value: </p>
-</ion-col>
-<ion-col>
-<p class="huvud"> Bonus: </p>
-</ion-col>
-
-
-</ion-row>
-
-<ion-row>
-	<ion-col class="ikon">
-		<ion-icon name="ios-thermometer-outline"></ion-icon>
-	</ion-col>
-	<ion-col>
-				<p> Temp: </p>
-	</ion-col>
-	<ion-col class="third">
-		<div class="weatherdata"> {{ gymData?.forecast?.temperature }} <p> °C </p></div>
-	</ion-col>
-	<ion-col>
-	<p> + </p>
-	</ion-col>
-</ion-row>
-
-<ion-row>
-	<ion-col class="ikon">
-		        <ion-icon name="ios-rainy-outline"></ion-icon>
-	</ion-col>
-	<ion-col>
-				<p> Rain:  </p>
-	</ion-col>
-	<ion-col class="third">
-				  <div class="weatherdata"> {{ gymData?.forecast?.precipitationcat }} <p class="liten"> m/m </p></div>
-	</ion-col>
-	<ion-col>
-	<p> + </p>
-	</ion-col>
-</ion-row>
-
-
-<ion-row>
-	<ion-col class="ikon">
-		        <ion-icon name="ios-speedometer-outline"></ion-icon>
-	</ion-col>
-	<ion-col>
-				<p> Wind: </p>
-	</ion-col>
-	<ion-col class="third">
-				  <div class="weatherdata"> {{ gymData?.forecast?.windspeed }} <p> m/s</p></div>
-
-	</ion-col>
-	<ion-col>
-		<p> + </p>
-	</ion-col>
-</ion-row>
-<div class="divider"></div>
-<p class="huvudscore"> Your Score X   </p>
-
-	<button ion-button class="knapp" on-click="showAlert();"> How does the scoring system work? </button>
-
-
-</ion-content>-->
-
-<!--
-  Generated template for the Addresult page.
-
-  See http://ionicframework.com/docs/components/#navigation for more info on
-  Ionic pages and navigation.
-//-->
-
 <ion-header>
 
   <ion-navbar>
@@ -105,56 +8,25 @@
 
 
 <ion-content class="addresult-content" padding>
-  <div class="addresult-box">
-
-    <form (ngSubmit)="add()" #addForm="ngForm">
-      <ion-row>
-        <ion-col>
-          <ion-list inset>
-
-            <ion-list>
-              <ion-item>
-                <ion-label>Exercise</ion-label>
-                <ion-select [(ngModel)]="registerResult.sport" name="sport" required>
-                  <ion-option *ngFor="let s of sports" value="{{s.id}}">{{s.name}}</ion-option>
-                </ion-select>
-              </ion-item>
-            </ion-list>
-
-            <ion-item>
-              <ion-input type="number" placeholder="Value" name="value" [(ngModel)]="registerResult.value" required></ion-input>
-            </ion-item>
-            
-           </ion-list>
-         </ion-col>
-       </ion-row>
-        <button ion-button (click)="startRecording()">Add recording</button>
+    <ion-card>
+      <img src="assets/img/gymLeaderBoard.jpg"/>
+    </ion-card>
 
 
-      <ion-card>
-      <ion-card-content>
-      <div data-tap-disable="true">    
-        <video #myvideo></video>
+    <form (ngSubmit)="addResult()" #resultForm="ngForm"> 
+    <ion-list>
+      <div> <button ion-button block class="button-layout" (click)="showRadio()">Select exercise</button> </div>
+        <div> 
+          <h4 >{{sport}}</h4>
         </div>
-      </ion-card-content>
-      <button ion-button (click) = "selectVideo()">Preview video</button>
-      </ion-card>
 
-      <ion-row>
-        <ion-col class="add-col">
-          <button ion-button class="submit-btn" full type="submit" [disabled]="!addForm.form.valid">Add result</button>
-        </ion-col>
-      </ion-row>
+        
+          <ion-item>
+             <ion-input type="number" placeholder="How Many Reps Did You Do?" name ="reps" [(ngModel)]="result.reps" required></ion-input>
+          </ion-item>
+         <div> <button class="button-layout"  class="submit-btn" ion-button full type="submit" [disabled]="!resultForm.form.valid">Add Result</button></div>
+     
+        </ion-list>
+     </form>
 
-    </form>
-
-      
-      <ion-card>
-      <ion-card-content>
-          <button ion-button (click) = "playResultVideo()">Play video</button>
-      </ion-card-content>
-      </ion-card>
-
-
-  </div>
 </ion-content>

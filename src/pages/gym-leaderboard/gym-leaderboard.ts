@@ -31,7 +31,8 @@ export class GymLeaderboardPage {
     this.opengymid = this.navParams.get('opengymid');
     this.backendService.getGymByOpenId(this.opengymid)
       .subscribe(data => {
-        this.gymid = data.id;
+        this.gymid = this.navParams.get('gymid');
+        console.log(this.gymid);
         this.sports = [];
         this.sports.push("Show all results");
         this.engage();

@@ -26,49 +26,22 @@ export class SendChallengePage {
 
   constructor(public auth: AuthService, public navCtrl: NavController, public navParams: NavParams, public alertCtrl: AlertController, private backendService: BackendService) {
     this.challengeCredentials={sender: '', receiver: '', sport:'', reps:'',message:''};
-    this.activeUser = this.auth.getUser;
+    this.activeUser = this.auth.getUser();
     this.profileOwnerId = this.navParams.get('userid');
-    this.challengeCredentials.sender = this.activeUser.userid;
-    this.challengeCredentials.receiver = this.profileOwnerId;
-   
- 
+    console.log(this.profileOwnerId);
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad SendChallenge');
   }
 
+
   toHomepage(){
   this.navCtrl.setRoot(HomePage);
 }
 
-
-
-doPrompt() {
-  let prompt = this.alertCtrl.create({
-    title: 'Awesome!',
-    buttons: [
-      {
-        text: 'Cancel',
-        handler: data => {
-          console.log('Cancel clicked');
-        }
-      },
-      {
-        text: 'Send Challenge',
-        handler: data => {
-          console.log('Saved clicked');
-          this.postChallenge();
-            }
-         }
-        
-    ]
-  });
-  prompt.present();
-}
-
 postChallenge(){
-  this.backendService.postChallenge(this.challengeCredentials.sender, this.profileOwnerId, this.challengeCredentials.sport, this.challengeCredentials.reps, this.challengeCredentials.message)
+  this.backendService.postChallenge(this.activeUser.userid, this.profileOwnerId.id, this.challengeCredentials.sport,this.challengeCredentials.reps, this.challengeCredentials.message)
   .subscribe(data=>{
      if (data=="Challenge created"){
       this.showAlert();
@@ -76,8 +49,6 @@ postChallenge(){
     }
    });
 }
-
-
    showAlert() {
     let alert = this.alertCtrl.create({
       title: 'Challenge sent!',
@@ -85,6 +56,4 @@ postChallenge(){
     });
     alert.present();
   }
-          //Väntar på HTML-förändringar innan denna kan färdigställas/ åsa
-
 }

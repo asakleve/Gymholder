@@ -100,10 +100,10 @@ export class BackendService {
   constructor(public http: Http, public openGymData: OpenGymDataService, public coordService: CoordService) {
     console.log('Hello BackendService Provider');
 
-    //this.apibackend = "/backend";
-    this.apibackend = "http://gymholder.herokuapp.com";
-    this.apiuser = "http://gymholder.herokuapp.com/user";
-    //this.apiuser = '/user';
+    this.apibackend = "/backend";
+    //this.apibackend = "http://gymholder.herokuapp.com";
+    //this.apiuser = "http://gymholder.herokuapp.com/user";
+    this.apiuser = '/user';
     this.headers = new Headers();
     this.headers.append('Authentication', '0oXxWXkLknkhDa2JWZWF');
     this.headers.append('Accept', 'application/json');
@@ -351,7 +351,7 @@ export class BackendService {
       "sport": sportid,
       "value": value
     });
-    return this.http.put(this.apibackend + '/result/' + id, body, { headers: this.headers })
+    return this.http.put(this.apibackend + '/result' + id, body, { headers: this.headers })
       .map(res => res.json());
   }
 
@@ -418,14 +418,15 @@ export class BackendService {
     .map(res=> res.json());
   }
 
-  public postChallenge(user_one_id: number, user_two_id: number, sport: string, message: string, reps: number){
+  public postChallenge(user_one_id: number, user_two_id: number, sport: string,reps: number, message: string){
     let body = JSON.stringify({
       "id": 0,
       "sender": user_one_id,
       "receiver": user_two_id,
       "sport": sport,
-      "message": message,
-      "reps": reps
+      "reps": reps,
+      "message": message
+      
     });
     return this.http.post(this.apibackend + '/newchallenge',body, {headers: this.headers})
     .map(res=> res.json());
